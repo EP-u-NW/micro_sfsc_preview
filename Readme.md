@@ -13,8 +13,8 @@ This framework does not use dynamic memory allocation.
 This repository is structured the following way:
 + The **sfsc** folder contains the actual source code you should copy into your project.
 + The **platforms** folder contains implementations for the platform dependencies for some platforms. Platform dependencies are explained in the next section.
-+ The **docs** folder contains a doxygen html documentation of the public header. It can be access via [github pages](TODO). Also, the **docs** folder contains latex code and the complete documentation as [PDF](TODO).
-The **examples/scenarios** folder contains the actual examples. Every example comes with its own preprocessor directive that must be defined to enable that example. Only one of the examples should be active at the same time. Where to define the directives is up to the used build system. The other subfolders of the **examples** folder contain the initialization logic and example build instructions to the get the examples running on the corresponding platform.
++ The **docs** folder contains a doxygen html documentation of the public header. It can be access via [github pages](https://epnw.github.io/micro_sfsc_preview/). Also, the **docs** folder contains latex code and the complete documentation as [PDF](https://epnw.github.io/micro_sfsc_preview/latex/refman.pdf).
++ The **examples/scenarios** folder contains the actual examples. Every example comes with its own preprocessor directive that must be defined to enable that example. Only one of the examples should be active at the same time. Where to define the directives is up to the used build system. The other subfolders of the **examples** folder contain the initialization logic and example build instructions to the get the examples running on the corresponding platform.
 
 
 ## Porting to your platform
