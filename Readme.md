@@ -1,6 +1,6 @@
 # MicroSFSC
 The [Shop-Floor Service Connector (SFSC)](https://github.com/nalim2/SFSC) is an easy-to-use, service-orientated communication framework for [Industry 4.0](https://en.wikipedia.org/wiki/Fourth_Industrial_Revolution), developed at the [University of Stuttgart](https://www.isw.uni-stuttgart.de/forschung/kommunikation/SFSC/). 
-MircoSFSC is a microcontroller ready implementation of the SFSC adapter role. This documentation provides a quick overview about the usage and the features of the MicroSFSC framework, where as an in deep analysis can be found in this [white-paper](TODO LINK Masterarbeit)(German).
+MircoSFSC is a microcontroller ready implementation of the SFSC adapter role. This documentation provides a quick overview about the usage and the features of the MicroSFSC framework, where as an in deep analysis can be found in this [white-paper](https://epnw.github.io/micro_sfsc_preview/Eric_Prokop_-_MicroSFSC.pdf)(German).
 
 This implementation is written in C and [conforms the C99 freestanding standard](https://gcc.gnu.org/onlinedocs/gcc/Standards.html). If your compiler only supports ANSI-C, some platform depended adjustments are required.
 

@@ -6,5 +6,5 @@ GENERATE_LATEX = YES
 FULL_PATH_NAMES = YES
 PROJECT_NAME = MicroSFSC
 OPTIMIZE_OUTPUT_FOR_C = YES
-INPUT = ./src/sfsc/sfsc_adapter/sfsc_adapter.h,./src/sfsc/sfsc_adapter/sfsc_error_codes.h,./Readme.md
+INPUT = ./sfsc/sfsc_adapter/sfsc_adapter.h,./sfsc/sfsc_adapter/sfsc_error_codes.h,./Readme.md
 USE_MDFILE_AS_MAINPAGE = ./Readme.md

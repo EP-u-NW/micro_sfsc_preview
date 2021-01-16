@@ -8,7 +8,7 @@
 \indexentry{\_sfsc\_publisher\_or\_server@{\_sfsc\_publisher\_or\_server}|hyperpage}{20}
 \indexentry{\_sfsc\_server@{\_sfsc\_server}|hyperpage}{21}
 \indexentry{\_sfsc\_subscriber@{\_sfsc\_subscriber}|hyperpage}{22}
-\indexentry{src/sfsc/sfsc\_adapter/sfsc\_adapter.h@{src/sfsc/sfsc\_adapter/sfsc\_adapter.h}|hyperpage}{25}
+\indexentry{sfsc/sfsc\_adapter/sfsc\_adapter.h@{sfsc/sfsc\_adapter/sfsc\_adapter.h}|hyperpage}{25}
 \indexentry{sfsc\_adapter.h@{sfsc\_adapter.h}!relative\_server\_tags\_DEFAULT\_INIT@{relative\_server\_tags\_DEFAULT\_INIT}|hyperpage}{28}
 \indexentry{relative\_server\_tags\_DEFAULT\_INIT@{relative\_server\_tags\_DEFAULT\_INIT}!sfsc\_adapter.h@{sfsc\_adapter.h}|hyperpage}{28}
 \indexentry{sfsc\_adapter.h@{sfsc\_adapter.h}!relative\_sfsc\_service\_descriptor\_DEFAULT\_INIT@{relative\_sfsc\_service\_descriptor\_DEFAULT\_INIT}|hyperpage}{28}
@@ -81,7 +81,7 @@
 \indexentry{unregister\_subscriber@{unregister\_subscriber}!sfsc\_adapter.h@{sfsc\_adapter.h}|hyperpage}{45}
 \indexentry{sfsc\_adapter.h@{sfsc\_adapter.h}!user\_task@{user\_task}|hyperpage}{46}
 \indexentry{user\_task@{user\_task}!sfsc\_adapter.h@{sfsc\_adapter.h}|hyperpage}{46}
-\indexentry{src/sfsc/sfsc\_adapter/sfsc\_error\_codes.h@{src/sfsc/sfsc\_adapter/sfsc\_error\_codes.h}|hyperpage}{46}
+\indexentry{sfsc/sfsc\_adapter/sfsc\_error\_codes.h@{sfsc/sfsc\_adapter/sfsc\_error\_codes.h}|hyperpage}{46}
 \indexentry{sfsc\_error\_codes.h@{sfsc\_error\_codes.h}!E\_HEARTBEAT\_MISSING@{E\_HEARTBEAT\_MISSING}|hyperpage}{47}
 \indexentry{E\_HEARTBEAT\_MISSING@{E\_HEARTBEAT\_MISSING}!sfsc\_error\_codes.h@{sfsc\_error\_codes.h}|hyperpage}{47}
 \indexentry{sfsc\_error\_codes.h@{sfsc\_error\_codes.h}!E\_NO\_FREE\_SLOT@{E\_NO\_FREE\_SLOT}|hyperpage}{47}

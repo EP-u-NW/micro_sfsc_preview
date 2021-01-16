@@ -43,7 +43,7 @@
 \contentsline {section}{\numberline {4.10}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}sfsc\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}subscriber Struct Reference}{22}{section.4.10}%
 \contentsline {subsection}{\numberline {4.10.1}Detailed Description}{23}{subsection.4.10.1}%
 \contentsline {chapter}{\numberline {5}File Documentation}{25}{chapter.5}%
-\contentsline {section}{\numberline {5.1}src/sfsc/sfsc\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}adapter/sfsc\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}adapter.h File Reference}{25}{section.5.1}%
+\contentsline {section}{\numberline {5.1}sfsc/sfsc\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}adapter/sfsc\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}adapter.h File Reference}{25}{section.5.1}%
 \contentsline {subsection}{\numberline {5.1.1}Detailed Description}{28}{subsection.5.1.1}%
 \contentsline {subsection}{\numberline {5.1.2}Macro Definition Documentation}{28}{subsection.5.1.2}%
 \contentsline {subsubsection}{\numberline {5.1.2.1}relative\_server\_tags\_DEFAULT\_INIT}{28}{subsubsection.5.1.2.1}%
@@ -84,7 +84,7 @@
 \contentsline {subsubsection}{\numberline {5.1.4.19}unregister\_server()}{44}{subsubsection.5.1.4.19}%
 \contentsline {subsubsection}{\numberline {5.1.4.20}unregister\_subscriber()}{45}{subsubsection.5.1.4.20}%
 \contentsline {subsubsection}{\numberline {5.1.4.21}user\_task()}{46}{subsubsection.5.1.4.21}%
-\contentsline {section}{\numberline {5.2}src/sfsc/sfsc\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}adapter/sfsc\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}error\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}codes.h File Reference}{46}{section.5.2}%
+\contentsline {section}{\numberline {5.2}sfsc/sfsc\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}adapter/sfsc\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}error\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}codes.h File Reference}{46}{section.5.2}%
 \contentsline {subsection}{\numberline {5.2.1}Detailed Description}{47}{subsection.5.2.1}%
 \contentsline {subsection}{\numberline {5.2.2}Macro Definition Documentation}{47}{subsection.5.2.2}%
 \contentsline {subsubsection}{\numberline {5.2.2.1}E\_HEARTBEAT\_MISSING}{47}{subsubsection.5.2.2.1}%
