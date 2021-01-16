@@ -1,0 +1,52 @@
+\hypertarget{struct__sfsc__publisher}{}\doxysection{\+\_\+sfsc\+\_\+publisher Struct Reference}
+\label{struct__sfsc__publisher}\index{\_sfsc\_publisher@{\_sfsc\_publisher}}
+
+
+State memory for a publisher service.  
+
+
+
+
+{\ttfamily \#include $<$sfsc\+\_\+adapter.\+h$>$}
+
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct__sfsc__publisher_a28e3ed80392c3a9f42adf3e488d3273a}\label{struct__sfsc__publisher_a28e3ed80392c3a9f42adf3e488d3273a}} 
+void($\ast$ {\bfseries on\+\_\+subscription\+\_\+change} )(\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, \mbox{\hyperlink{struct__sfsc__publisher}{sfsc\+\_\+publisher}} $\ast$publisher, sfsc\+\_\+uint8 last\+\_\+subscribers, sfsc\+\_\+uint8 current\+\_\+subscribers)
+\item 
+\mbox{\Hypertarget{struct__sfsc__publisher_a3e08db3945f02683388759997339e005}\label{struct__sfsc__publisher_a3e08db3945f02683388759997339e005}} 
+sfsc\+\_\+uint8 {\bfseries last\+\_\+subscribers}
+\item 
+\mbox{\Hypertarget{struct__sfsc__publisher_a8e533a5bceee9f2d336d72e84765f7d5}\label{struct__sfsc__publisher_a8e533a5bceee9f2d336d72e84765f7d5}} 
+sfsc\+\_\+uint8 {\bfseries current\+\_\+subscribers}
+\item 
+\mbox{\Hypertarget{struct__sfsc__publisher_ab2b2a75c819752978d0a235cf52e48d5}\label{struct__sfsc__publisher_ab2b2a75c819752978d0a235cf52e48d5}} 
+sfsc\+\_\+\+Sfsc\+Id {\bfseries service\+\_\+id}
+\item 
+\mbox{\Hypertarget{struct__sfsc__publisher_a1fbc8007c107579468344e12ab4808a1}\label{struct__sfsc__publisher_a1fbc8007c107579468344e12ab4808a1}} 
+\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} {\bfseries topic}
+\item 
+\mbox{\Hypertarget{struct__sfsc__publisher_af59e033b020a38cb657fcf645e99238b}\label{struct__sfsc__publisher_af59e033b020a38cb657fcf645e99238b}} 
+sfsc\+\_\+bool {\bfseries unregistered}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+State memory for a publisher service. 
+
+To create a publisher, declare a sfsc\+\_\+publisher struct, fill it, and use either the register\+\_\+publisher or the register\+\_\+publisher\+\_\+unregistered function. The sfsc\+\_\+publisher struct must be valid until it is unregistered by an call to the unregister\+\_\+publisher function.
+
+Filling a publisher is optional and means to set values to the on\+\_\+subscription\+\_\+change, the service\+\_\+id and topic fields.
+
+If you want to choose a service id for the publisher yourself, you can fill the service\+\_\+id before registration with an valid 128bit UUID in standard-\/hexgroup-\/format (see the random\+\_\+uuid for more information). Usually, you want to set this field to sfsc\+\_\+\+Sfsc\+Id\+\_\+init\+\_\+default (what it already is for any instance initalized with sfsc\+\_\+publisher\+\_\+\+DEFAULT\+\_\+\+INIT) and let the framework automatically generate a service id. After registration, you should not change the value of this field.
+
+If you want to choose a topic for the publisher yourself you can configure the topic buffer to point to a valid topic. The topic buffer must be valid and immutable (see the sfsc\+\_\+buffer documentation for more insight on this) as long as the publisher is registered. If you want the framework to choose a topic for you, set this field to SERVICE\+\_\+\+TOPIC\+\_\+\+AUTOGEN (what it already is for any instance initalized with sfsc\+\_\+publisher\+\_\+\+DEFAULT\+\_\+\+INIT). To save memory, the framework will then simply use the service\+\_\+id as topic.
+
+If the subscription count of a publisher changes, the on\+\_\+subscription\+\_\+change callback is invoked. The parameters of the callback indicate the old and new subscription count. They are either 0 or at maximum 1, even if there might be more subscribers, since sfsc can only tell if there is at least 1 subscriber. During execution of the callback function, the last\+\_\+subscribers and current\+\_\+subscribers fields (not callback parameters!) are unfedined. After the callback function returns, they will match the values of the parameters. In any case, they are read-\/only!
+
+The unregistered field is set by the framework and depends on wether you registered a publisher with the register\+\_\+publisher or the register\+\_\+publisher\+\_\+unregistered function. It indicates if the publisher is registered in the cores service registry. You must not change it! 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/sfsc/sfsc\+\_\+adapter/\mbox{\hyperlink{sfsc__adapter_8h}{sfsc\+\_\+adapter.\+h}}\end{DoxyCompactItemize}

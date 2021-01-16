@@ -1,0 +1,54 @@
+\hypertarget{struct__sfsc__channel__answer}{}\doxysection{\+\_\+sfsc\+\_\+channel\+\_\+answer Struct Reference}
+\label{struct__sfsc__channel__answer}\index{\_sfsc\_channel\_answer@{\_sfsc\_channel\_answer}}
+
+
+A struct containing all information needed to answer a channel request.  
+
+
+
+
+{\ttfamily \#include $<$sfsc\+\_\+adapter.\+h$>$}
+
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct__sfsc__channel__answer_a7eaa45f8e1f416d73c299d00cbfcbe11}\label{struct__sfsc__channel__answer_a7eaa45f8e1f416d73c299d00cbfcbe11}} 
+sfsc\+\_\+uint8 $\ast$ {\bfseries service\+\_\+id}
+\item 
+\mbox{\Hypertarget{struct__sfsc__channel__answer_a59a17b2c218bfec74306376259452858}\label{struct__sfsc__channel__answer_a59a17b2c218bfec74306376259452858}} 
+sfsc\+\_\+uint8 $\ast$ {\bfseries adapter\+\_\+id}
+\item 
+\mbox{\Hypertarget{struct__sfsc__channel__answer_a4708cb1117788355498c0190255045a3}\label{struct__sfsc__channel__answer_a4708cb1117788355498c0190255045a3}} 
+sfsc\+\_\+uint8 $\ast$ {\bfseries core\+\_\+id}
+\item 
+\mbox{\Hypertarget{struct__sfsc__channel__answer_a003ba2b03e222bf17fd81638c1b4f8b9}\label{struct__sfsc__channel__answer_a003ba2b03e222bf17fd81638c1b4f8b9}} 
+\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} {\bfseries publisher\+\_\+output\+\_\+topic}
+\item 
+\mbox{\Hypertarget{struct__sfsc__channel__answer_a0bf1c16ca4e5aafd389c132e59b1a704}\label{struct__sfsc__channel__answer_a0bf1c16ca4e5aafd389c132e59b1a704}} 
+\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} {\bfseries name}
+\item 
+\mbox{\Hypertarget{struct__sfsc__channel__answer_a0dd2b346573fb2183d102727a4d3e53f}\label{struct__sfsc__channel__answer_a0dd2b346573fb2183d102727a4d3e53f}} 
+\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} {\bfseries custom\+\_\+tags}
+\item 
+\mbox{\Hypertarget{struct__sfsc__channel__answer_a29c161e114a32f3d90dcc5b8101b3e77}\label{struct__sfsc__channel__answer_a29c161e114a32f3d90dcc5b8101b3e77}} 
+\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} {\bfseries output\+\_\+message\+\_\+type}
+\item 
+\mbox{\Hypertarget{struct__sfsc__channel__answer_af0e71834808a5629185600d1e1aba0d6}\label{struct__sfsc__channel__answer_af0e71834808a5629185600d1e1aba0d6}} 
+sfsc\+\_\+bool {\bfseries unregistered}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A struct containing all information needed to answer a channel request. 
+
+Instead of normal binary payload, a channel request is answered with the definition of a publisher service.
+
+The core\+\_\+id, adapter\+\_\+id and service\+\_\+id represent the core and adapter the publisher service is conencted to, as well as the publisher service itself. Their length must be UUID\+\_\+\+LEN and their format must be standard-\/hexgroup-\/format (see the random\+\_\+uuid function). The reason a sfsc\+\_\+channel\+\_\+answer uses sfsc\+\_\+uint8$\ast$ instead of sfsc\+\_\+uint8\mbox{[}\mbox{]} is to remove copying and to save memory\+: The publisher you are describing is most likly hosted by the same adapter that will send this channel answer. Instead of allocating 3$\ast$\+UUID\+\_\+\+LEN memory and copy the details from the adapter to the sfsc\+\_\+channel\+\_\+answer, you can just let the fields point to \&adapter\+\_\+states()-\/$>$core\+\_\+id and \&adapter\+\_\+states()-\/$>$adapter\+\_\+id respectivly.
+
+All sfsc\+\_\+buffers must be valid during the use-\/time of the sfsc\+\_\+channel\+\_\+answer struct and are optional. If publisher\+\_\+output\+\_\+topic is set to SERVICE\+\_\+\+TOPIC\+\_\+\+AUTOGEN the topic autogenerate rule (as described in sfsc\+\_\+publisher) will be applied, and the service\+\_\+id will be used as topic.
+
+The unregistered should be set to 0 if the publisher you are describing in this sfsc\+\_\+channel\+\_\+answer is also registered in the service registry, or to 1 if it is not. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/sfsc/sfsc\+\_\+adapter/\mbox{\hyperlink{sfsc__adapter_8h}{sfsc\+\_\+adapter.\+h}}\end{DoxyCompactItemize}

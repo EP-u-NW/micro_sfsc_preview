@@ -1,0 +1,52 @@
+\hypertarget{struct__sfsc__adapter__stats}{}\doxysection{\+\_\+sfsc\+\_\+adapter\+\_\+stats Struct Reference}
+\label{struct__sfsc__adapter__stats}\index{\_sfsc\_adapter\_stats@{\_sfsc\_adapter\_stats}}
+
+
+The sfsc\+\_\+adapter\+\_\+stats struct contains the infromation needed by the user.  
+
+
+
+
+{\ttfamily \#include $<$sfsc\+\_\+adapter.\+h$>$}
+
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct__sfsc__adapter__stats_ae5f163e071ea519ad9bdb8be1b35bebe}\label{struct__sfsc__adapter__stats_ae5f163e071ea519ad9bdb8be1b35bebe}} 
+const char $\ast$ {\bfseries address}
+\item 
+\mbox{\Hypertarget{struct__sfsc__adapter__stats_a5c78fd412903a80af2633d178ebbb441}\label{struct__sfsc__adapter__stats_a5c78fd412903a80af2633d178ebbb441}} 
+sfsc\+\_\+uint8 {\bfseries adapter\+\_\+id} \mbox{[}UUID\+\_\+\+LEN\mbox{]}
+\item 
+\mbox{\Hypertarget{struct__sfsc__adapter__stats_a24ced3376ba375e981193bd94b8056f6}\label{struct__sfsc__adapter__stats_a24ced3376ba375e981193bd94b8056f6}} 
+sfsc\+\_\+uint8 {\bfseries core\+\_\+id} \mbox{[}UUID\+\_\+\+LEN\mbox{]}
+\item 
+\mbox{\Hypertarget{struct__sfsc__adapter__stats_ac11a7657d513d370a02b3500bbb46a27}\label{struct__sfsc__adapter__stats_ac11a7657d513d370a02b3500bbb46a27}} 
+sfsc\+\_\+uint8 {\bfseries state}
+\item 
+\mbox{\Hypertarget{struct__sfsc__adapter__stats_a000a7239ce58ddcc856e7cd229f19f02}\label{struct__sfsc__adapter__stats_a000a7239ce58ddcc856e7cd229f19f02}} 
+sfsc\+\_\+uint32 {\bfseries discarded\+\_\+message\+\_\+count}
+\item 
+\mbox{\Hypertarget{struct__sfsc__adapter__stats_a7887f6d051955edbdc116a5521a2f6c7}\label{struct__sfsc__adapter__stats_a7887f6d051955edbdc116a5521a2f6c7}} 
+sfsc\+\_\+bool {\bfseries query\+\_\+in\+\_\+progress}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The sfsc\+\_\+adapter\+\_\+stats struct contains the infromation needed by the user. 
+
+The stats of an adapter should be accessd throught the adapter\+\_\+stats function. The fields of this struct are all read-\/only and should not be modified by you.
+
+The address field specifies the address of the core and is implicitly set by you during the start\+\_\+session\+\_\+bootstraped or start\+\_\+session functions. The format of the address is up to you and can be anything, as long it is understood by your implementation of socket\+\_\+connect (see sfsc\+\_\+sockets.\+h).
+
+The adapter\+\_\+id and core\+\_\+id fields indicate this adapters id and the id of the core it is connected to respectivly. They are both filled during the handshake, and ready to use once the adapters state is operational.
+
+The state indicates to current connection state of an adapter. The various states are defined in sfsc\+\_\+states.\+h and are all prefixed with SFSC\+\_\+\+STATE\+\_\+. An adapter is considered operational if the value of this field is $>$= SFSC\+\_\+\+STATE\+\_\+\+OPERATIONAL.
+
+Due to the execution and memory model of this framework it can occur that some messages receieved from the network are dropped (see the system\+\_\+task function for details). The discarded\+\_\+message\+\_\+count keeps track of the number of lost messages.
+
+The query\+\_\+in\+\_\+progress is set to 1 if you started a query process using query\+\_\+services, and will be reset to 0 if the query process is terminated. See the query functions for more information. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/sfsc/sfsc\+\_\+adapter/\mbox{\hyperlink{sfsc__adapter_8h}{sfsc\+\_\+adapter.\+h}}\end{DoxyCompactItemize}

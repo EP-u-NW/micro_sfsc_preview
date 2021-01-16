@@ -1,0 +1,36 @@
+\hypertarget{struct__sfsc__buffer}{}\doxysection{\+\_\+sfsc\+\_\+buffer Struct Reference}
+\label{struct__sfsc__buffer}\index{\_sfsc\_buffer@{\_sfsc\_buffer}}
+
+
+A simple structure to store binary data and their length.  
+
+
+
+
+{\ttfamily \#include $<$sfsc\+\_\+adapter.\+h$>$}
+
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct__sfsc__buffer_af68786d938165772f31677fd63e60551}\label{struct__sfsc__buffer_af68786d938165772f31677fd63e60551}} 
+const sfsc\+\_\+uint8 $\ast$ {\bfseries content}
+\item 
+\mbox{\Hypertarget{struct__sfsc__buffer_abac3a113b167426e1c7d4a351e161a8c}\label{struct__sfsc__buffer_abac3a113b167426e1c7d4a351e161a8c}} 
+sfsc\+\_\+size {\bfseries length}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A simple structure to store binary data and their length. 
+
+This structure type is widely used in the framework for compact data storing. It is important to notice that some functions will take a sfsc\+\_\+buffer struct as parameter directly, while others will work with pointers. In the most cases, this says something about the mutality of the content.
+
+In general, for the use-\/time of a sfsc\+\_\+buffer (usually defined in the respective functions documentation), the memory area the buffer points to must be valid and of the in the struct specified length.
+
+When passing the struct to a function, it must be immutable, meaning that for the use-\/time of the sfsc\+\_\+buffer, the content must not change.
+
+When passing a pointer to a function, the content is allowed to be mutable, meaning that during the use-\/time of the sfsc\+\_\+buffer, you are allowed to change the content pointer and thereby change the memory area are this sfsc\+\_\+buffer is backed by. If you do so, don\textquotesingle{}t forget to update the length field accordingly. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/sfsc/sfsc\+\_\+adapter/\mbox{\hyperlink{sfsc__adapter_8h}{sfsc\+\_\+adapter.\+h}}\end{DoxyCompactItemize}

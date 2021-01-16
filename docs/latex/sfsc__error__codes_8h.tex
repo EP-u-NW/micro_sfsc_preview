@@ -1,0 +1,117 @@
+\hypertarget{sfsc__error__codes_8h}{}\doxysection{src/sfsc/sfsc\+\_\+adapter/sfsc\+\_\+error\+\_\+codes.h File Reference}
+\label{sfsc__error__codes_8h}\index{src/sfsc/sfsc\_adapter/sfsc\_error\_codes.h@{src/sfsc/sfsc\_adapter/sfsc\_error\_codes.h}}
+
+
+SFSC related error codes.  
+
+
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sfsc__error__codes_8h_af25371e0d7d5ee4af43ae4431f633291}{E\+\_\+\+PROTO\+\_\+\+DECODE}}~-\/19
+\begin{DoxyCompactList}\small\item\em Failed to decode an incoming sfsc message. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{sfsc__error__codes_8h_a2a0033405bf8b7e7421ff4e6ecc71c16}{E\+\_\+\+PROTO\+\_\+\+ENCODE}}~-\/20
+\begin{DoxyCompactList}\small\item\em Failed to encode an outgoing sfsc message. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{sfsc__error__codes_8h_a18e7380c74d2758230a04b8c6fd86e7d}{E\+\_\+\+TOO\+\_\+\+SLOW}}~-\/21
+\begin{DoxyCompactList}\small\item\em This incdicates that you are calling the system\+\_\+task function with a too low frequency. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{sfsc__error__codes_8h_ac74c67558bb973b8334b66a66a79f9fc}{E\+\_\+\+HEARTBEAT\+\_\+\+MISSING}}~-\/22
+\begin{DoxyCompactList}\small\item\em The core failed to send a heartbeat in time. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{sfsc__error__codes_8h_a5a592a3eeca078366ac33eb29e7b8f4f}{W\+\_\+\+MESSAGE\+\_\+\+DROP}}~-\/23
+\begin{DoxyCompactList}\small\item\em Indicates that the system task was not able to write a message to the user ring, so the message is dropped instead. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{sfsc__error__codes_8h_a42ffec695c1a9a66f87d9ffe47e82d5b}{E\+\_\+\+QUERY\+\_\+\+IN\+\_\+\+PROGRESS}}~-\/24
+\begin{DoxyCompactList}\small\item\em Indicates that there is already a query process ongoing. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{sfsc__error__codes_8h_ac09b07464761499f0450f0acef0a72cb}{E\+\_\+\+NO\+\_\+\+FREE\+\_\+\+SLOT}}~-\/25
+\begin{DoxyCompactList}\small\item\em Indicates that an adapter has no free memory slot of a certain type, but a function would need one. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+SFSC related error codes. 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sfsc__error__codes_8h_ac74c67558bb973b8334b66a66a79f9fc}\label{sfsc__error__codes_8h_ac74c67558bb973b8334b66a66a79f9fc}} 
+\index{sfsc\_error\_codes.h@{sfsc\_error\_codes.h}!E\_HEARTBEAT\_MISSING@{E\_HEARTBEAT\_MISSING}}
+\index{E\_HEARTBEAT\_MISSING@{E\_HEARTBEAT\_MISSING}!sfsc\_error\_codes.h@{sfsc\_error\_codes.h}}
+\doxysubsubsection{\texorpdfstring{E\_HEARTBEAT\_MISSING}{E\_HEARTBEAT\_MISSING}}
+{\footnotesize\ttfamily \#define E\+\_\+\+HEARTBEAT\+\_\+\+MISSING~-\/22}
+
+
+
+The core failed to send a heartbeat in time. 
+
+If this error happens, the core is most likely not longer available, either because of a core or a network failure. You should treat this session as expired and start a new one.
+
+This error is not recoverable, meaning that you start a new sfsc session once you encounter it! \mbox{\Hypertarget{sfsc__error__codes_8h_ac09b07464761499f0450f0acef0a72cb}\label{sfsc__error__codes_8h_ac09b07464761499f0450f0acef0a72cb}} 
+\index{sfsc\_error\_codes.h@{sfsc\_error\_codes.h}!E\_NO\_FREE\_SLOT@{E\_NO\_FREE\_SLOT}}
+\index{E\_NO\_FREE\_SLOT@{E\_NO\_FREE\_SLOT}!sfsc\_error\_codes.h@{sfsc\_error\_codes.h}}
+\doxysubsubsection{\texorpdfstring{E\_NO\_FREE\_SLOT}{E\_NO\_FREE\_SLOT}}
+{\footnotesize\ttfamily \#define E\+\_\+\+NO\+\_\+\+FREE\+\_\+\+SLOT~-\/25}
+
+
+
+Indicates that an adapter has no free memory slot of a certain type, but a function would need one. 
+
+This error is recoverable, meaning that you can continue to use the sfsc adapter. \mbox{\Hypertarget{sfsc__error__codes_8h_af25371e0d7d5ee4af43ae4431f633291}\label{sfsc__error__codes_8h_af25371e0d7d5ee4af43ae4431f633291}} 
+\index{sfsc\_error\_codes.h@{sfsc\_error\_codes.h}!E\_PROTO\_DECODE@{E\_PROTO\_DECODE}}
+\index{E\_PROTO\_DECODE@{E\_PROTO\_DECODE}!sfsc\_error\_codes.h@{sfsc\_error\_codes.h}}
+\doxysubsubsection{\texorpdfstring{E\_PROTO\_DECODE}{E\_PROTO\_DECODE}}
+{\footnotesize\ttfamily \#define E\+\_\+\+PROTO\+\_\+\+DECODE~-\/19}
+
+
+
+Failed to decode an incoming sfsc message. 
+
+This usually means that your communication peer sends malformed messages, or at least that you are receiveing malformed messages. There is not much you can do to prevent this error.
+
+This error is not recoverable, meaning that you start a new sfsc session once you encounter it! \mbox{\Hypertarget{sfsc__error__codes_8h_a2a0033405bf8b7e7421ff4e6ecc71c16}\label{sfsc__error__codes_8h_a2a0033405bf8b7e7421ff4e6ecc71c16}} 
+\index{sfsc\_error\_codes.h@{sfsc\_error\_codes.h}!E\_PROTO\_ENCODE@{E\_PROTO\_ENCODE}}
+\index{E\_PROTO\_ENCODE@{E\_PROTO\_ENCODE}!sfsc\_error\_codes.h@{sfsc\_error\_codes.h}}
+\doxysubsubsection{\texorpdfstring{E\_PROTO\_ENCODE}{E\_PROTO\_ENCODE}}
+{\footnotesize\ttfamily \#define E\+\_\+\+PROTO\+\_\+\+ENCODE~-\/20}
+
+
+
+Failed to encode an outgoing sfsc message. 
+
+This usually happens if you call a sfsc function with malformed content. If you are working with sfsc\+\_\+buffers, check that they are valid for as long as the function you are using requires them.
+
+This error is not recoverable, meaning that you start a new sfsc session once you encounter it! \mbox{\Hypertarget{sfsc__error__codes_8h_a42ffec695c1a9a66f87d9ffe47e82d5b}\label{sfsc__error__codes_8h_a42ffec695c1a9a66f87d9ffe47e82d5b}} 
+\index{sfsc\_error\_codes.h@{sfsc\_error\_codes.h}!E\_QUERY\_IN\_PROGRESS@{E\_QUERY\_IN\_PROGRESS}}
+\index{E\_QUERY\_IN\_PROGRESS@{E\_QUERY\_IN\_PROGRESS}!sfsc\_error\_codes.h@{sfsc\_error\_codes.h}}
+\doxysubsubsection{\texorpdfstring{E\_QUERY\_IN\_PROGRESS}{E\_QUERY\_IN\_PROGRESS}}
+{\footnotesize\ttfamily \#define E\+\_\+\+QUERY\+\_\+\+IN\+\_\+\+PROGRESS~-\/24}
+
+
+
+Indicates that there is already a query process ongoing. 
+
+This error will usually occur if there is already a query process ongoing, and you try to start another one. Keep in mind that you have to end a query process manually and that it counts as running until you end id. See the qery\+\_\+services function for more details.
+
+This error is recoverable, meaning that you can continue to use the sfsc adapter. \mbox{\Hypertarget{sfsc__error__codes_8h_a18e7380c74d2758230a04b8c6fd86e7d}\label{sfsc__error__codes_8h_a18e7380c74d2758230a04b8c6fd86e7d}} 
+\index{sfsc\_error\_codes.h@{sfsc\_error\_codes.h}!E\_TOO\_SLOW@{E\_TOO\_SLOW}}
+\index{E\_TOO\_SLOW@{E\_TOO\_SLOW}!sfsc\_error\_codes.h@{sfsc\_error\_codes.h}}
+\doxysubsubsection{\texorpdfstring{E\_TOO\_SLOW}{E\_TOO\_SLOW}}
+{\footnotesize\ttfamily \#define E\+\_\+\+TOO\+\_\+\+SLOW~-\/21}
+
+
+
+This incdicates that you are calling the system\+\_\+task function with a too low frequency. 
+
+This error happens if the system task can not send outgoing heartbeats in time. The solution is not to rise the HEARTBEAT\+\_\+\+SEND\+\_\+\+RATE\+\_\+\+MS, but to call the system task more often.
+
+This error is not recoverable, meaning that you start a new sfsc session once you encounter it! \mbox{\Hypertarget{sfsc__error__codes_8h_a5a592a3eeca078366ac33eb29e7b8f4f}\label{sfsc__error__codes_8h_a5a592a3eeca078366ac33eb29e7b8f4f}} 
+\index{sfsc\_error\_codes.h@{sfsc\_error\_codes.h}!W\_MESSAGE\_DROP@{W\_MESSAGE\_DROP}}
+\index{W\_MESSAGE\_DROP@{W\_MESSAGE\_DROP}!sfsc\_error\_codes.h@{sfsc\_error\_codes.h}}
+\doxysubsubsection{\texorpdfstring{W\_MESSAGE\_DROP}{W\_MESSAGE\_DROP}}
+{\footnotesize\ttfamily \#define W\+\_\+\+MESSAGE\+\_\+\+DROP~-\/23}
+
+
+
+Indicates that the system task was not able to write a message to the user ring, so the message is dropped instead. 
+
+To understand the relation between system task and user ring, see the readme, section execution model.
+
+This is more a warning than a error, and the framework should continue working.
+
+If you encounter message drops very frequent, try to rise USER\+\_\+\+RING\+\_\+\+SIZE (see sfsc\+\_\+adapter\+\_\+config.\+h). 

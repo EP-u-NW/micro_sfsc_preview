@@ -1,0 +1,36 @@
+\hypertarget{struct__sfsc__subscriber}{}\doxysection{\+\_\+sfsc\+\_\+subscriber Struct Reference}
+\label{struct__sfsc__subscriber}\index{\_sfsc\_subscriber@{\_sfsc\_subscriber}}
+
+
+Struct that contains the necessary state memory to subscribe to a publisher service.  
+
+
+
+
+{\ttfamily \#include $<$sfsc\+\_\+adapter.\+h$>$}
+
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct__sfsc__subscriber_a877ee69ad50c96696987599e11c82960}\label{struct__sfsc__subscriber_a877ee69ad50c96696987599e11c82960}} 
+\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} {\bfseries topic}
+\item 
+\mbox{\Hypertarget{struct__sfsc__subscriber_a606968a35856d6c6284b904603542253}\label{struct__sfsc__subscriber_a606968a35856d6c6284b904603542253}} 
+void($\ast$ {\bfseries on\+\_\+data} )(\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, \mbox{\hyperlink{struct__sfsc__subscriber}{sfsc\+\_\+subscriber}} $\ast$subscriber, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} payload, sfsc\+\_\+bool $\ast$b\+\_\+auto\+\_\+advance)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Struct that contains the necessary state memory to subscribe to a publisher service. 
+
+To subscribe to a publisher service, declare a sfsc\+\_\+subscriber somewhere, fill it and then register it with an adapter using the register\+\_\+subscriber function. The subscriber struct must be valid as long as the subscriber is registered.
+
+Filling a subscriber means to configure the topic field and the on\+\_\+data callback.
+
+Usually, you will recieve the topic of the publisher service you want to subscribe to from the query\+\_\+services function. The topics region must be immutable while the subscriber is registered (for more information what immutable means, see the sfsc\+\_\+buffer documentation).
+
+The on\+\_\+data field is allowed to change. It is invoked, when the corresponding publisher publishes a message. The payload buffer is only valid during the current user task micro step (see the user\+\_\+task documentation). b\+\_\+auto\+\_\+advance is an out-\/parameter (meaning that you should set it), that lets you pause the user task on the current mirco step\+: if you set it to 0, you will enter the pause state and the payload pointer will be valid, even after the callback returns. On the other hand, the user task will not advance to the next micro step until you leave the pause state manually (see advance\+\_\+user\+\_\+ring). Usually, you want to set b\+\_\+auto\+\_\+advance to 1. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/sfsc/sfsc\+\_\+adapter/\mbox{\hyperlink{sfsc__adapter_8h}{sfsc\+\_\+adapter.\+h}}\end{DoxyCompactItemize}

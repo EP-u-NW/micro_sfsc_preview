@@ -1,0 +1,63 @@
+\hypertarget{struct__relative__sfsc__service__descriptor}{}\doxysection{\+\_\+relative\+\_\+sfsc\+\_\+service\+\_\+descriptor Struct Reference}
+\label{struct__relative__sfsc__service__descriptor}\index{\_relative\_sfsc\_service\_descriptor@{\_relative\_sfsc\_service\_descriptor}}
+
+
+Represents all infromation about a service.  
+
+
+
+
+{\ttfamily \#include $<$sfsc\+\_\+adapter.\+h$>$}
+
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct__relative__sfsc__service__descriptor_a919666ddc79dc35d20410d73cef532ac}\label{struct__relative__sfsc__service__descriptor_a919666ddc79dc35d20410d73cef532ac}} 
+sfsc\+\_\+\+Sfsc\+Id {\bfseries core\+\_\+id}
+\item 
+\mbox{\Hypertarget{struct__relative__sfsc__service__descriptor_a856b9f9e90f0098ff9d5973cdfe2ea14}\label{struct__relative__sfsc__service__descriptor_a856b9f9e90f0098ff9d5973cdfe2ea14}} 
+sfsc\+\_\+\+Sfsc\+Id {\bfseries adapter\+\_\+id}
+\item 
+\mbox{\Hypertarget{struct__relative__sfsc__service__descriptor_aa7af1a3384a9fa726aa7db40b0dcba3f}\label{struct__relative__sfsc__service__descriptor_aa7af1a3384a9fa726aa7db40b0dcba3f}} 
+sfsc\+\_\+\+Sfsc\+Id {\bfseries service\+\_\+id}
+\item 
+\mbox{\Hypertarget{struct__relative__sfsc__service__descriptor_a91104e0d84d84c1bbe3ec3f4ae2b4f62}\label{struct__relative__sfsc__service__descriptor_a91104e0d84d84c1bbe3ec3f4ae2b4f62}} 
+sfsc\+\_\+size {\bfseries name\+\_\+offset}
+\item 
+\mbox{\Hypertarget{struct__relative__sfsc__service__descriptor_a27e8f7c662f956fdc0ff73cbf83c84be}\label{struct__relative__sfsc__service__descriptor_a27e8f7c662f956fdc0ff73cbf83c84be}} 
+sfsc\+\_\+size {\bfseries name\+\_\+len}
+\item 
+\mbox{\Hypertarget{struct__relative__sfsc__service__descriptor_a196a32a06a147f21afa4815835bce377}\label{struct__relative__sfsc__service__descriptor_a196a32a06a147f21afa4815835bce377}} 
+sfsc\+\_\+size {\bfseries custom\+\_\+tags\+\_\+offset}
+\item 
+\mbox{\Hypertarget{struct__relative__sfsc__service__descriptor_a08ce77f159ea88637cbeb0c48e6d34e9}\label{struct__relative__sfsc__service__descriptor_a08ce77f159ea88637cbeb0c48e6d34e9}} 
+sfsc\+\_\+size {\bfseries custom\+\_\+tags\+\_\+len}
+\item 
+\mbox{\Hypertarget{struct__relative__sfsc__service__descriptor_a6b28a49745be20d850e22f3b8cff1c29}\label{struct__relative__sfsc__service__descriptor_a6b28a49745be20d850e22f3b8cff1c29}} 
+sfsc\+\_\+uint8 {\bfseries service\+\_\+type}
+\item 
+\mbox{\Hypertarget{struct__relative__sfsc__service__descriptor_affc43db1e6afb1a27ec54c25a496c43a}\label{struct__relative__sfsc__service__descriptor_affc43db1e6afb1a27ec54c25a496c43a}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>\mbox{\hyperlink{sfsc__adapter_8h_aed6ed5b87f6873abc3f42183d6c80f8e}{relative\_publisher\_tags}} {\bfseries publisher\_tags}\\
+\>\mbox{\hyperlink{sfsc__adapter_8h_a6867fb92cb6c9853b21b0110a208cf60}{relative\_server\_tags}} {\bfseries server\_tags}\\
+\} {\bfseries service\_tags}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents all infromation about a service. 
+
+A relative\+\_\+sfsc\+\_\+service\+\_\+descriptor is relative because it does not contain information about a service directly, but it merely serves as an index structure. The indexes (which end with \+\_\+offset) are relative to a memory area. The memory areas address (called start in the following) is usually delivered with the descriptor. For example, to now access the name of the service, read name\+\_\+len bytes from (start+name\+\_\+offset). For reasoning, why this relative apporach is used, read the last paragraph.
+
+An exception to the above are the core\+\_\+id, adapter\+\_\+id, and service\+\_\+id fields, which actually contain the respective ids, and thereby denote the core and adapter this service belongs to, as well as this services own id.
+
+The service\+\_\+type field is either SERVICE\+\_\+\+TYPE\+\_\+\+SERVER or SERVICE\+\_\+\+TYPE\+\_\+\+PUBLISHER and indicates, how the service\+\_\+tags union should be treated.
+
+Why is this relative approach used? The binary size of a serivce in sfsc is not limited, so we can not know the size of the respective service fields in advance. On the other hand, this framework does not use dynamic memory allocation (malloc). A possible solution is to statically allocate memory for each field and add an length field, to indicate, how much memory is actually used. The difference between the allocated and actually used size is called waste. Instead of allocation a memory area for each field, we use one bigger memory area for all fields. The idea is that, because of the indivudual waste, this single field size can be smaller then sum of all indivudual field sizes, while still containing enough space to store all necessary information. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/sfsc/sfsc\+\_\+adapter/\mbox{\hyperlink{sfsc__adapter_8h}{sfsc\+\_\+adapter.\+h}}\end{DoxyCompactItemize}
