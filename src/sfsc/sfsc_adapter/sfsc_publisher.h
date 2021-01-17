@@ -23,8 +23,7 @@ sfsc_int8 sfsc_internal_register_publisher(sfsc_adapter_stats* stats,_sfsc_adapt
 		_sfsc_commands* commands, sfsc_publisher* publishers[],
 		sfsc_publisher* publisher, sfsc_buffer name, sfsc_buffer custom_tags,
 		sfsc_buffer output_message_type, sfsc_command_callback* callback);
-sfsc_int8 sfsc_internal_register_publisher_unregistered(_sfsc_adapter_data* adapter,
-		sfsc_publisher* publishers[], sfsc_publisher* publisher,sfsc_size* i);
+sfsc_int8 sfsc_internal_register_publisher_unregistered(sfsc_publisher* publishers[], sfsc_publisher* publisher,sfsc_size* i);
 sfsc_int8 sfsc_internal_unregister_publisher(sfsc_adapter_stats* stats,_sfsc_adapter_data* adapter,
 		_sfsc_commands* commands, sfsc_publisher* publishers[],
 		sfsc_publisher* publisher, sfsc_command_callback* callback);

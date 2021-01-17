@@ -66,8 +66,7 @@ sfsc_int8 system_task_publisher(_sfsc_adapter_data* adapter,
     return ZMTP_OK;
 }
 
-sfsc_int8 sfsc_internal_register_publisher_unregistered(
-    _sfsc_adapter_data* adapter, sfsc_publisher* publishers[],
+sfsc_int8 sfsc_internal_register_publisher_unregistered(sfsc_publisher* publishers[],
     sfsc_publisher* publisher, sfsc_size* i) {
     *i = 0;
     for (; *i < MAX_PUBLISHERS; (*i)++) {
@@ -91,8 +90,7 @@ sfsc_int8 sfsc_internal_register_publisher(
     sfsc_publisher* publisher, sfsc_buffer name, sfsc_buffer custom_tags,
     sfsc_buffer output_message_type, sfsc_command_callback* callback) {
 		sfsc_size i=0;
-    sfsc_int8 op_result = sfsc_internal_register_publisher_unregistered(
-        adapter, publishers, publisher,&i);
+    sfsc_int8 op_result = sfsc_internal_register_publisher_unregistered(publishers, publisher,&i);
     if (op_result == ZMTP_OK) {
         publisher->unregistered = 0;
         sfsc_CommandRequest request = sfsc_CommandRequest_init_default;

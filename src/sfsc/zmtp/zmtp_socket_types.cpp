@@ -90,13 +90,13 @@ static sfsc_int8 socket_type_by_name(sfsc_uint8* name, sfsc_uint8 len) {
 }
 
 sfsc_bool b_validate_socket_types(zmtp_socket* socket) {
-	sfsc_uint16 type_len = 0;
+	sfsc_uint32 type_len = 0;
 	sfsc_uint8* type_name = get_meta(socket->peer_metadata_buffer,
 			socket_type_meta_key, SOCKET_TYPE_META_KEY_LENGTH, &type_len);
-	sfsc_uint8 peer_type = socket_type_by_name(type_name, type_len);
+	sfsc_uint8 peer_type = socket_type_by_name(type_name, (sfsc_uint8)type_len);
 	type_name = get_meta(socket->metadata_buffer, socket_type_meta_key,
 	SOCKET_TYPE_META_KEY_LENGTH, &type_len);
-	sfsc_uint8 my_type = socket_type_by_name(type_name, type_len);
+	sfsc_uint8 my_type = socket_type_by_name(type_name, (sfsc_uint8)type_len);
 	return b_socket_types_compatible(my_type, peer_type);
 }
 

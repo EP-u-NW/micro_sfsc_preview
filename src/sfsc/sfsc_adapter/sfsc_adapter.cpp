@@ -213,7 +213,7 @@ static sfsc_int8 user_task_data(sfsc_adapter* adapter) {
                     b_composite_bytes_equal(&reply_topic, next_topic,
                                             topic_len)) {
                     op_result = user_task_data_handle_reply(
-                        adapter, &adapter->requests, next_topic, topic_len,
+                        adapter, &adapter->requests,
                         next_payload, payload_len, &b_auto_advance);
                 } else {
                     sfsc_uint8 consumed = 0;
@@ -222,7 +222,7 @@ static sfsc_int8 user_task_data(sfsc_adapter* adapter) {
                         next_payload, payload_len, &consumed, &b_auto_advance);
                     if (!consumed) {
                         op_result = user_task_data_check_servers(
-                            adapter, &adapter->data, adapter->servers,
+                            adapter, adapter->servers,
                             next_topic, topic_len, next_payload, payload_len,
                             &consumed, &b_auto_advance);
                     }
@@ -246,7 +246,7 @@ static sfsc_int8 user_task_data(sfsc_adapter* adapter) {
 
 sfsc_int8 user_task(sfsc_adapter* adapter) {
     sfsc_int8 op_result =
-        user_task_query(adapter, &adapter->data, &adapter->queries);
+        user_task_query(adapter, &adapter->queries);
     if (op_result == ZMTP_OK) {
         op_result = user_task_commands(adapter, &adapter->commands);
         if (op_result == ZMTP_OK) {
@@ -365,8 +365,7 @@ void query_services_next(sfsc_adapter* adapter, sfsc_uint8 next) {
 sfsc_int8 register_publisher_unregistered(sfsc_adapter* adapter,
                                           sfsc_publisher* publisher) {
     sfsc_size i = 0;
-    return sfsc_internal_register_publisher_unregistered(
-        &adapter->data, adapter->publishers, publisher, &i);
+    return sfsc_internal_register_publisher_unregistered(adapter->publishers, publisher, &i);
 }
 
 sfsc_int8 register_publisher(sfsc_adapter* adapter, sfsc_publisher* publisher,
@@ -403,7 +402,7 @@ sfsc_int8 channel_request(sfsc_adapter* adapter, sfsc_buffer topic,
                           sfsc_buffer payload, sfsc_uint64 timeout,
                           relative_sfsc_service_descriptor* descriptor,
                           sfsc_uint8* descriptor_space,
-                          sfsc_uint16 descriptor_space_lenght,
+                          sfsc_size descriptor_space_lenght,
                           sfsc_channel_request_callback* callback, void* arg) {
     return sfsc_internal_channel_request(
         adapter_stats(adapter), &adapter->data, &adapter->requests, topic,

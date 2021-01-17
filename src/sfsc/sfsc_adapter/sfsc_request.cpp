@@ -108,8 +108,8 @@ sfsc_int8 sfsc_internal_request(sfsc_adapter_stats* stats,
 sfsc_int8 sfsc_internal_channel_request(sfsc_adapter_stats* stats,
 		_sfsc_adapter_data* adapter, _sfsc_requests* requests,
 		sfsc_buffer topic, sfsc_buffer payload,
-		sfsc_uint64 timeout, relative_sfsc_service_descriptor* descriptor,sfsc_uint8* descriptor_space,
-		sfsc_uint16 descriptor_space_lenght,
+		sfsc_uint64 timeout, sfsc_uint8* descriptor_space,
+		sfsc_size descriptor_space_lenght, relative_sfsc_service_descriptor* descriptor,
 		sfsc_channel_request_callback* callback, void* arg) {
 	return generic_request(stats, adapter, requests, topic, payload, timeout, 1,
 			descriptor_space, descriptor_space_lenght,descriptor, (void*) callback, arg);
@@ -229,8 +229,7 @@ sfsc_int8 system_task_data_sub_receive_reply(_sfsc_adapter_data* adapter,
 }
 
 sfsc_int8 user_task_data_handle_reply(sfsc_adapter* forward_pointer,
-		_sfsc_requests* requests,
-		sfsc_uint8* next_topic, sfsc_size topic_len, sfsc_uint8* next_payload,
+		_sfsc_requests* requests, sfsc_uint8* next_payload,
 		sfsc_size payload_len,sfsc_bool* b_auto_advance) {
 	sfsc_uint8 request_index = *next_payload;
 	payload_len--;

@@ -1,6 +1,6 @@
 
 # output binary
-BIN := posix_main
+BIN := posix_main.exe
 
 TYPE := cpp
 
@@ -62,11 +62,11 @@ $(shell mkdir -p $(dir $(OBJS)) )
 $(shell mkdir -p $(dir $(DEPS)) )
 
 # C compiler
-CC := gcc
+CC := gcc #x86_64-w64-mingw32-gcc 
 # C++ compiler
-CXX := g++
+CXX := g++ #x86_64-w64-mingw32-g++ 
 # linker
-LD := g++
+LD :=  g++ #x86_64-w64-mingw32-g++
 # tar
 TAR := tar
 
@@ -75,11 +75,12 @@ CFLAGS := -std=c99
 # C++ flags
 CXXFLAGS := -std=c++11
 # C/C++ flags
-CPPFLAGS := -g -Wall -Wextra -pedantic -D POSIX -fstack-usage -D ENABLE_PRINTS
+CPPFLAGS := -g -Wall -Wextra -pedantic -D POSIX -D ENABLE_PRINTS
 # linker flags
 LDFLAGS :=
 # linker flags: libraries to link (e.g. -lfoo)
 LDLIBS :=
+LDLIBS_AFTER := # -lwsock32 -lws2_32
 # flags required for dependency generation; passed to compilers
 DEPFLAGS = -MT $@ -MD -MP -MF $(DEPDIR)/$*.Td
 
@@ -124,7 +125,7 @@ help:
 	@echo available targets: all dist clean distclean install uninstall check
 
 $(BIN): $(OBJS)
-	$(LINK.o) $^
+	$(LINK.o) $^ $(LDLIBS_AFTER)
 
 $(OBJDIR)/%.o: %.c
 $(OBJDIR)/%.o: %.c $(DEPDIR)/%.d

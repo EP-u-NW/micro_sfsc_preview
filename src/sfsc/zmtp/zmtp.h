@@ -113,9 +113,10 @@ sfsc_uint8* curve_client_persistent_key_during_handshake(zmtp_socket* socket);
 #endif
 
 /** Metadata handeling **/
+//Don't use the sfsc_size type for metadata key and value, since their size is defined in the zmtp protocol
 sfsc_uint8* get_meta(sfsc_uint8 metadata[], const sfsc_uint8 key[],
-sfsc_uint8 key_length, sfsc_uint16* value_length_out);
-sfsc_uint8 put_meta(sfsc_uint8 metadata[], sfsc_uint16 metadata_buffer_length,
+sfsc_uint8 key_length, sfsc_uint32* value_length_out);
+sfsc_uint8 put_meta(sfsc_uint8 metadata[], sfsc_size metadata_buffer_length,
 		const sfsc_uint8 key[],
 		sfsc_uint8 key_length, const sfsc_uint8 value[],
 		sfsc_uint32 value_length);

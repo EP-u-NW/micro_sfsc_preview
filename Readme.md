@@ -10,7 +10,7 @@ A configuration for your specific use-case will most likely result in lower reso
 This framework does not use dynamic memory allocation.
 
 ## Repository structure
-This repository is structured the following way:
+[This repository](https://github.com/EPNW/micro_sfsc_preview) is structured the following way:
 + The **src/sfsc** folder contains the actual source code you should copy into your project.
 + The **src/platforms** folder contains implementations for the platform dependencies for some platforms. Platform dependencies are explained in the next section.
 + The **docs** folder contains a doxygen html documentation of the public header. It can be access via [github pages](https://epnw.github.io/micro_sfsc_preview/). Also, the **docs** folder contains latex code and the complete documentation as [PDF](https://epnw.github.io/micro_sfsc_preview/latex/refman.pdf).

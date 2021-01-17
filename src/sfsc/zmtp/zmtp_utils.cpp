@@ -51,7 +51,7 @@ sfsc_uint8* effective_buffer(zmtp_socket* socket) {
 }
 
 sfsc_bool b_zmtp_socket_buffer_full(zmtp_socket* socket) {
-    return socket->buffer_index == socket->expected_size;
+    return socket->expected_size < 0 ? 0 : (socket->buffer_index == (sfsc_size)socket->expected_size);
 }
 
 void zmtp_copy(sfsc_uint8* dst, const sfsc_uint8* src, sfsc_size len) {

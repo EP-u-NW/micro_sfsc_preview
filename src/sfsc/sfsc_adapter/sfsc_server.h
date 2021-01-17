@@ -61,7 +61,7 @@ sfsc_int8 sfsc_internal_answer_channel_request(sfsc_adapter_stats* stats,_sfsc_a
 sfsc_int8 user_task_ack(sfsc_adapter* forward_pointer,_sfsc_adapter_data* adapter, _sfsc_acks* pending_acks);
 sfsc_int8 system_task_data_sub_acks(_sfsc_adapter_data* adapter,
 		_sfsc_acks* pending_acks, sfsc_uint8* message);
-sfsc_int8 user_task_data_check_servers(sfsc_adapter* forward_pointer,_sfsc_adapter_data* adapter,
+sfsc_int8 user_task_data_check_servers(sfsc_adapter* forward_pointer,
 		sfsc_server* servers[],
 		sfsc_uint8* next_topic,
 		sfsc_size topic_len, sfsc_uint8* next_payload,

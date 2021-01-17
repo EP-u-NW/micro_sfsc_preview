@@ -26,7 +26,7 @@ typedef struct _sfsc_heartbeats {
 
 sfsc_int8 handle_outgoing_heartbeats(_sfsc_adapter_data* adapter,_sfsc_heartbeats* heartbeats);
 sfsc_int8 handle_incoming_heartbeats(sfsc_adapter_stats* stats,_sfsc_adapter_data* adapter,_sfsc_heartbeats* heartbeats);
-sfsc_int8 prepare_heartbeat_message(sfsc_adapter_stats* stats,_sfsc_adapter_data* adapter,_sfsc_heartbeats* heartbeats);
+sfsc_int8 prepare_heartbeat_message(sfsc_adapter_stats* stats,_sfsc_heartbeats* heartbeats);
 
 #ifdef __cplusplus
 } /* extern "C" */

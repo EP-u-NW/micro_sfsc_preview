@@ -1,7 +1,7 @@
 #ifdef POSIX
 #include <stdlib.h>
 #include <sys/time.h>
-#include "../../sfsc/platform/sfsc_platform.h";
+#include "../../sfsc/platform/sfsc_platform.h"
 
 static sfsc_bool seeded = 0;
 void random_bytes(sfsc_uint8 *buffer, sfsc_size size)

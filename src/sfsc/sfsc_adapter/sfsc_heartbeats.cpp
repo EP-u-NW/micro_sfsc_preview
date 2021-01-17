@@ -11,7 +11,7 @@
 #include "../proto/pb_encode.h"
 #include "../platform/sfsc_platform.h"
 
-sfsc_int8 prepare_heartbeat_message(sfsc_adapter_stats* stats,_sfsc_adapter_data* adapter,_sfsc_heartbeats* heartbeats) {
+sfsc_int8 prepare_heartbeat_message(sfsc_adapter_stats* stats,_sfsc_heartbeats* heartbeats) {
 	pb_ostream_t output = pb_ostream_from_buffer(heartbeats->heartbeat_msg,
 	sfsc_HeartbeatMessage_size);
 	sfsc_HeartbeatMessage msg = sfsc_HeartbeatMessage_init_default;

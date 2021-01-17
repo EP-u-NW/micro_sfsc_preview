@@ -7,7 +7,10 @@ build/
 /sdkconfig
 /src/CMakeLists.txt
 .pio/
+.vscode/
 *.d
 *.o
 .o/
 .d/
+*.su
+posix_main.exe

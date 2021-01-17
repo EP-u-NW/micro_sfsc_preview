@@ -21,15 +21,14 @@ static sfsc_uint8 elements_equal(const sfsc_uint8 a[], const sfsc_uint8 b[],
     return 1;
 }
 sfsc_uint8* get_meta(sfsc_uint8 metadata[], const sfsc_uint8 key[],
-                     sfsc_uint8 key_length, sfsc_uint16* value_length_out) {
-    sfsc_uint16 index = 0;
+                     sfsc_uint8 key_length, sfsc_uint32* value_length_out) {
+    sfsc_uint32 index = 0;
     sfsc_uint8 match = 0;
     while (metadata[index] != 0) {
         match = metadata[index] == key_length &&
                 elements_equal(key, metadata + index + 1, key_length);
         index = index + metadata[index] + 1;
-        sfsc_uint16 val_len =
-            (sfsc_uint16)(*((sfsc_uint32*)(metadata + index)));
+        sfsc_uint32 val_len =*((sfsc_uint32*)(metadata + index));
         if (match) {
             *value_length_out = val_len;
             return metadata + index + 4;
@@ -129,7 +128,7 @@ sfsc_int8 write_metadata(zmtp_socket* socket, sfsc_size len) {
 #endif
 }
 
-void transkript_metadata(zmtp_socket* socket, sfsc_uint16 offset) {
+void transkript_metadata(zmtp_socket* socket, sfsc_size offset) {
 #if __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
     sfsc_uint8* buffer = _BUFFER(socket) + offset;
     _COPY((socket->peer_metadata_buffer), buffer,

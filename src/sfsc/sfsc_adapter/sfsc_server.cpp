@@ -299,8 +299,7 @@ sfsc_int8 system_task_data_sub_acks(_sfsc_adapter_data* adapter,
 }
 
 sfsc_int8 user_task_data_check_servers(
-    sfsc_adapter* forward_pointer, _sfsc_adapter_data* adapter,
-    sfsc_server* servers[], sfsc_uint8* next_topic, sfsc_size topic_len,
+    sfsc_adapter* forward_pointer, sfsc_server* servers[], sfsc_uint8* next_topic, sfsc_size topic_len,
     sfsc_uint8* next_payload, sfsc_size payload_len, sfsc_uint8* consumed,
     sfsc_bool* b_auto_advance) {
     for (sfsc_size i = 0; i < MAX_SERVERS; i++) {

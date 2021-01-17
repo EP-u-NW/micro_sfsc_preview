@@ -33,12 +33,11 @@ void sfsc_internal_query_services_next(sfsc_adapter_stats* stats,_sfsc_adapter_d
 sfsc_uint8 next);
 sfsc_int8 system_task_query(sfsc_adapter_stats* stats,_sfsc_adapter_data* adapter,
 		_sfsc_queries* registry);
-sfsc_int8 user_task_query(sfsc_adapter* forward_pointer,_sfsc_adapter_data* adapter,
-		_sfsc_queries* registry);
+sfsc_int8 user_task_query(sfsc_adapter* forward_pointer,_sfsc_queries* registry);
 
 sfsc_int8 decode_channel_result(sfsc_uint8* msg, sfsc_size msg_len,
 		relative_sfsc_service_descriptor* descriptor, sfsc_uint8* write_target,
-		sfsc_uint16 write_target_len, sfsc_size* write_target_used);
+		sfsc_size write_target_len, sfsc_size* write_target_used);
 
 #ifdef __cplusplus
 } /* extern "C" */

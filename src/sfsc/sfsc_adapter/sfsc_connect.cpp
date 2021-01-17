@@ -22,7 +22,7 @@ static sfsc_int8 start_session_after_sub(sfsc_adapter_stats* stats,
                                          int original_data_pub_port,
                                          int original_data_sub_port) {
     random_uuid_if_needed(stats->adapter_id);
-    sfsc_int8 op_result = prepare_heartbeat_message(stats, adapter, heartbeats);
+    sfsc_int8 op_result = prepare_heartbeat_message(stats, heartbeats);
     if (op_result == ZMTP_OK) {
         stats->state = SFSC_STATE_SETUP_CONNECTING;
         sfsc_int16 socket_handle =

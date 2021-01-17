@@ -22,51 +22,54 @@
 
 sfsc_int8 zmtp_connect(zmtp_socket *socket, sfsc_int16 socket_handle,
                   sfsc_uint8 mechanism, sfsc_uint8 *mechanism_extra,
-                  sfsc_uint8 as_server, sfsc_uint8 socket_type) {
+                  sfsc_bool as_server, sfsc_uint8 socket_type) {
     const sfsc_uint8 *name;
     sfsc_uint8 name_len;
-    b_socket_type_name(socket_type, &name, &name_len);
-    put_meta(socket->metadata_buffer, ZMTP_METADATA_BUFFER_SIZE,
-             socket_type_meta_key, SOCKET_TYPE_META_KEY_LENGTH, name, name_len);
-    socket->socket_handle = socket_handle;
-    socket->state = ZMTP_STATE_GREETING;
-    socket->as_server = as_server;
-    socket->mechanism = mechanism;
-    socket->mechanism_extra = mechanism_extra;
-    sfsc_uint8 signature[_GREETING_LENGTH] = {0};
-    signature[0] = 0xFF;
-    signature[9] = 0x7F;
-    signature[10] = ZMTP_VERSION_MAJOR;
-    signature[11] = ZMTP_VERSION_MINOR;
-    switch (mechanism) {
-        case MECHANISM_NULL:
-            signature[12] = 'N';
-            signature[13] = 'U';
-            signature[14] = 'L';
-            signature[15] = 'L';
-            break;
-        case MECHANISM_PLAIN:
-            signature[12] = 'P';
-            signature[13] = 'L';
-            signature[14] = 'A';
-            signature[15] = 'I';
-            signature[16] = 'N';
-            break;
-        case MECHANISM_CURVE:
-            signature[12] = 'C';
-            signature[13] = 'U';
-            signature[14] = 'R';
-            signature[15] = 'V';
-            signature[16] = 'E';
-            break;
-    }
-    signature[32] = as_server;
-    sfsc_int8 op_result = zmtp_write(socket, signature, _GREETING_LENGTH);
-    if (op_result == ZMTP_OK) {
-        socket->expected_size = _GREETING_LENGTH;
-		return ZMTP_OK;
+    if(b_socket_type_name(socket_type, &name, &name_len)){
+        put_meta(socket->metadata_buffer, ZMTP_METADATA_BUFFER_SIZE,
+                socket_type_meta_key, SOCKET_TYPE_META_KEY_LENGTH, name, (sfsc_uint32)name_len);
+        socket->socket_handle = socket_handle;
+        socket->state = ZMTP_STATE_GREETING;
+        socket->as_server = as_server;
+        socket->mechanism = mechanism;
+        socket->mechanism_extra = mechanism_extra;
+        sfsc_uint8 signature[_GREETING_LENGTH] = {0};
+        signature[0] = 0xFF;
+        signature[9] = 0x7F;
+        signature[10] = ZMTP_VERSION_MAJOR;
+        signature[11] = ZMTP_VERSION_MINOR;
+        switch (mechanism) {
+            case MECHANISM_NULL:
+                signature[12] = 'N';
+                signature[13] = 'U';
+                signature[14] = 'L';
+                signature[15] = 'L';
+                break;
+            case MECHANISM_PLAIN:
+                signature[12] = 'P';
+                signature[13] = 'L';
+                signature[14] = 'A';
+                signature[15] = 'I';
+                signature[16] = 'N';
+                break;
+            case MECHANISM_CURVE:
+                signature[12] = 'C';
+                signature[13] = 'U';
+                signature[14] = 'R';
+                signature[15] = 'V';
+                signature[16] = 'E';
+                break;
+        }
+        signature[32] = as_server;
+        sfsc_int8 op_result = zmtp_write(socket, signature, _GREETING_LENGTH);
+        if (op_result == ZMTP_OK) {
+            socket->expected_size = _GREETING_LENGTH;
+            return ZMTP_OK;
+        } else {
+            return op_result;
+        }
     } else {
-        return op_result;
+        return E_INCOMPATIBLE_SOCKET_TYPES;
     }
 }
 

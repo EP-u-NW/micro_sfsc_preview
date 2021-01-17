@@ -24,8 +24,8 @@ sfsc_bool b_bytes_equal(const sfsc_uint8* a, const sfsc_uint8* b,
     return 1;
 }
 
-static sfsc_uint16 total_composite_length(sfsc_composite_buffer* buffer) {
-    sfsc_uint16 total_length = 0;
+static sfsc_size total_composite_length(sfsc_composite_buffer* buffer) {
+    sfsc_size total_length = 0;
     for (sfsc_size i = 0; i < (buffer->count); i++) {
         total_length += (buffer->buffers + i)->length;
     }
@@ -33,10 +33,10 @@ static sfsc_uint16 total_composite_length(sfsc_composite_buffer* buffer) {
 }
 
 sfsc_bool b_composite_bytes_equal(sfsc_composite_buffer* a, const sfsc_uint8* b,
-                                  sfsc_uint16 b_len) {
-    sfsc_uint16 a_len = total_composite_length(a);
-    if (a_len == b_len) {
-        sfsc_uint16 b_offset = 0;
+                                  sfsc_size len_of_b) {
+    sfsc_size a_len = total_composite_length(a);
+    if (a_len == len_of_b) {
+        sfsc_size b_offset = 0;
         for (sfsc_size i = 0; i < a->count; i++) {
             if (b_bytes_equal((a->buffers + i)->content, (b + b_offset),
                               (a->buffers + i)->length)) {
@@ -191,7 +191,7 @@ static sfsc_bool b_strip_callback(pb_istream_t* stream,
 
 sfsc_bool b_strip_request_reply_pattern(sfsc_uint8* msg, sfsc_size msg_len,
                                         sfsc_uint8** out_stripped,
-                                        sfsc_uint16* out_stripped_length,
+                                        sfsc_size* out_stripped_length,
                                         sfsc_int64* out_reply_id) {
     sfsc_ReplyPattern reply = sfsc_ReplyPattern_init_default;
     strip_helper stripped;
@@ -211,7 +211,7 @@ sfsc_bool b_strip_request_reply_pattern(sfsc_uint8* msg, sfsc_size msg_len,
 
 sfsc_bool b_strip_reqrepack_pattern_reply(sfsc_uint8* msg, sfsc_size msg_len,
                                           sfsc_uint8** out_paylaod,
-                                          sfsc_uint16* out_payload_len,
+                                          sfsc_size* out_payload_len,
                                           sfsc_int32* out_reply_id,
                                           sfsc_buffer* out_ack,
                                           sfsc_int32* out_ack_id) {
@@ -260,10 +260,10 @@ static sfsc_bool b_prepare_request_submsg(pb_istream_t* stream,
 
 sfsc_bool b_strip_reqrepack_pattern_request(sfsc_uint8* msg, sfsc_size msg_len,
                                             sfsc_uint8** out_paylaod,
-                                            sfsc_uint16* out_payload_len,
+                                            sfsc_size* out_payload_len,
                                             sfsc_int32* out_reply_id,
                                             sfsc_buffer* out_reply_topic,
-                                            sfsc_uint8 is_channel_request) {
+                                            sfsc_bool is_channel_request) {
     strip_helper strippers[2];
 
     sfsc_RequestOrAcknowledge request_struct =
@@ -314,32 +314,9 @@ sfsc_bool generic_decoding_callback(pb_istream_t* stream, uint8_t* buf,
     return 1;
 }
 
-sfsc_int8 write_composite_message(zmtp_socket* socket,
-                                  sfsc_composite_buffer* buf,
-                                  sfsc_uint8 as_last_message) {
-    sfsc_uint16 total_length = total_composite_length(buf);
-    sfsc_int8 op_result =
-        begin_message_multipart(socket, total_length, as_last_message);
-    if (op_result == ZMTP_OK) {
-        for (sfsc_size i = 0; i < buf->count - 1; i++) {
-            op_result =
-                continue_message_multipart(socket, (buf->buffers + i)->content,
-                                           (buf->buffers + i)->length, 0);
-            if (op_result != ZMTP_OK) {
-                return op_result;
-            }
-        }
-        return continue_message_multipart(
-            socket, (buf->buffers + buf->count - 1)->content,
-            (buf->buffers + buf->count - 1)->length, 1);
-    } else {
-        return op_result;
-    }
-}
-
 sfsc_int8 write_composite_subscription_message(zmtp_socket* socket,
                                                sfsc_composite_buffer* buf,
-                                               sfsc_uint8 subscribe) {
+                                               sfsc_bool subscribe) {
     sfsc_uint16 total_length = total_composite_length(buf);
     sfsc_int8 op_result = begin_message_multipart(socket, total_length + 1, 1);
     if (op_result == ZMTP_OK) {

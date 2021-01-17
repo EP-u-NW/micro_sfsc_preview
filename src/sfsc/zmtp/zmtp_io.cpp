@@ -123,7 +123,7 @@ static sfsc_int8 read_size(zmtp_socket* socket) {
             _LONG_LENGTH_FIELD) {  // we know the length field size now
         sfsc_int8 read_result = read_to_index(socket, -socket->expected_size);
         if (read_result == ZMTP_OK) {
-            if (socket->buffer_index == -socket->expected_size) {
+            if (socket->buffer_index == (sfsc_size)(-socket->expected_size)) {
                 if (-socket->expected_size == _SHORT_LENGTH_FIELD) {
                     socket->expected_size = buffer[0];
                 } else {

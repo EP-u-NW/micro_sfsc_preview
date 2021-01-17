@@ -406,8 +406,7 @@ void sfsc_internal_query_services_next(sfsc_adapter_stats* stats,
 	}
 }
 
-sfsc_int8 user_task_query(sfsc_adapter* forward_pointer,
-		_sfsc_adapter_data* adapter, _sfsc_queries* registry) {
+sfsc_int8 user_task_query(sfsc_adapter* forward_pointer, _sfsc_queries* registry) {
 	if (adapter_stats(forward_pointer)->query_in_progress) {
 		if (registry->has_data == 1) {
 			sfsc_query_callback* callback =
