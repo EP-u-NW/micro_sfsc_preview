@@ -23,15 +23,6 @@
 const sfsc_uint8 ssid[] = "The Promised Lan2.4";
 const sfsc_uint8 password[] = "ericistsuper";
 
-// Configure the SFSC core address and the cores control pub port (since we are
-// using bootstraping)
-const char epnw[] = "81.169.207.220";
-const char stauli[] = "192.168.175.73";
-const char local[] = "192.168.178.171";
-const char pc[] = "192.168.178.92";
-const char *address = epnw;
-const sfsc_uint16 bootstrap_port = 1251;
-
 void app_main(void) {
     for (int i = 10; i > 0; i--) {
 #ifdef ENABLE_PRINTS

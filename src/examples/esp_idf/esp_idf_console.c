@@ -4,19 +4,6 @@
 #include <stdio.h>
 #include "../shared/console.h"
 void console_begin() {}
-
-#ifdef USE_BUFFERED_CONSOLE
-
-#include "../debug/buffered_console.h"
-void console_flush() {
-#ifdef __cplusplus
-	std::cout.write((const char*)global_print_buffer,global_print_buffer_index);
-#else
-	fwrite(global_print_buffer_index,global_print_buffer_index,len,stdin);
-#endif
-	global_print_buffer_index=0;
-}
-#else
 void console_flush() {}
 
 void console_println_char(const char value[]) {
@@ -111,6 +98,5 @@ void console_write(const sfsc_uint8* value,sfsc_size len) {
 	fwrite(value,1,len,stdout);
 #endif
 }
-#endif
 #endif
 #endif

@@ -1,4 +1,5 @@
 build/
+/makefile
 /build_pio_esp_idf_wsl.bat
 /CMakeLists.txt
 /flash_pio_esp_idf.bat

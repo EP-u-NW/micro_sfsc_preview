@@ -70,7 +70,7 @@ sfsc_socket_size socket_read(sfsc_int16 socket, sfsc_uint8 *buf,
     sfsc_size bytes_available;
     ESP_ERROR_CHECK(ioctl(socket, FIONREAD, &bytes_available));
     if (bytes_available > 0) {
-        sfsc_int16 result = (sfsc_int16)recv(socket, buf, size, 0);
+        sfsc_socket_size result = (sfsc_socket_size)recv(socket, buf, size, 0);
 #ifdef ENABLE_PRINTS
         if (errno != 0) {
             console_print_char("Errno: ");
@@ -82,6 +82,7 @@ sfsc_socket_size socket_read(sfsc_int16 socket, sfsc_uint8 *buf,
         return (sfsc_socket_size)bytes_available;
     }
 }
+
 sfsc_int8 socket_flush(sfsc_int16 socket) {
     vTaskDelay(100 / portTICK_PERIOD_MS);
     return SOCKET_OK;

@@ -6,18 +6,12 @@ TYPE := cpp
 
 # source files
 SRCS := \
-	src/posix/posix_main.$(TYPE) \
-	src/posix/posix_evaluation_main.$(TYPE) \
-	src/posix/posix_platform.$(TYPE) \
-	src/posix/posix_console.$(TYPE) \
-	src/posix/posix_sockets.$(TYPE) \
-	src/debug/console.$(TYPE) \
-	src/debug/buffered_console.$(TYPE) \
-	src/examples/socket_test.$(TYPE) \
-	src/examples/channel.$(TYPE) \
-	src/examples/pub_sub.$(TYPE) \
-	src/examples/req_rep.$(TYPE) \
-	src/evaluation/evaluation.$(TYPE) \
+	src/examples/posix/posix_main.$(TYPE) \
+	src/examples/posix/posix_console.$(TYPE) \
+	src/examples/shared/console.$(TYPE) \
+	src/platforms/posix/posix_platform.$(TYPE) \
+	src/platforms/posix/posix_sockets.$(TYPE) \
+	src/sfsc/platform/sfsc_strings.$(TYPE) \
 	src/sfsc/proto/pb_common.$(TYPE) \
 	src/sfsc/proto/pb_decode.$(TYPE) \
 	src/sfsc/proto/pb_encode.$(TYPE) \
@@ -81,7 +75,7 @@ CFLAGS := -std=c99
 # C++ flags
 CXXFLAGS := -std=c++11
 # C/C++ flags
-CPPFLAGS := -g -Wall -Wextra -pedantic -D POSIX -fstack-usage -D HAS_STRING_H -D EVALUATION
+CPPFLAGS := -g -Wall -Wextra -pedantic -D POSIX -fstack-usage -D ENABLE_PRINTS
 # linker flags
 LDFLAGS :=
 # linker flags: libraries to link (e.g. -lfoo)
