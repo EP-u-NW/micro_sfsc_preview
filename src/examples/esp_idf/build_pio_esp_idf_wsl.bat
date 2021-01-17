@@ -1,0 +1,1 @@
+bash -c "~/.platformio/penv/bin/pio run -e az-delivery-devkit-v4-esp-idf"

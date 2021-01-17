@@ -11,10 +11,10 @@ This framework does not use dynamic memory allocation.
 
 ## Repository structure
 This repository is structured the following way:
-+ The **sfsc** folder contains the actual source code you should copy into your project.
-+ The **platforms** folder contains implementations for the platform dependencies for some platforms. Platform dependencies are explained in the next section.
++ The **src/sfsc** folder contains the actual source code you should copy into your project.
++ The **src/platforms** folder contains implementations for the platform dependencies for some platforms. Platform dependencies are explained in the next section.
 + The **docs** folder contains a doxygen html documentation of the public header. It can be access via [github pages](https://epnw.github.io/micro_sfsc_preview/). Also, the **docs** folder contains latex code and the complete documentation as [PDF](https://epnw.github.io/micro_sfsc_preview/latex/refman.pdf).
-+ The **examples/scenarios** folder contains the actual examples. Every example comes with its own preprocessor directive that must be defined to enable that example. Only one of the examples should be active at the same time. Where to define the directives is up to the used build system. The other subfolders of the **examples** folder contain the initialization logic and example build instructions to the get the examples running on the corresponding platform.
++ The **src/examples/scenarios** folder contains the actual examples. Every example comes with its own preprocessor directive that must be defined to enable that example. Only one of the examples should be active at the same time. Where to define the directives is up to the used build system. The **src/examples/shared** folder contains shared example code for the platforms, most notably a common API to log things. The other subfolders of the **src/examples** folder contain the initialization logic and example build instructions to the get the examples running on the corresponding platform.
 
 
 ## Porting to your platform
@@ -119,6 +119,7 @@ USER_RING_SIZE | `sfsc_adapter_config.h` | 5120 | x1 RAM | The size of the user 
 NO_CURVE | `zmtp_config.h` | defined | 5 KB(!) RAM and ROM if NOT set| Curve encryption is wip. It is recommended that you disable the functions related to CRUVE to speed up compilation and reduce the RAM and ROM footprint of the framework.
 ZMTP_IN_BUFFER_SIZE | `zmtp_config.h` | 512 | x4 RAM | The size of the ZMTP receive buffer; determines, how big a single ZMTP message can be. If you know, that the services you use need to receive bigger payloads (e.g. because you want to subscribe a publisher whose messages are 1KB in size), you need to adjust this value.
 ZMTP_METADATA_BUFFER_SIZE | `zmtp_config.h` | 32 | x8 RAM | ZMTP needs a place to store its meta data. You usually don't need to adjust this buffers size, unless you tweak the ZMTP implementation itself.
+ENABLE_PRINTS | Your build system | defined | ~1KB of ROM | The examples use platform depended mechanics to print something (to the closes thing to a console their is for the platform), to give you some more insights in what is happening. You can disable this for production. Where you set this directive is up to the used build system.
 
 
 ## Using the API
