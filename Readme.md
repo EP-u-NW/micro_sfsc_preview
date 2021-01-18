@@ -18,7 +18,7 @@ This framework does not use dynamic memory allocation.
 
 
 ## Porting to your platform
-The **sfsc/platform** folder contains headers you have edit or implement for your platform if you want to use this framework. There are some existing platform ports in the **platforms** folder in the root of this repository. For example, there are implementations for POSIX (including Windows with MinGW) systems and the ESP32 microcontroller family.
+The **sfsc/platform** folder contains headers you have edit or implement for your platform if you want to use this framework. There are some existing platform ports in the **platforms** folder in the root of this repository. For example, there are implementations for POSIX (and Windows with MinGW) systems and the ESP32 microcontroller family.
 This framework does not contain an IP stack, so you need to provide one (most network ready platforms will already include one).
 Below are some more information on the headers you need to look at.
 

@@ -2,10 +2,14 @@
 # output binary
 BIN := posix_main.exe
 
-TYPE := cpp
+TYPE := c
 
 # source files
 SRCS := \
+	src/examples/scenarios/embedding_test.$(TYPE) \
+	src/examples/scenarios/example_pubsub.$(TYPE) \
+	src/examples/scenarios/example_reqrepack.$(TYPE) \
+	src/examples/scenarios/example_query.$(TYPE) \
 	src/examples/posix/posix_main.$(TYPE) \
 	src/examples/posix/posix_console.$(TYPE) \
 	src/examples/shared/console.$(TYPE) \
@@ -66,7 +70,7 @@ CC := gcc #x86_64-w64-mingw32-gcc
 # C++ compiler
 CXX := g++ #x86_64-w64-mingw32-g++ 
 # linker
-LD :=  g++ #x86_64-w64-mingw32-g++
+LD :=  gcc #x86_64-w64-mingw32-g++
 # tar
 TAR := tar
 
@@ -75,7 +79,7 @@ CFLAGS := -std=c99
 # C++ flags
 CXXFLAGS := -std=c++11
 # C/C++ flags
-CPPFLAGS := -g -Wall -Wextra -pedantic -D POSIX -D ENABLE_PRINTS
+CPPFLAGS := -g -Wall -Wextra -pedantic -D POSIX -D ENABLE_PRINTS -D EMBEDDING_TEST
 # linker flags
 LDFLAGS :=
 # linker flags: libraries to link (e.g. -lfoo)
