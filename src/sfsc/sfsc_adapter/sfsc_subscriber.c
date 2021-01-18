@@ -58,8 +58,9 @@ sfsc_int8 user_task_data_check_subscribers(
         sfsc_subscriber* subscriber = subscribers[i];
         if (subscribers[i] != NULL && subscriber->topic.length == topic_len &&
             b_bytes_equal(subscriber->topic.content, next_topic, topic_len)) {
+                sfsc_buffer next_payload_buffer= {next_payload, payload_len};
             subscriber->on_data(forward_pointer, subscriber,
-                                {next_payload, payload_len}, b_auto_advance);
+                               next_payload_buffer, b_auto_advance);
             *consumed = 1;
             break;
         }

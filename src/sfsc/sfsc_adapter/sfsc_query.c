@@ -397,7 +397,7 @@ sfsc_int8 sfsc_internal_query_services(sfsc_adapter_stats* stats,
 
 void sfsc_internal_query_services_next(sfsc_adapter_stats* stats,
 		_sfsc_adapter_data* adapter, _sfsc_queries* registry,
-		sfsc_uint8 next) {
+		sfsc_bool next) {
 	if (next && !registry->is_last) {
 		send_query_request(stats, adapter, registry,
 				registry->expected_event_id - 1);

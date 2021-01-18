@@ -43,7 +43,7 @@ sfsc_bool b_encode_composite_buffer_for_pb(pb_ostream_t *stream,	const pb_field_
 sfsc_bool b_encode_submsg_to_bytes_callback(pb_ostream_t *stream, const pb_field_iter_t *field, void * const *arg);
 
 sfsc_bool b_encode_and_publish(const sfsc_uint8* topic, sfsc_size topic_len, zmtp_socket* socket, const pb_msgdesc_t *fields, const void *src_struct);
-sfsc_bool b_encode_and_publish_with_request_reply_pattern(const sfsc_uint8* topic,sfsc_size topic_len,const sfsc_uint8* reply_topic,sfsc_uint16 reply_topic_len,sfsc_int64 expected_reply_id, zmtp_socket* socket,const pb_msgdesc_t *fields, const void *src_struct);
+sfsc_bool b_encode_and_publish_with_request_reply_pattern(const sfsc_uint8* topic,sfsc_size topic_len,const sfsc_uint8* reply_topic,sfsc_size reply_topic_len,sfsc_int64 expected_reply_id, zmtp_socket* socket,const pb_msgdesc_t *fields, const void *src_struct);
 sfsc_bool b_encode_and_publish_with_request_composite_reply_pattern(const sfsc_uint8* topic,sfsc_size topic_len,sfsc_composite_buffer* reply_info,sfsc_int64 expected_reply_id, zmtp_socket* socket,const pb_msgdesc_t *fields, const void *src_struct);
 sfsc_bool b_strip_request_reply_pattern(sfsc_uint8* msg,sfsc_size msg_len,sfsc_uint8** out_stripped,sfsc_size* out_stripped_length, sfsc_int64* out_reply_id);
 

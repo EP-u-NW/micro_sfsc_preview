@@ -16,7 +16,7 @@
 extern "C" {
 #endif
 
-#define _sfsc_pending_ack_DEFAULT_INIT {_ACK_ID_UNUSED,0,0,sfsc_SfscServiceDescriptor_ServiceTags_ServerTags_AckSettings_init_default,sfsc_buffer_DEFAULT_INIT,0,NULL,0,NULL,NULL, NULL}
+#define _sfsc_pending_ack_DEFAULT_INIT {_ACK_ID_UNUSED,0,0,sfsc_SfscServiceDescriptor_ServiceTags_ServerTags_AckSettings_init_default,sfsc_buffer_DEFAULT_INIT,0,{NULL},0,NULL,NULL, NULL}
 typedef struct __sfsc_pending_ack {
 	sfsc_int32 ack_id;
 	sfsc_uint8 tries;

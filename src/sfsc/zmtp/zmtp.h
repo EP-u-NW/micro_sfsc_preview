@@ -100,9 +100,10 @@ void zmtp_pop(zmtp_socket* socket);
 
 /** Plain **/
 sfsc_int8 plain_credentials_ok(zmtp_socket* socket);
+//Don't use the sfsc_size type for name and password lengths, since their size is defined in the zmtp-plain protocol
 void get_plain_peer_credentials(zmtp_socket* socket,
-		const sfsc_uint8** name, sfsc_size* name_len,const sfsc_uint8** password,
-		sfsc_size* password_len);
+		const sfsc_uint8** name, sfsc_uint8* name_len,const sfsc_uint8** password,
+		sfsc_uint8* password_len);
 
 
 #ifndef NO_CURVE

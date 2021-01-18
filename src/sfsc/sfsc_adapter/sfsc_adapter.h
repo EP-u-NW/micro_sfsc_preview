@@ -303,7 +303,7 @@ struct _sfsc_server {
 };
 
 #define sfsc_publisher_or_server_INIT_DEFAULT \
-    { 0, NULL }
+    { 0, {NULL} }
 /**
  * @brief Container to point either to a sfsc_server or sfsc_publisher.
  *
@@ -365,7 +365,7 @@ extern const relative_server_tags relative_server_tags_default;
     {                                                                     \
         sfsc_SfscId_init_default, sfsc_SfscId_init_default,               \
             sfsc_SfscId_init_default, 0, 0, 0, 0, SERVICE_TYPE_PUBLISHER, \
-            relative_publisher_tags_DEFAULT_INIT                          \
+            {relative_publisher_tags_DEFAULT_INIT}                         \
     }
 
 /**

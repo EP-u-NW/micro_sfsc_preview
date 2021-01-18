@@ -30,7 +30,7 @@ typedef struct __sfsc_queries {
 sfsc_int8 sfsc_internal_query_services(sfsc_adapter_stats* stats,_sfsc_adapter_data* adapter, _sfsc_queries* registry,
 		sfsc_query_callback* callback);
 void sfsc_internal_query_services_next(sfsc_adapter_stats* stats,_sfsc_adapter_data* adapter, _sfsc_queries* registry,
-sfsc_uint8 next);
+sfsc_bool next);
 sfsc_int8 system_task_query(sfsc_adapter_stats* stats,_sfsc_adapter_data* adapter,
 		_sfsc_queries* registry);
 sfsc_int8 user_task_query(sfsc_adapter* forward_pointer,_sfsc_queries* registry);

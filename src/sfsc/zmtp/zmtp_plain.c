@@ -15,9 +15,9 @@
 #include "zmtp_utils.h"
 
 void get_plain_peer_credentials(zmtp_socket* socket, const sfsc_uint8** name,
-                                sfsc_uint16* name_len,
+                                sfsc_uint8* name_len,
                                 const sfsc_uint8** password,
-                                sfsc_uint16* password_len) {
+                                sfsc_uint8* password_len) {
     sfsc_uint8* buffer = socket->buffer_space + 6;
     *password = buffer + 1 + buffer[0] + 1;
     *password_len = buffer[1 + buffer[0]];

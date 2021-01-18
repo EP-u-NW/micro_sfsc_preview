@@ -357,7 +357,7 @@ sfsc_int8 query_services(sfsc_adapter* adapter, sfsc_query_callback* callback) {
                                         &adapter->queries, callback);
 }
 
-void query_services_next(sfsc_adapter* adapter, sfsc_uint8 next) {
+void query_services_next(sfsc_adapter* adapter, sfsc_bool next) {
     sfsc_internal_query_services_next(adapter_stats(adapter), &adapter->data,
                                       &adapter->queries, next);
 }
