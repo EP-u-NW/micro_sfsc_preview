@@ -17,11 +17,11 @@ extern "C" {
 
 typedef struct _sfsc_heartbeats {
 	sfsc_uint8 heartbeat_msg[sfsc_HeartbeatMessage_size];
-	sfsc_uint32 send_time;
-	sfsc_uint32 receive_time;
+	sfsc_uint64 send_time;
+	sfsc_uint64 receive_time;
 } _sfsc_heartbeats;
 
-#define _sfsc_heartbeats_DEFAULT_INIT {{0},0,0,{{_heartbeat_topic,_HEARTBEAT_TOPIC_LEN},{NULL,_UUID_LEN}}}
+#define _sfsc_heartbeats_DEFAULT_INIT {{0},0,0}
 
 
 sfsc_int8 handle_outgoing_heartbeats(_sfsc_adapter_data* adapter,_sfsc_heartbeats* heartbeats);

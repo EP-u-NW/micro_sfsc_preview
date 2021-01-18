@@ -38,7 +38,7 @@ extern "C" {
 typedef struct _sfsc_adapter sfsc_adapter;
 
 #define sfsc_adapter_stats_DEFAULT_INIT \
-    { NULL, {UUID_LEN}, {UUID_LEN}, SFSC_STATE_NONE, 0, 0 }
+    { NULL, {0}, {0}, SFSC_STATE_NONE, 0, 0 }
 
 /**
  * @brief The sfsc_adapter_stats struct contains the infromation needed by the
@@ -151,7 +151,7 @@ struct _sfsc_subscriber {
 };
 
 #define sfsc_publisher_DEFAULT_INIT \
-    { NULL, 0, 0, {0}, SERVICE_TOPIC_AUTOGEN, 0 }
+    { NULL, 0, 0, sfsc_SfscId_init_default, SERVICE_TOPIC_AUTOGEN, 0 }
 typedef struct _sfsc_publisher sfsc_publisher;
 /**
  * @brief State memory for a publisher service.

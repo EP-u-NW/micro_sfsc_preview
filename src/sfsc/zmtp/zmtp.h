@@ -56,7 +56,7 @@ typedef struct _zmtp_curve_state{
 } zmtp_curve_state;
 #endif
 
-#define zmtp_socket_DEFAULT_INIT {0,{0},0,STATE_NONE,0,0,0,{0},0,{0},0,0,0,0,NULL}
+#define zmtp_socket_DEFAULT_INIT {0,{0},0,ZMTP_STATE_NONE,0,0,0,{0},0,{0},0,0,0,0,NULL}
 typedef struct _zmtp_socket {
 	sfsc_int16 socket_handle;
 	sfsc_uint8 buffer_space[ZMTP_IN_BUFFER_SIZE]; //First 16 bytes need to be 0 for curve

@@ -23,7 +23,7 @@ typedef struct __sfsc_channel_request_extra {
 	sfsc_channel_request_callback* callback;
 } _sfsc_channel_request_extra;
 
-#define _sfsc_request_DEFAULT_INIT {_REPLY_ID_UNUSED,NULL,0,_sfsc_channel_request_extra_DEFAULT_INIT,0}
+#define _sfsc_request_DEFAULT_INIT {_REPLY_ID_UNUSED,NULL,0,{_sfsc_channel_request_extra_DEFAULT_INIT},0}
 typedef struct __sfsc_request {
 	sfsc_int32 reply_id;
 	void* arg;

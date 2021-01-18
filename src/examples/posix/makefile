@@ -79,7 +79,7 @@ CFLAGS := -std=c99
 # C++ flags
 CXXFLAGS := -std=c++11
 # C/C++ flags
-CPPFLAGS := -g -Wall -Wextra -pedantic -D POSIX -D ENABLE_PRINTS -D EMBEDDING_TEST
+CPPFLAGS := -g -Wall -Wextra -pedantic -D POSIX -D ENABLE_PRINTS -D EXAMPLE_PUBSUB
 # linker flags
 LDFLAGS :=
 # linker flags: libraries to link (e.g. -lfoo)

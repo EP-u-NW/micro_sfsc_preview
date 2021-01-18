@@ -15,7 +15,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
+#define _sfsc_adapter_data_DEFAULT_INIT {zmtp_socket_DEFAULT_INIT,zmtp_socket_DEFAULT_INIT,zmtp_socket_DEFAULT_INIT,zmtp_socket_DEFAULT_INIT,user_ring_DEFAULT_INIT,0,0}
 typedef struct __sfsc_adapter_data {
 	zmtp_socket data_pub;
 	zmtp_socket data_sub;

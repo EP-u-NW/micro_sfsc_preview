@@ -4,7 +4,8 @@
 #include "../zmtp/zmtp_config.h"
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 #define HAS_STRING_H
@@ -28,9 +29,12 @@ extern "C" {
 
 #define MAX_DELETED_MEMORY 32
 
-#define USER_RING_SIZE 1024*5
+#define USER_RING_SIZE 1024 * 5
 
 #define REPLAYS_PER_TASK 0 //0 for as many as available
+#if REPLAYS_PER_TASK < 0
+#error "REPLAYS_PER_TASK must be >= 0"
+#endif
 
 #ifdef __cplusplus
 } /* extern "C" */

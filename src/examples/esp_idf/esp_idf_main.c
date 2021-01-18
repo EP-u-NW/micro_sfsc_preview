@@ -11,6 +11,8 @@
 #ifdef ENABLE_PRINTS
 #include "../shared/console.h"
 #endif
+#include "../scenarios/example_main.h"
+
 
 #ifndef CONFIG_LWIP_SO_RCVBUF
 #error "Bad configuration, see the README"
@@ -32,5 +34,6 @@ void app_main(void) {
         vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
     connect_wifi((const char *)ssid, (const char *)password);
+    example_main();
 }
 #endif

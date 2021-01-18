@@ -9,7 +9,7 @@
 #include "sfsc_utils.h"
 
 
-#define _ELEMENT_LEN_BYTES 2
+#define _ELEMENT_LEN_BYTES sizeof(sfsc_size)
 
 static sfsc_uint8* get(user_ring* ring, sfsc_size read_index,
 sfsc_size len, sfsc_uint8* wrapped_writer) {

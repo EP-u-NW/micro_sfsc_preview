@@ -22,7 +22,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
+#define sfsc_adapter_DEFAULT_INIT {sfsc_adapter_stats_DEFAULT_INIT,_sfsc_adapter_data_DEFAULT_INIT,{NULL},{NULL},{NULL} ,_sfsc_heartbeats_DEFAULT_INIT,_sfsc_queries_DEFAULT_INIT,_sfsc_commands_DEFAULT_INIT,_sfsc_requests_DEFAULT_INIT,_sfsc_acks_DEFAULT_INIT}
 struct _sfsc_adapter {
 	sfsc_adapter_stats stats;
 	_sfsc_adapter_data data;
