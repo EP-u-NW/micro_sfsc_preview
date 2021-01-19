@@ -235,8 +235,8 @@ static sfsc_int8 send_a_request()
 #endif
     sfsc_uint64 payload_number = (sfsc_uint64)random_number;
     sfsc_buffer payload_buffer = {(const sfsc_uint8 *)&payload_number, 8};
-    //We want to receive an answer within 10 seconds (10000ms)
-    return request(&adapter, request_topic, payload_buffer, 10000, on_answer, NULL);
+    //We want to receive an answer within 30 seconds (30000ms)
+    return request(&adapter, request_topic, payload_buffer, 30000, on_answer, NULL);
 }
 
 static void on_server_created(sfsc_adapter *a, sfsc_publisher_or_server service,
