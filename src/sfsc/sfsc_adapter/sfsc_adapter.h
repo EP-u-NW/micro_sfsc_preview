@@ -593,7 +593,7 @@ sfsc_int8 unregister_subscriber(sfsc_adapter* adapter,
  * sfsc_query_callback for more information on the delivered service data.
  *
  * @param adapter An operational adapter throught which the core is queried
- * @param callback The callback all receieved services are delivered to
+ * @param on_service The callback all receieved services are delivered to
  * @return sfsc_int8 SFSC_OK if starting the query process was successfull, or
  * one of the error codes below
  * @retval E_QUERY_IN_PROGRESS	If there is already an other query process
@@ -601,7 +601,7 @@ sfsc_int8 unregister_subscriber(sfsc_adapter* adapter,
  * network-related errors that can occure
  *
  */
-sfsc_int8 query_services(sfsc_adapter* adapter, sfsc_query_callback* callback);
+sfsc_int8 query_services(sfsc_adapter* adapter, sfsc_query_callback* on_service);
 
 /**
  * @brief Tells the framework to continue or to end a currently ongoing query
@@ -659,7 +659,7 @@ void query_services_next(sfsc_adapter* adapter, sfsc_bool next);
  * @param custom_tags Optional; custom tags for the publisher
  * @param output_message_type Optional; can be used to annotate the format of
  * the published messages
- * @param callback Optional; a callback that is invoked after service
+ * @param command_callback Optional; a callback that is invoked after service
  * registration with the core was successful
  * @return sfsc_int8 SFSC_OK or one of the error codes below
  * @retval SFSC_OK This indicates that registering the publisher into the
@@ -674,7 +674,7 @@ void query_services_next(sfsc_adapter* adapter, sfsc_bool next);
 sfsc_int8 register_publisher(sfsc_adapter* adapter, sfsc_publisher* publisher,
                              sfsc_buffer name, sfsc_buffer custom_tags,
                              sfsc_buffer output_message_type,
-                             sfsc_command_callback* callback);
+                             sfsc_command_callback* command_callback);
 /**
  * @brief Sets up a publisher you can publish with, but does not register it in
  * the cores service registry.
@@ -734,7 +734,7 @@ sfsc_int8 register_publisher_unregistered(sfsc_adapter* adapter,
  *
  * @param adapter An operational adapter
  * @param publisher The publisher to shut down
- * @param callback For registered publishers only; Invoked after the publisher
+ * @param command_callback For registered publishers only; Invoked after the publisher
  * was removed from the service registry
  * @return sfsc_int8 SFSC_OK or one of the error codes below
  * @retval SFSC_OK This indicates that unregistering the publisher from the
@@ -747,7 +747,7 @@ sfsc_int8 register_publisher_unregistered(sfsc_adapter* adapter,
  * network-related errors that can occure
  */
 sfsc_int8 unregister_publisher(sfsc_adapter* adapter, sfsc_publisher* publisher,
-                               sfsc_command_callback* callback);
+                               sfsc_command_callback* command_callback);
 /**
  * @brief Publishes data through a publisher.
  *
@@ -859,7 +859,7 @@ typedef void(sfsc_channel_request_callback)(
  * @param topic The server services topic to make the request to
  * @param payload The payload of the request
  * @param timeout_time The timeout time in ms, 0 for no timeout restrictions
- * @param callback The callback that is invoked when receiving an answer or on
+ * @param on_answer The callback that is invoked when receiving an answer or on
  * timeout
  * @param mapping_arg Optional; Serves as mapping-argument (see the text above
  * for explanation)
@@ -873,7 +873,7 @@ typedef void(sfsc_channel_request_callback)(
  * network-related errors that can occure
  */
 sfsc_int8 request(sfsc_adapter* adapter, sfsc_buffer topic, sfsc_buffer payload,
-                  sfsc_uint64 timeout_time, sfsc_request_callback* callback,
+                  sfsc_uint64 timeout_time, sfsc_request_callback* on_answer,
                   void* mapping_arg);
 
 /**
@@ -905,7 +905,7 @@ sfsc_int8 channel_request(sfsc_adapter* adapter, sfsc_buffer topic,
                           relative_sfsc_service_descriptor* descriptor,
                           sfsc_uint8* descriptor_space,
                           sfsc_size descriptor_space_lenght,
-                          sfsc_channel_request_callback* callback,
+                          sfsc_channel_request_callback* on_answer,
                           void* mapping_arg);
 
 /**
@@ -946,7 +946,7 @@ sfsc_int8 channel_request(sfsc_adapter* adapter, sfsc_buffer topic,
  * the messages the server sends as answers
  * @param input_message_type  Optional; can be used to annotate the format of
  * the messages the server accepts on requests
- * @param callback Optional; a callback that is invoked after service
+ * @param command_callback Optional; a callback that is invoked after service
  * registration with the core was successful
  * @return sfsc_int8 SFSC_OK or one of the error codes below
  * @retval SFSC_OK This indicates that registering the server into the adapter
@@ -962,7 +962,7 @@ sfsc_int8 register_server(sfsc_adapter* adapter, sfsc_server* server,
                           sfsc_buffer name, sfsc_buffer custom_tags,
                           sfsc_buffer output_message_type,
                           sfsc_buffer input_message_type,
-                          sfsc_command_callback* callback);
+                          sfsc_command_callback* command_callback);
 
 /**
  * @brief Unregisters a server.
@@ -978,7 +978,7 @@ sfsc_int8 register_server(sfsc_adapter* adapter, sfsc_server* server,
  *
  * @param adapter An operational adapter
  * @param server The server to shut down
- * @param callback Invoked after the server was removed from the service
+ * @param command_callback Invoked after the server was removed from the service
  * registry
  * @return sfsc_int8 SFSC_OK or one of the error codes below
  * @retval SFSC_OK Indicates that unregistering the server from the adapter was
@@ -990,7 +990,7 @@ sfsc_int8 register_server(sfsc_adapter* adapter, sfsc_server* server,
  * network-related errors that can occure
  */
 sfsc_int8 unregister_server(sfsc_adapter* adapter, sfsc_server* server,
-                            sfsc_command_callback* callback);
+                            sfsc_command_callback* command_callback);
 
 /**
  * @brief Invoked if an ack message for an answer was receieved, or the servers
@@ -1083,7 +1083,7 @@ sfsc_int8 answer_channel_request(sfsc_adapter* adapter, sfsc_server* server,
                                  sfsc_buffer reply_topic,
                                  sfsc_channel_answer* channel_answer,
                                  void* mapping_arg,
-                                 sfsc_answer_ack_callback* callback);
+                                 sfsc_answer_ack_callback* on_ack);
 
 /**
  * @brief Generates and writes a random 128bit UUID in standard-hexgroup-format

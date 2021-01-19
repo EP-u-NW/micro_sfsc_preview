@@ -1,5 +1,5 @@
-\hypertarget{sfsc__adapter_8h}{}\doxysection{sfsc/sfsc\+\_\+adapter/sfsc\+\_\+adapter.h File Reference}
-\label{sfsc__adapter_8h}\index{sfsc/sfsc\_adapter/sfsc\_adapter.h@{sfsc/sfsc\_adapter/sfsc\_adapter.h}}
+\hypertarget{sfsc__adapter_8h}{}\doxysection{src/sfsc/sfsc\+\_\+adapter/sfsc\+\_\+adapter.h File Reference}
+\label{sfsc__adapter_8h}\index{src/sfsc/sfsc\_adapter/sfsc\_adapter.h@{src/sfsc/sfsc\_adapter/sfsc\_adapter.h}}
 
 
 Public header that contains all SFSC functions.  
@@ -50,7 +50,7 @@ struct \mbox{\hyperlink{struct__sfsc__channel__answer}{\+\_\+sfsc\+\_\+channel\+
 \#define {\bfseries UUID\+\_\+\+LEN}~36
 \item 
 \mbox{\Hypertarget{sfsc__adapter_8h_a2e082e8e08cd3d4193be586b88c248d3}\label{sfsc__adapter_8h_a2e082e8e08cd3d4193be586b88c248d3}} 
-\#define {\bfseries sfsc\+\_\+adapter\+\_\+stats\+\_\+\+DEFAULT\+\_\+\+INIT}~    \{ NULL, \{UUID\+\_\+\+LEN\}, \{UUID\+\_\+\+LEN\}, SFSC\+\_\+\+STATE\+\_\+\+NONE, 0, 0 \}
+\#define {\bfseries sfsc\+\_\+adapter\+\_\+stats\+\_\+\+DEFAULT\+\_\+\+INIT}~    \{ NULL, \{0\}, \{0\}, SFSC\+\_\+\+STATE\+\_\+\+NONE, 0, 0 \}
 \item 
 \mbox{\Hypertarget{sfsc__adapter_8h_a9d55350307413262f8d60fc251253654}\label{sfsc__adapter_8h_a9d55350307413262f8d60fc251253654}} 
 \#define {\bfseries sfsc\+\_\+buffer\+\_\+\+DEFAULT\+\_\+\+INIT}~    \{ NULL, 0 \}
@@ -62,12 +62,12 @@ struct \mbox{\hyperlink{struct__sfsc__channel__answer}{\+\_\+sfsc\+\_\+channel\+
 \#define {\bfseries sfsc\+\_\+subscriber\+\_\+\+DEFAULT\+\_\+\+INIT}~    \{ sfsc\+\_\+buffer\+\_\+\+DEFAULT\+\_\+\+INIT, NULL \}
 \item 
 \mbox{\Hypertarget{sfsc__adapter_8h_a54bfcf55337681b46b7bf5dda499a97e}\label{sfsc__adapter_8h_a54bfcf55337681b46b7bf5dda499a97e}} 
-\#define {\bfseries sfsc\+\_\+publisher\+\_\+\+DEFAULT\+\_\+\+INIT}~    \{ NULL, 0, 0, \{0\}, SERVICE\+\_\+\+TOPIC\+\_\+\+AUTOGEN, 0 \}
+\#define {\bfseries sfsc\+\_\+publisher\+\_\+\+DEFAULT\+\_\+\+INIT}~    \{ NULL, 0, 0, sfsc\+\_\+\+Sfsc\+Id\+\_\+init\+\_\+default, SERVICE\+\_\+\+TOPIC\+\_\+\+AUTOGEN, 0 \}
 \item 
 \#define {\bfseries sfsc\+\_\+server\+\_\+\+DEFAULT\+\_\+\+INIT}
 \item 
 \mbox{\Hypertarget{sfsc__adapter_8h_a80575cdc4a52860d99c683d641dfc8c9}\label{sfsc__adapter_8h_a80575cdc4a52860d99c683d641dfc8c9}} 
-\#define {\bfseries sfsc\+\_\+publisher\+\_\+or\+\_\+server\+\_\+\+INIT\+\_\+\+DEFAULT}~    \{ 0, NULL \}
+\#define {\bfseries sfsc\+\_\+publisher\+\_\+or\+\_\+server\+\_\+\+INIT\+\_\+\+DEFAULT}~    \{ 0, \{NULL\} \}
 \item 
 \mbox{\Hypertarget{sfsc__adapter_8h_a572a72066ca9d9eb42efce292f76d762}\label{sfsc__adapter_8h_a572a72066ca9d9eb42efce292f76d762}} 
 \#define {\bfseries relative\+\_\+publisher\+\_\+tags\+\_\+\+DEFAULT\+\_\+\+INIT}~    \{ 0, 0, 0, 0, 0 \}
@@ -128,29 +128,29 @@ sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_a907e055e091da55aee6ea185f042bd
 \begin{DoxyCompactList}\small\item\em Subscribes to a sfsc publisher through the given adapter. \end{DoxyCompactList}\item 
 sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_addaf3873c9e805b7a3b5ab72c5f59976}{unregister\+\_\+subscriber}} (\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, \mbox{\hyperlink{struct__sfsc__subscriber}{sfsc\+\_\+subscriber}} $\ast$subscriber)
 \begin{DoxyCompactList}\small\item\em Unregisters a subscriber and unsubscribe messages on that topic. \end{DoxyCompactList}\item 
-sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_a35dc86eb3be2be2995b01e366658fe7e}{query\+\_\+services}} (\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, \mbox{\hyperlink{sfsc__adapter_8h_a45d55712718b8b83acf89e41f66134c2}{sfsc\+\_\+query\+\_\+callback}} $\ast$callback)
+sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_a4e1311fbc5ccafdc40d075390ac1db62}{query\+\_\+services}} (\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, \mbox{\hyperlink{sfsc__adapter_8h_a45d55712718b8b83acf89e41f66134c2}{sfsc\+\_\+query\+\_\+callback}} $\ast$on\+\_\+service)
 \begin{DoxyCompactList}\small\item\em Starts a query process to obtain registered services from the core. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{sfsc__adapter_8h_abe50351d6b8d32fc7e8b52a63163cc6b}{query\+\_\+services\+\_\+next}} (\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, sfsc\+\_\+bool next)
 \begin{DoxyCompactList}\small\item\em Tells the framework to continue or to end a currently ongoing query process. \end{DoxyCompactList}\item 
-sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_ae7f19fd8d71709a31c43b5b6d15e5aa3}{register\+\_\+publisher}} (\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, \mbox{\hyperlink{struct__sfsc__publisher}{sfsc\+\_\+publisher}} $\ast$publisher, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} name, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} custom\+\_\+tags, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} output\+\_\+message\+\_\+type, \mbox{\hyperlink{sfsc__adapter_8h_a9606cb226543c2d13c6d81f6de079326}{sfsc\+\_\+command\+\_\+callback}} $\ast$callback)
+sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_a36e54333c8c4c5cfe295c474953ea0b9}{register\+\_\+publisher}} (\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, \mbox{\hyperlink{struct__sfsc__publisher}{sfsc\+\_\+publisher}} $\ast$publisher, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} name, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} custom\+\_\+tags, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} output\+\_\+message\+\_\+type, \mbox{\hyperlink{sfsc__adapter_8h_a9606cb226543c2d13c6d81f6de079326}{sfsc\+\_\+command\+\_\+callback}} $\ast$command\+\_\+callback)
 \begin{DoxyCompactList}\small\item\em Sets up a publisher service and registers it with the core. \end{DoxyCompactList}\item 
 sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_a9f3a86f49777fbd148d95c724c568bdb}{register\+\_\+publisher\+\_\+unregistered}} (\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, \mbox{\hyperlink{struct__sfsc__publisher}{sfsc\+\_\+publisher}} $\ast$publisher)
 \begin{DoxyCompactList}\small\item\em Sets up a publisher you can publish with, but does not register it in the cores service registry. \end{DoxyCompactList}\item 
-sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_a19546a6860954035b355d2a8ab102493}{unregister\+\_\+publisher}} (\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, \mbox{\hyperlink{struct__sfsc__publisher}{sfsc\+\_\+publisher}} $\ast$publisher, \mbox{\hyperlink{sfsc__adapter_8h_a9606cb226543c2d13c6d81f6de079326}{sfsc\+\_\+command\+\_\+callback}} $\ast$callback)
+sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_ac62616aff23fe7cac25ed256ce4e200e}{unregister\+\_\+publisher}} (\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, \mbox{\hyperlink{struct__sfsc__publisher}{sfsc\+\_\+publisher}} $\ast$publisher, \mbox{\hyperlink{sfsc__adapter_8h_a9606cb226543c2d13c6d81f6de079326}{sfsc\+\_\+command\+\_\+callback}} $\ast$command\+\_\+callback)
 \begin{DoxyCompactList}\small\item\em Unregisters a publisher. \end{DoxyCompactList}\item 
 sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_a1a971fb6b660a3400b6bc6fd072586e0}{publish}} (\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, \mbox{\hyperlink{struct__sfsc__publisher}{sfsc\+\_\+publisher}} $\ast$publisher, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} payload)
 \begin{DoxyCompactList}\small\item\em Publishes data through a publisher. \end{DoxyCompactList}\item 
-sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_a3ccee0c80a889e4eef376a4e56e65850}{request}} (\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} topic, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} payload, sfsc\+\_\+uint64 timeout\+\_\+time, \mbox{\hyperlink{sfsc__adapter_8h_a1969b502e38168910b9e57d952369316}{sfsc\+\_\+request\+\_\+callback}} $\ast$callback, void $\ast$mapping\+\_\+arg)
+sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_ac1ed1601a750a283cabb2993cb61c29d}{request}} (\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} topic, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} payload, sfsc\+\_\+uint64 timeout\+\_\+time, \mbox{\hyperlink{sfsc__adapter_8h_a1969b502e38168910b9e57d952369316}{sfsc\+\_\+request\+\_\+callback}} $\ast$on\+\_\+answer, void $\ast$mapping\+\_\+arg)
 \begin{DoxyCompactList}\small\item\em Makes a request call to a server service. \end{DoxyCompactList}\item 
-sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_aa683543e76eca37f8fdeb47bc9c66842}{channel\+\_\+request}} (\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} topic, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} payload, sfsc\+\_\+uint64 timeout\+\_\+time, \mbox{\hyperlink{sfsc__adapter_8h_a8734edf2cb2e03719e603dec6c2d049f}{relative\+\_\+sfsc\+\_\+service\+\_\+descriptor}} $\ast$descriptor, sfsc\+\_\+uint8 $\ast$descriptor\+\_\+space, sfsc\+\_\+size descriptor\+\_\+space\+\_\+lenght, \mbox{\hyperlink{sfsc__adapter_8h_a1497b54b1ae44a7cac6fb4f93a8217da}{sfsc\+\_\+channel\+\_\+request\+\_\+callback}} $\ast$callback, void $\ast$mapping\+\_\+arg)
+sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_a1591f2771368859f7c8980dde2c73e34}{channel\+\_\+request}} (\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} topic, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} payload, sfsc\+\_\+uint64 timeout\+\_\+time, \mbox{\hyperlink{sfsc__adapter_8h_a8734edf2cb2e03719e603dec6c2d049f}{relative\+\_\+sfsc\+\_\+service\+\_\+descriptor}} $\ast$descriptor, sfsc\+\_\+uint8 $\ast$descriptor\+\_\+space, sfsc\+\_\+size descriptor\+\_\+space\+\_\+lenght, \mbox{\hyperlink{sfsc__adapter_8h_a1497b54b1ae44a7cac6fb4f93a8217da}{sfsc\+\_\+channel\+\_\+request\+\_\+callback}} $\ast$on\+\_\+answer, void $\ast$mapping\+\_\+arg)
 \begin{DoxyCompactList}\small\item\em Makes a request call to a channel server service. \end{DoxyCompactList}\item 
-sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_a0fedfdc6248ab6e74844baeb0c2e9c0c}{register\+\_\+server}} (\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, \mbox{\hyperlink{struct__sfsc__server}{sfsc\+\_\+server}} $\ast$server, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} name, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} custom\+\_\+tags, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} output\+\_\+message\+\_\+type, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} input\+\_\+message\+\_\+type, \mbox{\hyperlink{sfsc__adapter_8h_a9606cb226543c2d13c6d81f6de079326}{sfsc\+\_\+command\+\_\+callback}} $\ast$callback)
+sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_ab548429c2d440ec47260c2cc69a288cd}{register\+\_\+server}} (\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, \mbox{\hyperlink{struct__sfsc__server}{sfsc\+\_\+server}} $\ast$server, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} name, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} custom\+\_\+tags, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} output\+\_\+message\+\_\+type, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} input\+\_\+message\+\_\+type, \mbox{\hyperlink{sfsc__adapter_8h_a9606cb226543c2d13c6d81f6de079326}{sfsc\+\_\+command\+\_\+callback}} $\ast$command\+\_\+callback)
 \begin{DoxyCompactList}\small\item\em Sets up a server service and registers it with the core. \end{DoxyCompactList}\item 
-sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_a5f1ce8be8feafb30fc5d182b7384c266}{unregister\+\_\+server}} (\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, \mbox{\hyperlink{struct__sfsc__server}{sfsc\+\_\+server}} $\ast$server, \mbox{\hyperlink{sfsc__adapter_8h_a9606cb226543c2d13c6d81f6de079326}{sfsc\+\_\+command\+\_\+callback}} $\ast$callback)
+sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_aa064ef0413ec5d1e8e391ad81dcf9ef6}{unregister\+\_\+server}} (\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, \mbox{\hyperlink{struct__sfsc__server}{sfsc\+\_\+server}} $\ast$server, \mbox{\hyperlink{sfsc__adapter_8h_a9606cb226543c2d13c6d81f6de079326}{sfsc\+\_\+command\+\_\+callback}} $\ast$command\+\_\+callback)
 \begin{DoxyCompactList}\small\item\em Unregisters a server. \end{DoxyCompactList}\item 
 sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_a03acde575324406f3d90b1196b097f5f}{answer\+\_\+request}} (\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, \mbox{\hyperlink{struct__sfsc__server}{sfsc\+\_\+server}} $\ast$server, sfsc\+\_\+int32 expected\+\_\+reply\+\_\+id, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} reply\+\_\+topic, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} $\ast$payload, void $\ast$mapping\+\_\+arg, \mbox{\hyperlink{sfsc__adapter_8h_aaaee1dca7def711316b62f037165b3e0}{sfsc\+\_\+answer\+\_\+ack\+\_\+callback}} $\ast$on\+\_\+ack)
 \begin{DoxyCompactList}\small\item\em Answers a request. \end{DoxyCompactList}\item 
-sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_a6f4b11e99ab82abe59e991775edfffaa}{answer\+\_\+channel\+\_\+request}} (\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, \mbox{\hyperlink{struct__sfsc__server}{sfsc\+\_\+server}} $\ast$server, sfsc\+\_\+int32 expected\+\_\+reply\+\_\+id, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} reply\+\_\+topic, \mbox{\hyperlink{sfsc__adapter_8h_a487711a208cf17fd8d171031dae258f8}{sfsc\+\_\+channel\+\_\+answer}} $\ast$channel\+\_\+answer, void $\ast$mapping\+\_\+arg, \mbox{\hyperlink{sfsc__adapter_8h_aaaee1dca7def711316b62f037165b3e0}{sfsc\+\_\+answer\+\_\+ack\+\_\+callback}} $\ast$callback)
+sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_a36faef0ff0e5f45340846237e56f81d9}{answer\+\_\+channel\+\_\+request}} (\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, \mbox{\hyperlink{struct__sfsc__server}{sfsc\+\_\+server}} $\ast$server, sfsc\+\_\+int32 expected\+\_\+reply\+\_\+id, \mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}} reply\+\_\+topic, \mbox{\hyperlink{sfsc__adapter_8h_a487711a208cf17fd8d171031dae258f8}{sfsc\+\_\+channel\+\_\+answer}} $\ast$channel\+\_\+answer, void $\ast$mapping\+\_\+arg, \mbox{\hyperlink{sfsc__adapter_8h_aaaee1dca7def711316b62f037165b3e0}{sfsc\+\_\+answer\+\_\+ack\+\_\+callback}} $\ast$on\+\_\+ack)
 \begin{DoxyCompactList}\small\item\em Used to answer a channel request. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{sfsc__adapter_8h_adb7e6ee6ba9c8bf9a8bd3f6874887019}{random\+\_\+uuid}} (sfsc\+\_\+uint8 target\mbox{[}UUID\+\_\+\+LEN\mbox{]})
 \begin{DoxyCompactList}\small\item\em Generates and writes a random 128bit UUID in standard-\/hexgroup-\/format to the target buffer. \end{DoxyCompactList}\item 
@@ -205,7 +205,7 @@ Public header that contains all SFSC functions.
 \DoxyCodeLine{    \{                                                                     \(\backslash\)}
 \DoxyCodeLine{        sfsc\_SfscId\_init\_default, sfsc\_SfscId\_init\_default,               \(\backslash\)}
 \DoxyCodeLine{            sfsc\_SfscId\_init\_default, 0, 0, 0, 0, SERVICE\_TYPE\_PUBLISHER, \(\backslash\)}
-\DoxyCodeLine{            relative\_publisher\_tags\_DEFAULT\_INIT                          \(\backslash\)}
+\DoxyCodeLine{            \{relative\_publisher\_tags\_DEFAULT\_INIT\}                         \(\backslash\)}
 \DoxyCodeLine{    \}}
 
 \end{DoxyCode}
@@ -446,11 +446,11 @@ Some callback functions allow you to pause the user task and freeze it on the cu
 {\em adapter} & The adapter whichs user task is currently in the pause state and should continue execution \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{sfsc__adapter_8h_a6f4b11e99ab82abe59e991775edfffaa}\label{sfsc__adapter_8h_a6f4b11e99ab82abe59e991775edfffaa}} 
+\mbox{\Hypertarget{sfsc__adapter_8h_a36faef0ff0e5f45340846237e56f81d9}\label{sfsc__adapter_8h_a36faef0ff0e5f45340846237e56f81d9}} 
 \index{sfsc\_adapter.h@{sfsc\_adapter.h}!answer\_channel\_request@{answer\_channel\_request}}
 \index{answer\_channel\_request@{answer\_channel\_request}!sfsc\_adapter.h@{sfsc\_adapter.h}}
 \doxysubsubsection{\texorpdfstring{answer\_channel\_request()}{answer\_channel\_request()}}
-{\footnotesize\ttfamily sfsc\+\_\+int8 answer\+\_\+channel\+\_\+request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$}]{adapter,  }\item[{\mbox{\hyperlink{struct__sfsc__server}{sfsc\+\_\+server}} $\ast$}]{server,  }\item[{sfsc\+\_\+int32}]{expected\+\_\+reply\+\_\+id,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}}}]{reply\+\_\+topic,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_a487711a208cf17fd8d171031dae258f8}{sfsc\+\_\+channel\+\_\+answer}} $\ast$}]{channel\+\_\+answer,  }\item[{void $\ast$}]{mapping\+\_\+arg,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aaaee1dca7def711316b62f037165b3e0}{sfsc\+\_\+answer\+\_\+ack\+\_\+callback}} $\ast$}]{callback }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily sfsc\+\_\+int8 answer\+\_\+channel\+\_\+request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$}]{adapter,  }\item[{\mbox{\hyperlink{struct__sfsc__server}{sfsc\+\_\+server}} $\ast$}]{server,  }\item[{sfsc\+\_\+int32}]{expected\+\_\+reply\+\_\+id,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}}}]{reply\+\_\+topic,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_a487711a208cf17fd8d171031dae258f8}{sfsc\+\_\+channel\+\_\+answer}} $\ast$}]{channel\+\_\+answer,  }\item[{void $\ast$}]{mapping\+\_\+arg,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aaaee1dca7def711316b62f037165b3e0}{sfsc\+\_\+answer\+\_\+ack\+\_\+callback}} $\ast$}]{on\+\_\+ack }\end{DoxyParamCaption})}
 
 
 
@@ -505,11 +505,11 @@ sfsc\+\_\+int8 SFSC\+\_\+\+OK or one of the error codes below
 {\em Various} & Network Errors There are serveral other, network-\/related errors that can occure \\
 \hline
 \end{DoxyRetVals}
-\mbox{\Hypertarget{sfsc__adapter_8h_aa683543e76eca37f8fdeb47bc9c66842}\label{sfsc__adapter_8h_aa683543e76eca37f8fdeb47bc9c66842}} 
+\mbox{\Hypertarget{sfsc__adapter_8h_a1591f2771368859f7c8980dde2c73e34}\label{sfsc__adapter_8h_a1591f2771368859f7c8980dde2c73e34}} 
 \index{sfsc\_adapter.h@{sfsc\_adapter.h}!channel\_request@{channel\_request}}
 \index{channel\_request@{channel\_request}!sfsc\_adapter.h@{sfsc\_adapter.h}}
 \doxysubsubsection{\texorpdfstring{channel\_request()}{channel\_request()}}
-{\footnotesize\ttfamily sfsc\+\_\+int8 channel\+\_\+request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$}]{adapter,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}}}]{topic,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}}}]{payload,  }\item[{sfsc\+\_\+uint64}]{timeout\+\_\+time,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_a8734edf2cb2e03719e603dec6c2d049f}{relative\+\_\+sfsc\+\_\+service\+\_\+descriptor}} $\ast$}]{descriptor,  }\item[{sfsc\+\_\+uint8 $\ast$}]{descriptor\+\_\+space,  }\item[{sfsc\+\_\+size}]{descriptor\+\_\+space\+\_\+lenght,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_a1497b54b1ae44a7cac6fb4f93a8217da}{sfsc\+\_\+channel\+\_\+request\+\_\+callback}} $\ast$}]{callback,  }\item[{void $\ast$}]{mapping\+\_\+arg }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily sfsc\+\_\+int8 channel\+\_\+request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$}]{adapter,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}}}]{topic,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}}}]{payload,  }\item[{sfsc\+\_\+uint64}]{timeout\+\_\+time,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_a8734edf2cb2e03719e603dec6c2d049f}{relative\+\_\+sfsc\+\_\+service\+\_\+descriptor}} $\ast$}]{descriptor,  }\item[{sfsc\+\_\+uint8 $\ast$}]{descriptor\+\_\+space,  }\item[{sfsc\+\_\+size}]{descriptor\+\_\+space\+\_\+lenght,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_a1497b54b1ae44a7cac6fb4f93a8217da}{sfsc\+\_\+channel\+\_\+request\+\_\+callback}} $\ast$}]{on\+\_\+answer,  }\item[{void $\ast$}]{mapping\+\_\+arg }\end{DoxyParamCaption})}
 
 
 
@@ -554,11 +554,11 @@ The use-\/time of the payload is this functions runtime and must be immutable fo
 \begin{DoxyReturn}{Returns}
 sfsc\+\_\+int8 SFSC\+\_\+\+OK 
 \end{DoxyReturn}
-\mbox{\Hypertarget{sfsc__adapter_8h_a35dc86eb3be2be2995b01e366658fe7e}\label{sfsc__adapter_8h_a35dc86eb3be2be2995b01e366658fe7e}} 
+\mbox{\Hypertarget{sfsc__adapter_8h_a4e1311fbc5ccafdc40d075390ac1db62}\label{sfsc__adapter_8h_a4e1311fbc5ccafdc40d075390ac1db62}} 
 \index{sfsc\_adapter.h@{sfsc\_adapter.h}!query\_services@{query\_services}}
 \index{query\_services@{query\_services}!sfsc\_adapter.h@{sfsc\_adapter.h}}
 \doxysubsubsection{\texorpdfstring{query\_services()}{query\_services()}}
-{\footnotesize\ttfamily sfsc\+\_\+int8 query\+\_\+services (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$}]{adapter,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_a45d55712718b8b83acf89e41f66134c2}{sfsc\+\_\+query\+\_\+callback}} $\ast$}]{callback }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily sfsc\+\_\+int8 query\+\_\+services (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$}]{adapter,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_a45d55712718b8b83acf89e41f66134c2}{sfsc\+\_\+query\+\_\+callback}} $\ast$}]{on\+\_\+service }\end{DoxyParamCaption})}
 
 
 
@@ -572,7 +572,7 @@ After a service is found and delivered to the calling application throught the c
 \begin{DoxyParams}{Parameters}
 {\em adapter} & An operational adapter throught which the core is queried \\
 \hline
-{\em callback} & The callback all receieved services are delivered to \\
+{\em on\+\_\+service} & The callback all receieved services are delivered to \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -629,11 +629,11 @@ Examples\+: 23236572-\/6963-\/6973-\/7473-\/757065722323, 550e8400-\/e29b-\/11d4
 {\em target} & A at least UUID\+\_\+\+LEN bytes long buffer to write the formated UUID to \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{sfsc__adapter_8h_ae7f19fd8d71709a31c43b5b6d15e5aa3}\label{sfsc__adapter_8h_ae7f19fd8d71709a31c43b5b6d15e5aa3}} 
+\mbox{\Hypertarget{sfsc__adapter_8h_a36e54333c8c4c5cfe295c474953ea0b9}\label{sfsc__adapter_8h_a36e54333c8c4c5cfe295c474953ea0b9}} 
 \index{sfsc\_adapter.h@{sfsc\_adapter.h}!register\_publisher@{register\_publisher}}
 \index{register\_publisher@{register\_publisher}!sfsc\_adapter.h@{sfsc\_adapter.h}}
 \doxysubsubsection{\texorpdfstring{register\_publisher()}{register\_publisher()}}
-{\footnotesize\ttfamily sfsc\+\_\+int8 register\+\_\+publisher (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$}]{adapter,  }\item[{\mbox{\hyperlink{struct__sfsc__publisher}{sfsc\+\_\+publisher}} $\ast$}]{publisher,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}}}]{name,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}}}]{custom\+\_\+tags,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}}}]{output\+\_\+message\+\_\+type,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_a9606cb226543c2d13c6d81f6de079326}{sfsc\+\_\+command\+\_\+callback}} $\ast$}]{callback }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily sfsc\+\_\+int8 register\+\_\+publisher (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$}]{adapter,  }\item[{\mbox{\hyperlink{struct__sfsc__publisher}{sfsc\+\_\+publisher}} $\ast$}]{publisher,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}}}]{name,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}}}]{custom\+\_\+tags,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}}}]{output\+\_\+message\+\_\+type,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_a9606cb226543c2d13c6d81f6de079326}{sfsc\+\_\+command\+\_\+callback}} $\ast$}]{command\+\_\+callback }\end{DoxyParamCaption})}
 
 
 
@@ -661,7 +661,7 @@ Also, since the publisher will be registered in the service registry, this call 
 \hline
 {\em output\+\_\+message\+\_\+type} & Optional; can be used to annotate the format of the published messages \\
 \hline
-{\em callback} & Optional; a callback that is invoked after service registration with the core was successful \\
+{\em command\+\_\+callback} & Optional; a callback that is invoked after service registration with the core was successful \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -715,11 +715,11 @@ sfsc\+\_\+int8 SFSC\+\_\+\+OK or one of the error codes below
 {\em Various} & Network Errors There are serveral other, network-\/related errors that can occure \\
 \hline
 \end{DoxyRetVals}
-\mbox{\Hypertarget{sfsc__adapter_8h_a0fedfdc6248ab6e74844baeb0c2e9c0c}\label{sfsc__adapter_8h_a0fedfdc6248ab6e74844baeb0c2e9c0c}} 
+\mbox{\Hypertarget{sfsc__adapter_8h_ab548429c2d440ec47260c2cc69a288cd}\label{sfsc__adapter_8h_ab548429c2d440ec47260c2cc69a288cd}} 
 \index{sfsc\_adapter.h@{sfsc\_adapter.h}!register\_server@{register\_server}}
 \index{register\_server@{register\_server}!sfsc\_adapter.h@{sfsc\_adapter.h}}
 \doxysubsubsection{\texorpdfstring{register\_server()}{register\_server()}}
-{\footnotesize\ttfamily sfsc\+\_\+int8 register\+\_\+server (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$}]{adapter,  }\item[{\mbox{\hyperlink{struct__sfsc__server}{sfsc\+\_\+server}} $\ast$}]{server,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}}}]{name,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}}}]{custom\+\_\+tags,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}}}]{output\+\_\+message\+\_\+type,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}}}]{input\+\_\+message\+\_\+type,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_a9606cb226543c2d13c6d81f6de079326}{sfsc\+\_\+command\+\_\+callback}} $\ast$}]{callback }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily sfsc\+\_\+int8 register\+\_\+server (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$}]{adapter,  }\item[{\mbox{\hyperlink{struct__sfsc__server}{sfsc\+\_\+server}} $\ast$}]{server,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}}}]{name,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}}}]{custom\+\_\+tags,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}}}]{output\+\_\+message\+\_\+type,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}}}]{input\+\_\+message\+\_\+type,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_a9606cb226543c2d13c6d81f6de079326}{sfsc\+\_\+command\+\_\+callback}} $\ast$}]{command\+\_\+callback }\end{DoxyParamCaption})}
 
 
 
@@ -749,7 +749,7 @@ Also, since the server will be registered in the service registry, this call req
 \hline
 {\em input\+\_\+message\+\_\+type} & Optional; can be used to annotate the format of the messages the server accepts on requests \\
 \hline
-{\em callback} & Optional; a callback that is invoked after service registration with the core was successful \\
+{\em command\+\_\+callback} & Optional; a callback that is invoked after service registration with the core was successful \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -797,11 +797,11 @@ sfsc\+\_\+int8 SFSC\+\_\+\+OK on success or one of the error codes below
 {\em Various} & Network Errors There are serveral other, network-\/related errors that can occure \\
 \hline
 \end{DoxyRetVals}
-\mbox{\Hypertarget{sfsc__adapter_8h_a3ccee0c80a889e4eef376a4e56e65850}\label{sfsc__adapter_8h_a3ccee0c80a889e4eef376a4e56e65850}} 
+\mbox{\Hypertarget{sfsc__adapter_8h_ac1ed1601a750a283cabb2993cb61c29d}\label{sfsc__adapter_8h_ac1ed1601a750a283cabb2993cb61c29d}} 
 \index{sfsc\_adapter.h@{sfsc\_adapter.h}!request@{request}}
 \index{request@{request}!sfsc\_adapter.h@{sfsc\_adapter.h}}
 \doxysubsubsection{\texorpdfstring{request()}{request()}}
-{\footnotesize\ttfamily sfsc\+\_\+int8 request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$}]{adapter,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}}}]{topic,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}}}]{payload,  }\item[{sfsc\+\_\+uint64}]{timeout\+\_\+time,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_a1969b502e38168910b9e57d952369316}{sfsc\+\_\+request\+\_\+callback}} $\ast$}]{callback,  }\item[{void $\ast$}]{mapping\+\_\+arg }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily sfsc\+\_\+int8 request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$}]{adapter,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}}}]{topic,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_aa436417a69f99cdee2a8eead1ee15adb}{sfsc\+\_\+buffer}}}]{payload,  }\item[{sfsc\+\_\+uint64}]{timeout\+\_\+time,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_a1969b502e38168910b9e57d952369316}{sfsc\+\_\+request\+\_\+callback}} $\ast$}]{on\+\_\+answer,  }\item[{void $\ast$}]{mapping\+\_\+arg }\end{DoxyParamCaption})}
 
 
 
@@ -827,7 +827,7 @@ As the use-\/time of the request topic and payload is only the functions runtime
 \hline
 {\em timeout\+\_\+time} & The timeout time in ms, 0 for no timeout restrictions \\
 \hline
-{\em callback} & The callback that is invoked when receiving an answer or on timeout \\
+{\em on\+\_\+answer} & The callback that is invoked when receiving an answer or on timeout \\
 \hline
 {\em mapping\+\_\+arg} & Optional; Serves as mapping-\/argument (see the text above for explanation) \\
 \hline
@@ -900,11 +900,11 @@ This function returns an error code, which is SFSC\+\_\+\+OK on success. An othe
 \begin{DoxyReturn}{Returns}
 sfsc\+\_\+int8 SFSC\+\_\+\+OK or an error code 
 \end{DoxyReturn}
-\mbox{\Hypertarget{sfsc__adapter_8h_a19546a6860954035b355d2a8ab102493}\label{sfsc__adapter_8h_a19546a6860954035b355d2a8ab102493}} 
+\mbox{\Hypertarget{sfsc__adapter_8h_ac62616aff23fe7cac25ed256ce4e200e}\label{sfsc__adapter_8h_ac62616aff23fe7cac25ed256ce4e200e}} 
 \index{sfsc\_adapter.h@{sfsc\_adapter.h}!unregister\_publisher@{unregister\_publisher}}
 \index{unregister\_publisher@{unregister\_publisher}!sfsc\_adapter.h@{sfsc\_adapter.h}}
 \doxysubsubsection{\texorpdfstring{unregister\_publisher()}{unregister\_publisher()}}
-{\footnotesize\ttfamily sfsc\+\_\+int8 unregister\+\_\+publisher (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$}]{adapter,  }\item[{\mbox{\hyperlink{struct__sfsc__publisher}{sfsc\+\_\+publisher}} $\ast$}]{publisher,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_a9606cb226543c2d13c6d81f6de079326}{sfsc\+\_\+command\+\_\+callback}} $\ast$}]{callback }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily sfsc\+\_\+int8 unregister\+\_\+publisher (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$}]{adapter,  }\item[{\mbox{\hyperlink{struct__sfsc__publisher}{sfsc\+\_\+publisher}} $\ast$}]{publisher,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_a9606cb226543c2d13c6d81f6de079326}{sfsc\+\_\+command\+\_\+callback}} $\ast$}]{command\+\_\+callback }\end{DoxyParamCaption})}
 
 
 
@@ -924,7 +924,7 @@ The callback is invoked after the publisher was removed from the service registr
 \hline
 {\em publisher} & The publisher to shut down \\
 \hline
-{\em callback} & For registered publishers only; Invoked after the publisher was removed from the service registry \\
+{\em command\+\_\+callback} & For registered publishers only; Invoked after the publisher was removed from the service registry \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -939,11 +939,11 @@ sfsc\+\_\+int8 SFSC\+\_\+\+OK or one of the error codes below
 {\em Various} & Network Errors There are serveral other, network-\/related errors that can occure \\
 \hline
 \end{DoxyRetVals}
-\mbox{\Hypertarget{sfsc__adapter_8h_a5f1ce8be8feafb30fc5d182b7384c266}\label{sfsc__adapter_8h_a5f1ce8be8feafb30fc5d182b7384c266}} 
+\mbox{\Hypertarget{sfsc__adapter_8h_aa064ef0413ec5d1e8e391ad81dcf9ef6}\label{sfsc__adapter_8h_aa064ef0413ec5d1e8e391ad81dcf9ef6}} 
 \index{sfsc\_adapter.h@{sfsc\_adapter.h}!unregister\_server@{unregister\_server}}
 \index{unregister\_server@{unregister\_server}!sfsc\_adapter.h@{sfsc\_adapter.h}}
 \doxysubsubsection{\texorpdfstring{unregister\_server()}{unregister\_server()}}
-{\footnotesize\ttfamily sfsc\+\_\+int8 unregister\+\_\+server (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$}]{adapter,  }\item[{\mbox{\hyperlink{struct__sfsc__server}{sfsc\+\_\+server}} $\ast$}]{server,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_a9606cb226543c2d13c6d81f6de079326}{sfsc\+\_\+command\+\_\+callback}} $\ast$}]{callback }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily sfsc\+\_\+int8 unregister\+\_\+server (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$}]{adapter,  }\item[{\mbox{\hyperlink{struct__sfsc__server}{sfsc\+\_\+server}} $\ast$}]{server,  }\item[{\mbox{\hyperlink{sfsc__adapter_8h_a9606cb226543c2d13c6d81f6de079326}{sfsc\+\_\+command\+\_\+callback}} $\ast$}]{command\+\_\+callback }\end{DoxyParamCaption})}
 
 
 
@@ -959,7 +959,7 @@ The server will be removed from the service registry. Removing requires a free c
 \hline
 {\em server} & The server to shut down \\
 \hline
-{\em callback} & Invoked after the server was removed from the service registry \\
+{\em command\+\_\+callback} & Invoked after the server was removed from the service registry \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

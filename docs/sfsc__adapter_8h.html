@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>MicroSFSC: sfsc/sfsc_adapter/sfsc_adapter.h File Reference</title>
+<title>MicroSFSC: src/sfsc/sfsc_adapter/sfsc_adapter.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,7 +61,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_09b80a71b993fb751cd4e69e685c0e4a.html">sfsc</a></li><li class="navelem"><a class="el" href="dir_76cbca8b473ecd60199d2483da452d24.html">sfsc_adapter</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_60300d2efc8ea7c06e00264a83389b8a.html">sfsc</a></li><li class="navelem"><a class="el" href="dir_f6fe6e474a61eaa27ff08a7e567bf9a6.html">sfsc_adapter</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -135,7 +135,7 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>UUID_LEN</b>&#160;&#160;&#160;36</td></tr>
 <tr class="separator:a9692a0205a857ed2cc29558470c2ed77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e082e8e08cd3d4193be586b88c248d3"><td class="memItemLeft" align="right" valign="top"><a id="a2e082e8e08cd3d4193be586b88c248d3"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>sfsc_adapter_stats_DEFAULT_INIT</b>&#160;&#160;&#160;    { NULL, {UUID_LEN}, {UUID_LEN}, SFSC_STATE_NONE, 0, 0 }</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>sfsc_adapter_stats_DEFAULT_INIT</b>&#160;&#160;&#160;    { NULL, {0}, {0}, SFSC_STATE_NONE, 0, 0 }</td></tr>
 <tr class="separator:a2e082e8e08cd3d4193be586b88c248d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d55350307413262f8d60fc251253654"><td class="memItemLeft" align="right" valign="top"><a id="a9d55350307413262f8d60fc251253654"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>sfsc_buffer_DEFAULT_INIT</b>&#160;&#160;&#160;    { NULL, 0 }</td></tr>
@@ -147,12 +147,12 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>sfsc_subscriber_DEFAULT_INIT</b>&#160;&#160;&#160;    { sfsc_buffer_DEFAULT_INIT, NULL }</td></tr>
 <tr class="separator:a318024d8a6bab757494760e83309ac38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54bfcf55337681b46b7bf5dda499a97e"><td class="memItemLeft" align="right" valign="top"><a id="a54bfcf55337681b46b7bf5dda499a97e"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>sfsc_publisher_DEFAULT_INIT</b>&#160;&#160;&#160;    { NULL, 0, 0, {0}, SERVICE_TOPIC_AUTOGEN, 0 }</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>sfsc_publisher_DEFAULT_INIT</b>&#160;&#160;&#160;    { NULL, 0, 0, sfsc_SfscId_init_default, SERVICE_TOPIC_AUTOGEN, 0 }</td></tr>
 <tr class="separator:a54bfcf55337681b46b7bf5dda499a97e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a743d1b07a52012e2f58d3762fd751288"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><b>sfsc_server_DEFAULT_INIT</b></td></tr>
 <tr class="separator:a743d1b07a52012e2f58d3762fd751288"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80575cdc4a52860d99c683d641dfc8c9"><td class="memItemLeft" align="right" valign="top"><a id="a80575cdc4a52860d99c683d641dfc8c9"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>sfsc_publisher_or_server_INIT_DEFAULT</b>&#160;&#160;&#160;    { 0, NULL }</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>sfsc_publisher_or_server_INIT_DEFAULT</b>&#160;&#160;&#160;    { 0, {NULL} }</td></tr>
 <tr class="separator:a80575cdc4a52860d99c683d641dfc8c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a572a72066ca9d9eb42efce292f76d762"><td class="memItemLeft" align="right" valign="top"><a id="a572a72066ca9d9eb42efce292f76d762"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>relative_publisher_tags_DEFAULT_INIT</b>&#160;&#160;&#160;    { 0, 0, 0, 0, 0 }</td></tr>
@@ -231,42 +231,42 @@ Functions</h2></td></tr>
 <tr class="memitem:addaf3873c9e805b7a3b5ab72c5f59976"><td class="memItemLeft" align="right" valign="top">sfsc_int8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sfsc__adapter_8h.html#addaf3873c9e805b7a3b5ab72c5f59976">unregister_subscriber</a> (<a class="el" href="sfsc__adapter_8h.html#ac6d9c7d2592acf83d5140e80d6c2d7b9">sfsc_adapter</a> *adapter, <a class="el" href="struct__sfsc__subscriber.html">sfsc_subscriber</a> *subscriber)</td></tr>
 <tr class="memdesc:addaf3873c9e805b7a3b5ab72c5f59976"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unregisters a subscriber and unsubscribe messages on that topic.  <a href="sfsc__adapter_8h.html#addaf3873c9e805b7a3b5ab72c5f59976">More...</a><br /></td></tr>
 <tr class="separator:addaf3873c9e805b7a3b5ab72c5f59976"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35dc86eb3be2be2995b01e366658fe7e"><td class="memItemLeft" align="right" valign="top">sfsc_int8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sfsc__adapter_8h.html#a35dc86eb3be2be2995b01e366658fe7e">query_services</a> (<a class="el" href="sfsc__adapter_8h.html#ac6d9c7d2592acf83d5140e80d6c2d7b9">sfsc_adapter</a> *adapter, <a class="el" href="sfsc__adapter_8h.html#a45d55712718b8b83acf89e41f66134c2">sfsc_query_callback</a> *callback)</td></tr>
-<tr class="memdesc:a35dc86eb3be2be2995b01e366658fe7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a query process to obtain registered services from the core.  <a href="sfsc__adapter_8h.html#a35dc86eb3be2be2995b01e366658fe7e">More...</a><br /></td></tr>
-<tr class="separator:a35dc86eb3be2be2995b01e366658fe7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e1311fbc5ccafdc40d075390ac1db62"><td class="memItemLeft" align="right" valign="top">sfsc_int8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sfsc__adapter_8h.html#a4e1311fbc5ccafdc40d075390ac1db62">query_services</a> (<a class="el" href="sfsc__adapter_8h.html#ac6d9c7d2592acf83d5140e80d6c2d7b9">sfsc_adapter</a> *adapter, <a class="el" href="sfsc__adapter_8h.html#a45d55712718b8b83acf89e41f66134c2">sfsc_query_callback</a> *on_service)</td></tr>
+<tr class="memdesc:a4e1311fbc5ccafdc40d075390ac1db62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a query process to obtain registered services from the core.  <a href="sfsc__adapter_8h.html#a4e1311fbc5ccafdc40d075390ac1db62">More...</a><br /></td></tr>
+<tr class="separator:a4e1311fbc5ccafdc40d075390ac1db62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe50351d6b8d32fc7e8b52a63163cc6b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sfsc__adapter_8h.html#abe50351d6b8d32fc7e8b52a63163cc6b">query_services_next</a> (<a class="el" href="sfsc__adapter_8h.html#ac6d9c7d2592acf83d5140e80d6c2d7b9">sfsc_adapter</a> *adapter, sfsc_bool next)</td></tr>
 <tr class="memdesc:abe50351d6b8d32fc7e8b52a63163cc6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the framework to continue or to end a currently ongoing query process.  <a href="sfsc__adapter_8h.html#abe50351d6b8d32fc7e8b52a63163cc6b">More...</a><br /></td></tr>
 <tr class="separator:abe50351d6b8d32fc7e8b52a63163cc6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7f19fd8d71709a31c43b5b6d15e5aa3"><td class="memItemLeft" align="right" valign="top">sfsc_int8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sfsc__adapter_8h.html#ae7f19fd8d71709a31c43b5b6d15e5aa3">register_publisher</a> (<a class="el" href="sfsc__adapter_8h.html#ac6d9c7d2592acf83d5140e80d6c2d7b9">sfsc_adapter</a> *adapter, <a class="el" href="struct__sfsc__publisher.html">sfsc_publisher</a> *publisher, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> name, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> custom_tags, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> output_message_type, <a class="el" href="sfsc__adapter_8h.html#a9606cb226543c2d13c6d81f6de079326">sfsc_command_callback</a> *callback)</td></tr>
-<tr class="memdesc:ae7f19fd8d71709a31c43b5b6d15e5aa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up a publisher service and registers it with the core.  <a href="sfsc__adapter_8h.html#ae7f19fd8d71709a31c43b5b6d15e5aa3">More...</a><br /></td></tr>
-<tr class="separator:ae7f19fd8d71709a31c43b5b6d15e5aa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36e54333c8c4c5cfe295c474953ea0b9"><td class="memItemLeft" align="right" valign="top">sfsc_int8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sfsc__adapter_8h.html#a36e54333c8c4c5cfe295c474953ea0b9">register_publisher</a> (<a class="el" href="sfsc__adapter_8h.html#ac6d9c7d2592acf83d5140e80d6c2d7b9">sfsc_adapter</a> *adapter, <a class="el" href="struct__sfsc__publisher.html">sfsc_publisher</a> *publisher, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> name, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> custom_tags, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> output_message_type, <a class="el" href="sfsc__adapter_8h.html#a9606cb226543c2d13c6d81f6de079326">sfsc_command_callback</a> *command_callback)</td></tr>
+<tr class="memdesc:a36e54333c8c4c5cfe295c474953ea0b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up a publisher service and registers it with the core.  <a href="sfsc__adapter_8h.html#a36e54333c8c4c5cfe295c474953ea0b9">More...</a><br /></td></tr>
+<tr class="separator:a36e54333c8c4c5cfe295c474953ea0b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f3a86f49777fbd148d95c724c568bdb"><td class="memItemLeft" align="right" valign="top">sfsc_int8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sfsc__adapter_8h.html#a9f3a86f49777fbd148d95c724c568bdb">register_publisher_unregistered</a> (<a class="el" href="sfsc__adapter_8h.html#ac6d9c7d2592acf83d5140e80d6c2d7b9">sfsc_adapter</a> *adapter, <a class="el" href="struct__sfsc__publisher.html">sfsc_publisher</a> *publisher)</td></tr>
 <tr class="memdesc:a9f3a86f49777fbd148d95c724c568bdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up a publisher you can publish with, but does not register it in the cores service registry.  <a href="sfsc__adapter_8h.html#a9f3a86f49777fbd148d95c724c568bdb">More...</a><br /></td></tr>
 <tr class="separator:a9f3a86f49777fbd148d95c724c568bdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19546a6860954035b355d2a8ab102493"><td class="memItemLeft" align="right" valign="top">sfsc_int8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sfsc__adapter_8h.html#a19546a6860954035b355d2a8ab102493">unregister_publisher</a> (<a class="el" href="sfsc__adapter_8h.html#ac6d9c7d2592acf83d5140e80d6c2d7b9">sfsc_adapter</a> *adapter, <a class="el" href="struct__sfsc__publisher.html">sfsc_publisher</a> *publisher, <a class="el" href="sfsc__adapter_8h.html#a9606cb226543c2d13c6d81f6de079326">sfsc_command_callback</a> *callback)</td></tr>
-<tr class="memdesc:a19546a6860954035b355d2a8ab102493"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unregisters a publisher.  <a href="sfsc__adapter_8h.html#a19546a6860954035b355d2a8ab102493">More...</a><br /></td></tr>
-<tr class="separator:a19546a6860954035b355d2a8ab102493"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac62616aff23fe7cac25ed256ce4e200e"><td class="memItemLeft" align="right" valign="top">sfsc_int8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sfsc__adapter_8h.html#ac62616aff23fe7cac25ed256ce4e200e">unregister_publisher</a> (<a class="el" href="sfsc__adapter_8h.html#ac6d9c7d2592acf83d5140e80d6c2d7b9">sfsc_adapter</a> *adapter, <a class="el" href="struct__sfsc__publisher.html">sfsc_publisher</a> *publisher, <a class="el" href="sfsc__adapter_8h.html#a9606cb226543c2d13c6d81f6de079326">sfsc_command_callback</a> *command_callback)</td></tr>
+<tr class="memdesc:ac62616aff23fe7cac25ed256ce4e200e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unregisters a publisher.  <a href="sfsc__adapter_8h.html#ac62616aff23fe7cac25ed256ce4e200e">More...</a><br /></td></tr>
+<tr class="separator:ac62616aff23fe7cac25ed256ce4e200e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a971fb6b660a3400b6bc6fd072586e0"><td class="memItemLeft" align="right" valign="top">sfsc_int8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sfsc__adapter_8h.html#a1a971fb6b660a3400b6bc6fd072586e0">publish</a> (<a class="el" href="sfsc__adapter_8h.html#ac6d9c7d2592acf83d5140e80d6c2d7b9">sfsc_adapter</a> *adapter, <a class="el" href="struct__sfsc__publisher.html">sfsc_publisher</a> *publisher, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> payload)</td></tr>
 <tr class="memdesc:a1a971fb6b660a3400b6bc6fd072586e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publishes data through a publisher.  <a href="sfsc__adapter_8h.html#a1a971fb6b660a3400b6bc6fd072586e0">More...</a><br /></td></tr>
 <tr class="separator:a1a971fb6b660a3400b6bc6fd072586e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ccee0c80a889e4eef376a4e56e65850"><td class="memItemLeft" align="right" valign="top">sfsc_int8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sfsc__adapter_8h.html#a3ccee0c80a889e4eef376a4e56e65850">request</a> (<a class="el" href="sfsc__adapter_8h.html#ac6d9c7d2592acf83d5140e80d6c2d7b9">sfsc_adapter</a> *adapter, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> topic, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> payload, sfsc_uint64 timeout_time, <a class="el" href="sfsc__adapter_8h.html#a1969b502e38168910b9e57d952369316">sfsc_request_callback</a> *callback, void *mapping_arg)</td></tr>
-<tr class="memdesc:a3ccee0c80a889e4eef376a4e56e65850"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes a request call to a server service.  <a href="sfsc__adapter_8h.html#a3ccee0c80a889e4eef376a4e56e65850">More...</a><br /></td></tr>
-<tr class="separator:a3ccee0c80a889e4eef376a4e56e65850"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa683543e76eca37f8fdeb47bc9c66842"><td class="memItemLeft" align="right" valign="top">sfsc_int8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sfsc__adapter_8h.html#aa683543e76eca37f8fdeb47bc9c66842">channel_request</a> (<a class="el" href="sfsc__adapter_8h.html#ac6d9c7d2592acf83d5140e80d6c2d7b9">sfsc_adapter</a> *adapter, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> topic, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> payload, sfsc_uint64 timeout_time, <a class="el" href="sfsc__adapter_8h.html#a8734edf2cb2e03719e603dec6c2d049f">relative_sfsc_service_descriptor</a> *descriptor, sfsc_uint8 *descriptor_space, sfsc_size descriptor_space_lenght, <a class="el" href="sfsc__adapter_8h.html#a1497b54b1ae44a7cac6fb4f93a8217da">sfsc_channel_request_callback</a> *callback, void *mapping_arg)</td></tr>
-<tr class="memdesc:aa683543e76eca37f8fdeb47bc9c66842"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes a request call to a channel server service.  <a href="sfsc__adapter_8h.html#aa683543e76eca37f8fdeb47bc9c66842">More...</a><br /></td></tr>
-<tr class="separator:aa683543e76eca37f8fdeb47bc9c66842"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fedfdc6248ab6e74844baeb0c2e9c0c"><td class="memItemLeft" align="right" valign="top">sfsc_int8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sfsc__adapter_8h.html#a0fedfdc6248ab6e74844baeb0c2e9c0c">register_server</a> (<a class="el" href="sfsc__adapter_8h.html#ac6d9c7d2592acf83d5140e80d6c2d7b9">sfsc_adapter</a> *adapter, <a class="el" href="struct__sfsc__server.html">sfsc_server</a> *server, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> name, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> custom_tags, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> output_message_type, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> input_message_type, <a class="el" href="sfsc__adapter_8h.html#a9606cb226543c2d13c6d81f6de079326">sfsc_command_callback</a> *callback)</td></tr>
-<tr class="memdesc:a0fedfdc6248ab6e74844baeb0c2e9c0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up a server service and registers it with the core.  <a href="sfsc__adapter_8h.html#a0fedfdc6248ab6e74844baeb0c2e9c0c">More...</a><br /></td></tr>
-<tr class="separator:a0fedfdc6248ab6e74844baeb0c2e9c0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f1ce8be8feafb30fc5d182b7384c266"><td class="memItemLeft" align="right" valign="top">sfsc_int8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sfsc__adapter_8h.html#a5f1ce8be8feafb30fc5d182b7384c266">unregister_server</a> (<a class="el" href="sfsc__adapter_8h.html#ac6d9c7d2592acf83d5140e80d6c2d7b9">sfsc_adapter</a> *adapter, <a class="el" href="struct__sfsc__server.html">sfsc_server</a> *server, <a class="el" href="sfsc__adapter_8h.html#a9606cb226543c2d13c6d81f6de079326">sfsc_command_callback</a> *callback)</td></tr>
-<tr class="memdesc:a5f1ce8be8feafb30fc5d182b7384c266"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unregisters a server.  <a href="sfsc__adapter_8h.html#a5f1ce8be8feafb30fc5d182b7384c266">More...</a><br /></td></tr>
-<tr class="separator:a5f1ce8be8feafb30fc5d182b7384c266"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1ed1601a750a283cabb2993cb61c29d"><td class="memItemLeft" align="right" valign="top">sfsc_int8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sfsc__adapter_8h.html#ac1ed1601a750a283cabb2993cb61c29d">request</a> (<a class="el" href="sfsc__adapter_8h.html#ac6d9c7d2592acf83d5140e80d6c2d7b9">sfsc_adapter</a> *adapter, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> topic, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> payload, sfsc_uint64 timeout_time, <a class="el" href="sfsc__adapter_8h.html#a1969b502e38168910b9e57d952369316">sfsc_request_callback</a> *on_answer, void *mapping_arg)</td></tr>
+<tr class="memdesc:ac1ed1601a750a283cabb2993cb61c29d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes a request call to a server service.  <a href="sfsc__adapter_8h.html#ac1ed1601a750a283cabb2993cb61c29d">More...</a><br /></td></tr>
+<tr class="separator:ac1ed1601a750a283cabb2993cb61c29d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1591f2771368859f7c8980dde2c73e34"><td class="memItemLeft" align="right" valign="top">sfsc_int8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sfsc__adapter_8h.html#a1591f2771368859f7c8980dde2c73e34">channel_request</a> (<a class="el" href="sfsc__adapter_8h.html#ac6d9c7d2592acf83d5140e80d6c2d7b9">sfsc_adapter</a> *adapter, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> topic, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> payload, sfsc_uint64 timeout_time, <a class="el" href="sfsc__adapter_8h.html#a8734edf2cb2e03719e603dec6c2d049f">relative_sfsc_service_descriptor</a> *descriptor, sfsc_uint8 *descriptor_space, sfsc_size descriptor_space_lenght, <a class="el" href="sfsc__adapter_8h.html#a1497b54b1ae44a7cac6fb4f93a8217da">sfsc_channel_request_callback</a> *on_answer, void *mapping_arg)</td></tr>
+<tr class="memdesc:a1591f2771368859f7c8980dde2c73e34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes a request call to a channel server service.  <a href="sfsc__adapter_8h.html#a1591f2771368859f7c8980dde2c73e34">More...</a><br /></td></tr>
+<tr class="separator:a1591f2771368859f7c8980dde2c73e34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab548429c2d440ec47260c2cc69a288cd"><td class="memItemLeft" align="right" valign="top">sfsc_int8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sfsc__adapter_8h.html#ab548429c2d440ec47260c2cc69a288cd">register_server</a> (<a class="el" href="sfsc__adapter_8h.html#ac6d9c7d2592acf83d5140e80d6c2d7b9">sfsc_adapter</a> *adapter, <a class="el" href="struct__sfsc__server.html">sfsc_server</a> *server, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> name, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> custom_tags, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> output_message_type, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> input_message_type, <a class="el" href="sfsc__adapter_8h.html#a9606cb226543c2d13c6d81f6de079326">sfsc_command_callback</a> *command_callback)</td></tr>
+<tr class="memdesc:ab548429c2d440ec47260c2cc69a288cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up a server service and registers it with the core.  <a href="sfsc__adapter_8h.html#ab548429c2d440ec47260c2cc69a288cd">More...</a><br /></td></tr>
+<tr class="separator:ab548429c2d440ec47260c2cc69a288cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa064ef0413ec5d1e8e391ad81dcf9ef6"><td class="memItemLeft" align="right" valign="top">sfsc_int8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sfsc__adapter_8h.html#aa064ef0413ec5d1e8e391ad81dcf9ef6">unregister_server</a> (<a class="el" href="sfsc__adapter_8h.html#ac6d9c7d2592acf83d5140e80d6c2d7b9">sfsc_adapter</a> *adapter, <a class="el" href="struct__sfsc__server.html">sfsc_server</a> *server, <a class="el" href="sfsc__adapter_8h.html#a9606cb226543c2d13c6d81f6de079326">sfsc_command_callback</a> *command_callback)</td></tr>
+<tr class="memdesc:aa064ef0413ec5d1e8e391ad81dcf9ef6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unregisters a server.  <a href="sfsc__adapter_8h.html#aa064ef0413ec5d1e8e391ad81dcf9ef6">More...</a><br /></td></tr>
+<tr class="separator:aa064ef0413ec5d1e8e391ad81dcf9ef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03acde575324406f3d90b1196b097f5f"><td class="memItemLeft" align="right" valign="top">sfsc_int8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sfsc__adapter_8h.html#a03acde575324406f3d90b1196b097f5f">answer_request</a> (<a class="el" href="sfsc__adapter_8h.html#ac6d9c7d2592acf83d5140e80d6c2d7b9">sfsc_adapter</a> *adapter, <a class="el" href="struct__sfsc__server.html">sfsc_server</a> *server, sfsc_int32 expected_reply_id, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> reply_topic, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> *payload, void *mapping_arg, <a class="el" href="sfsc__adapter_8h.html#aaaee1dca7def711316b62f037165b3e0">sfsc_answer_ack_callback</a> *on_ack)</td></tr>
 <tr class="memdesc:a03acde575324406f3d90b1196b097f5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Answers a request.  <a href="sfsc__adapter_8h.html#a03acde575324406f3d90b1196b097f5f">More...</a><br /></td></tr>
 <tr class="separator:a03acde575324406f3d90b1196b097f5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f4b11e99ab82abe59e991775edfffaa"><td class="memItemLeft" align="right" valign="top">sfsc_int8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sfsc__adapter_8h.html#a6f4b11e99ab82abe59e991775edfffaa">answer_channel_request</a> (<a class="el" href="sfsc__adapter_8h.html#ac6d9c7d2592acf83d5140e80d6c2d7b9">sfsc_adapter</a> *adapter, <a class="el" href="struct__sfsc__server.html">sfsc_server</a> *server, sfsc_int32 expected_reply_id, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> reply_topic, <a class="el" href="sfsc__adapter_8h.html#a487711a208cf17fd8d171031dae258f8">sfsc_channel_answer</a> *channel_answer, void *mapping_arg, <a class="el" href="sfsc__adapter_8h.html#aaaee1dca7def711316b62f037165b3e0">sfsc_answer_ack_callback</a> *callback)</td></tr>
-<tr class="memdesc:a6f4b11e99ab82abe59e991775edfffaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to answer a channel request.  <a href="sfsc__adapter_8h.html#a6f4b11e99ab82abe59e991775edfffaa">More...</a><br /></td></tr>
-<tr class="separator:a6f4b11e99ab82abe59e991775edfffaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36faef0ff0e5f45340846237e56f81d9"><td class="memItemLeft" align="right" valign="top">sfsc_int8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sfsc__adapter_8h.html#a36faef0ff0e5f45340846237e56f81d9">answer_channel_request</a> (<a class="el" href="sfsc__adapter_8h.html#ac6d9c7d2592acf83d5140e80d6c2d7b9">sfsc_adapter</a> *adapter, <a class="el" href="struct__sfsc__server.html">sfsc_server</a> *server, sfsc_int32 expected_reply_id, <a class="el" href="sfsc__adapter_8h.html#aa436417a69f99cdee2a8eead1ee15adb">sfsc_buffer</a> reply_topic, <a class="el" href="sfsc__adapter_8h.html#a487711a208cf17fd8d171031dae258f8">sfsc_channel_answer</a> *channel_answer, void *mapping_arg, <a class="el" href="sfsc__adapter_8h.html#aaaee1dca7def711316b62f037165b3e0">sfsc_answer_ack_callback</a> *on_ack)</td></tr>
+<tr class="memdesc:a36faef0ff0e5f45340846237e56f81d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to answer a channel request.  <a href="sfsc__adapter_8h.html#a36faef0ff0e5f45340846237e56f81d9">More...</a><br /></td></tr>
+<tr class="separator:a36faef0ff0e5f45340846237e56f81d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb7e6ee6ba9c8bf9a8bd3f6874887019"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sfsc__adapter_8h.html#adb7e6ee6ba9c8bf9a8bd3f6874887019">random_uuid</a> (sfsc_uint8 target[UUID_LEN])</td></tr>
 <tr class="memdesc:adb7e6ee6ba9c8bf9a8bd3f6874887019"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates and writes a random 128bit UUID in standard-hexgroup-format to the target buffer.  <a href="sfsc__adapter_8h.html#adb7e6ee6ba9c8bf9a8bd3f6874887019">More...</a><br /></td></tr>
 <tr class="separator:adb7e6ee6ba9c8bf9a8bd3f6874887019"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -327,7 +327,7 @@ const <a class="el" href="sfsc__adapter_8h.html#a6867fb92cb6c9853b21b0110a208cf6
 <b>Value:</b><div class="fragment"><div class="line">    {                                                                     \</div>
 <div class="line">        sfsc_SfscId_init_default, sfsc_SfscId_init_default,               \</div>
 <div class="line">            sfsc_SfscId_init_default, 0, 0, 0, 0, SERVICE_TYPE_PUBLISHER, \</div>
-<div class="line">            relative_publisher_tags_DEFAULT_INIT                          \</div>
+<div class="line">            {relative_publisher_tags_DEFAULT_INIT}                         \</div>
 <div class="line">    }</div>
 </div><!-- fragment -->
 </div>
@@ -644,8 +644,8 @@ const <a class="el" href="sfsc__adapter_8h.html#a6867fb92cb6c9853b21b0110a208cf6
 
 </div>
 </div>
-<a id="a6f4b11e99ab82abe59e991775edfffaa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f4b11e99ab82abe59e991775edfffaa">&#9670;&nbsp;</a></span>answer_channel_request()</h2>
+<a id="a36faef0ff0e5f45340846237e56f81d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36faef0ff0e5f45340846237e56f81d9">&#9670;&nbsp;</a></span>answer_channel_request()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -690,7 +690,7 @@ const <a class="el" href="sfsc__adapter_8h.html#a6867fb92cb6c9853b21b0110a208cf6
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="sfsc__adapter_8h.html#aaaee1dca7def711316b62f037165b3e0">sfsc_answer_ack_callback</a> *&#160;</td>
-          <td class="paramname"><em>callback</em>&#160;</td>
+          <td class="paramname"><em>on_ack</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -791,8 +791,8 @@ const <a class="el" href="sfsc__adapter_8h.html#a6867fb92cb6c9853b21b0110a208cf6
 
 </div>
 </div>
-<a id="aa683543e76eca37f8fdeb47bc9c66842"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa683543e76eca37f8fdeb47bc9c66842">&#9670;&nbsp;</a></span>channel_request()</h2>
+<a id="a1591f2771368859f7c8980dde2c73e34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1591f2771368859f7c8980dde2c73e34">&#9670;&nbsp;</a></span>channel_request()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -843,7 +843,7 @@ const <a class="el" href="sfsc__adapter_8h.html#a6867fb92cb6c9853b21b0110a208cf6
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="sfsc__adapter_8h.html#a1497b54b1ae44a7cac6fb4f93a8217da">sfsc_channel_request_callback</a> *&#160;</td>
-          <td class="paramname"><em>callback</em>, </td>
+          <td class="paramname"><em>on_answer</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -920,8 +920,8 @@ const <a class="el" href="sfsc__adapter_8h.html#a6867fb92cb6c9853b21b0110a208cf6
 
 </div>
 </div>
-<a id="a35dc86eb3be2be2995b01e366658fe7e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a35dc86eb3be2be2995b01e366658fe7e">&#9670;&nbsp;</a></span>query_services()</h2>
+<a id="a4e1311fbc5ccafdc40d075390ac1db62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e1311fbc5ccafdc40d075390ac1db62">&#9670;&nbsp;</a></span>query_services()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -936,7 +936,7 @@ const <a class="el" href="sfsc__adapter_8h.html#a6867fb92cb6c9853b21b0110a208cf6
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="sfsc__adapter_8h.html#a45d55712718b8b83acf89e41f66134c2">sfsc_query_callback</a> *&#160;</td>
-          <td class="paramname"><em>callback</em>&#160;</td>
+          <td class="paramname"><em>on_service</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -952,7 +952,7 @@ const <a class="el" href="sfsc__adapter_8h.html#a6867fb92cb6c9853b21b0110a208cf6
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">adapter</td><td>An operational adapter throught which the core is queried </td></tr>
-    <tr><td class="paramname">callback</td><td>The callback all receieved services are delivered to </td></tr>
+    <tr><td class="paramname">on_service</td><td>The callback all receieved services are delivered to </td></tr>
   </table>
   </dd>
 </dl>
@@ -1036,8 +1036,8 @@ const <a class="el" href="sfsc__adapter_8h.html#a6867fb92cb6c9853b21b0110a208cf6
 
 </div>
 </div>
-<a id="ae7f19fd8d71709a31c43b5b6d15e5aa3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae7f19fd8d71709a31c43b5b6d15e5aa3">&#9670;&nbsp;</a></span>register_publisher()</h2>
+<a id="a36e54333c8c4c5cfe295c474953ea0b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36e54333c8c4c5cfe295c474953ea0b9">&#9670;&nbsp;</a></span>register_publisher()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1076,7 +1076,7 @@ const <a class="el" href="sfsc__adapter_8h.html#a6867fb92cb6c9853b21b0110a208cf6
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="sfsc__adapter_8h.html#a9606cb226543c2d13c6d81f6de079326">sfsc_command_callback</a> *&#160;</td>
-          <td class="paramname"><em>callback</em>&#160;</td>
+          <td class="paramname"><em>command_callback</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1099,7 +1099,7 @@ const <a class="el" href="sfsc__adapter_8h.html#a6867fb92cb6c9853b21b0110a208cf6
     <tr><td class="paramname">name</td><td>The name of this publisher </td></tr>
     <tr><td class="paramname">custom_tags</td><td>Optional; custom tags for the publisher </td></tr>
     <tr><td class="paramname">output_message_type</td><td>Optional; can be used to annotate the format of the published messages </td></tr>
-    <tr><td class="paramname">callback</td><td>Optional; a callback that is invoked after service registration with the core was successful </td></tr>
+    <tr><td class="paramname">command_callback</td><td>Optional; a callback that is invoked after service registration with the core was successful </td></tr>
   </table>
   </dd>
 </dl>
@@ -1166,8 +1166,8 @@ const <a class="el" href="sfsc__adapter_8h.html#a6867fb92cb6c9853b21b0110a208cf6
 
 </div>
 </div>
-<a id="a0fedfdc6248ab6e74844baeb0c2e9c0c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0fedfdc6248ab6e74844baeb0c2e9c0c">&#9670;&nbsp;</a></span>register_server()</h2>
+<a id="ab548429c2d440ec47260c2cc69a288cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab548429c2d440ec47260c2cc69a288cd">&#9670;&nbsp;</a></span>register_server()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1212,7 +1212,7 @@ const <a class="el" href="sfsc__adapter_8h.html#a6867fb92cb6c9853b21b0110a208cf6
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="sfsc__adapter_8h.html#a9606cb226543c2d13c6d81f6de079326">sfsc_command_callback</a> *&#160;</td>
-          <td class="paramname"><em>callback</em>&#160;</td>
+          <td class="paramname"><em>command_callback</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1236,7 +1236,7 @@ const <a class="el" href="sfsc__adapter_8h.html#a6867fb92cb6c9853b21b0110a208cf6
     <tr><td class="paramname">custom_tags</td><td>Optional; custom tags for the server </td></tr>
     <tr><td class="paramname">output_message_type</td><td>Optional; can be used to annotate the format of the messages the server sends as answers </td></tr>
     <tr><td class="paramname">input_message_type</td><td>Optional; can be used to annotate the format of the messages the server accepts on requests </td></tr>
-    <tr><td class="paramname">callback</td><td>Optional; a callback that is invoked after service registration with the core was successful </td></tr>
+    <tr><td class="paramname">command_callback</td><td>Optional; a callback that is invoked after service registration with the core was successful </td></tr>
   </table>
   </dd>
 </dl>
@@ -1300,8 +1300,8 @@ const <a class="el" href="sfsc__adapter_8h.html#a6867fb92cb6c9853b21b0110a208cf6
 
 </div>
 </div>
-<a id="a3ccee0c80a889e4eef376a4e56e65850"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3ccee0c80a889e4eef376a4e56e65850">&#9670;&nbsp;</a></span>request()</h2>
+<a id="ac1ed1601a750a283cabb2993cb61c29d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1ed1601a750a283cabb2993cb61c29d">&#9670;&nbsp;</a></span>request()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1334,7 +1334,7 @@ const <a class="el" href="sfsc__adapter_8h.html#a6867fb92cb6c9853b21b0110a208cf6
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="sfsc__adapter_8h.html#a1969b502e38168910b9e57d952369316">sfsc_request_callback</a> *&#160;</td>
-          <td class="paramname"><em>callback</em>, </td>
+          <td class="paramname"><em>on_answer</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1362,7 +1362,7 @@ const <a class="el" href="sfsc__adapter_8h.html#a6867fb92cb6c9853b21b0110a208cf6
     <tr><td class="paramname">topic</td><td>The server services topic to make the request to </td></tr>
     <tr><td class="paramname">payload</td><td>The payload of the request </td></tr>
     <tr><td class="paramname">timeout_time</td><td>The timeout time in ms, 0 for no timeout restrictions </td></tr>
-    <tr><td class="paramname">callback</td><td>The callback that is invoked when receiving an answer or on timeout </td></tr>
+    <tr><td class="paramname">on_answer</td><td>The callback that is invoked when receiving an answer or on timeout </td></tr>
     <tr><td class="paramname">mapping_arg</td><td>Optional; Serves as mapping-argument (see the text above for explanation) </td></tr>
   </table>
   </dd>
@@ -1509,8 +1509,8 @@ const <a class="el" href="sfsc__adapter_8h.html#a6867fb92cb6c9853b21b0110a208cf6
 
 </div>
 </div>
-<a id="a19546a6860954035b355d2a8ab102493"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a19546a6860954035b355d2a8ab102493">&#9670;&nbsp;</a></span>unregister_publisher()</h2>
+<a id="ac62616aff23fe7cac25ed256ce4e200e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac62616aff23fe7cac25ed256ce4e200e">&#9670;&nbsp;</a></span>unregister_publisher()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1531,7 +1531,7 @@ const <a class="el" href="sfsc__adapter_8h.html#a6867fb92cb6c9853b21b0110a208cf6
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="sfsc__adapter_8h.html#a9606cb226543c2d13c6d81f6de079326">sfsc_command_callback</a> *&#160;</td>
-          <td class="paramname"><em>callback</em>&#160;</td>
+          <td class="paramname"><em>command_callback</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1550,7 +1550,7 @@ const <a class="el" href="sfsc__adapter_8h.html#a6867fb92cb6c9853b21b0110a208cf6
   <table class="params">
     <tr><td class="paramname">adapter</td><td>An operational adapter </td></tr>
     <tr><td class="paramname">publisher</td><td>The publisher to shut down </td></tr>
-    <tr><td class="paramname">callback</td><td>For registered publishers only; Invoked after the publisher was removed from the service registry </td></tr>
+    <tr><td class="paramname">command_callback</td><td>For registered publishers only; Invoked after the publisher was removed from the service registry </td></tr>
   </table>
   </dd>
 </dl>
@@ -1566,8 +1566,8 @@ const <a class="el" href="sfsc__adapter_8h.html#a6867fb92cb6c9853b21b0110a208cf6
 
 </div>
 </div>
-<a id="a5f1ce8be8feafb30fc5d182b7384c266"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f1ce8be8feafb30fc5d182b7384c266">&#9670;&nbsp;</a></span>unregister_server()</h2>
+<a id="aa064ef0413ec5d1e8e391ad81dcf9ef6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa064ef0413ec5d1e8e391ad81dcf9ef6">&#9670;&nbsp;</a></span>unregister_server()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1588,7 +1588,7 @@ const <a class="el" href="sfsc__adapter_8h.html#a6867fb92cb6c9853b21b0110a208cf6
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="sfsc__adapter_8h.html#a9606cb226543c2d13c6d81f6de079326">sfsc_command_callback</a> *&#160;</td>
-          <td class="paramname"><em>callback</em>&#160;</td>
+          <td class="paramname"><em>command_callback</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1605,7 +1605,7 @@ const <a class="el" href="sfsc__adapter_8h.html#a6867fb92cb6c9853b21b0110a208cf6
   <table class="params">
     <tr><td class="paramname">adapter</td><td>An operational adapter </td></tr>
     <tr><td class="paramname">server</td><td>The server to shut down </td></tr>
-    <tr><td class="paramname">callback</td><td>Invoked after the server was removed from the service registry </td></tr>
+    <tr><td class="paramname">command_callback</td><td>Invoked after the server was removed from the service registry </td></tr>
   </table>
   </dd>
 </dl>

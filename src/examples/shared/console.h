@@ -32,12 +32,16 @@ void console_print_uint16(sfsc_uint16 value);
 void console_println_uint16(sfsc_uint16 value);
 void console_print_uint32(sfsc_uint32 value);
 void console_println_uint32(sfsc_uint32 value);
+void console_print_uint64(sfsc_uint64 value);
+void console_println_uint64(sfsc_uint64 value);
 void console_print_int8(sfsc_int8 value);
 void console_println_int8(sfsc_int8 value);
 void console_print_int16(sfsc_int16 value);
 void console_println_int16(sfsc_int16 value);
 void console_print_int32(sfsc_int32 value);
 void console_println_int32(sfsc_int32 value);
+void console_print_int64(sfsc_int64 value);
+void console_println_int64(sfsc_int64 value);
 void console_write(const sfsc_uint8* value,sfsc_size len);
 
 #ifdef __cplusplus

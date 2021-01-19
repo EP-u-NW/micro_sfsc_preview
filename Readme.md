@@ -1,6 +1,7 @@
 # MicroSFSC
 The [Shop-Floor Service Connector (SFSC)](https://github.com/nalim2/SFSC) is an easy-to-use, service-orientated communication framework for [Industry 4.0](https://en.wikipedia.org/wiki/Fourth_Industrial_Revolution), developed at the [University of Stuttgart](https://www.isw.uni-stuttgart.de/forschung/kommunikation/SFSC/). 
-MircoSFSC is a microcontroller ready implementation of the SFSC adapter role. This documentation provides a quick overview about the usage and the features of the MicroSFSC framework, where as an in deep analysis can be found in this [white-paper](https://epnw.github.io/micro_sfsc_preview/Eric_Prokop_-_MicroSFSC.pdf)(German).
+MircoSFSC is a microcontroller ready implementation of the SFSC adapter role. This documentation provides a quick overview about the usage and the features of the MicroSFSC framework, whereas an in deep analysis can be found in this [white-paper](https://epnw.github.io/micro_sfsc_preview/Eric_Prokop_-_MicroSFSC.pdf)(German).
+This README presumes that you are familiar with SFSC and its concepts like adapters, cores, services (i.e. server services and publisher services), subscriptions, requests, the service registry, etc.
 
 This implementation is written in C and [conforms the C99 freestanding standard](https://gcc.gnu.org/onlinedocs/gcc/Standards.html). If your compiler only supports ANSI-C, some platform depended adjustments are required.
 
@@ -13,8 +14,8 @@ This framework does not use dynamic memory allocation.
 [This repository](https://github.com/EPNW/micro_sfsc_preview) is structured the following way:
 + The **src/sfsc** folder contains the actual source code you should copy into your project.
 + The **src/platforms** folder contains implementations for the platform dependencies for some platforms. Platform dependencies are explained in the next section.
-+ The **docs** folder contains a doxygen html documentation of the public header. It can be access via [github pages](https://epnw.github.io/micro_sfsc_preview/). Also, the **docs** folder contains latex code and the complete documentation as [PDF](https://epnw.github.io/micro_sfsc_preview/latex/refman.pdf).
-+ The **src/examples/scenarios** folder contains the actual examples. Every example comes with its own preprocessor directive that must be defined to enable that example. Only one of the examples should be active at the same time. Where to define the directives is up to the used build system. The **src/examples/shared** folder contains shared example code for the platforms, most notably a common API to log things. The other subfolders of the **src/examples** folder contain the initialization logic and example build instructions to the get the examples running on the corresponding platform.
++ The **docs** folder contains a doxygen html documentation of the public header. It can be accessed via [github pages](https://epnw.github.io/micro_sfsc_preview/). Also, the **docs** folder contains latex code and the complete documentation as [PDF](https://epnw.github.io/micro_sfsc_preview/latex/refman.pdf).
++ The **src/examples/scenarios** folder contains the actual examples. Every example comes with its own preprocessor directive that must be defined to enable that example. Only one of the examples should be active at the same time. Where to define the directives is up to the used build system. The **src/examples/shared** folder contains shared example code for the platforms, most notably a common API to log things. The other subfolders of the **src/examples** folder contain the initialization logic and example build instructions to the get the examples running on the corresponding platform. A good starting point for the examples is the pubsub example, then you can study the a bit more complex reqrepack example and finally the query example.
 
 
 ## Porting to your platform
@@ -51,7 +52,23 @@ The system tasks runtime is designed to be constant, which is achieved by only u
 ### User Task
 Among other things, the user task will then go ahead and read data from the user ring, and based on them, invoke callbacks you defined during an API call. Since the user task directly executes your callbacks, what you do in them will influence the runtime of the user task. Reading one entry of data from the user ring and invoking a callback is called a micro step. How many micro steps should be taken in a single call to the user task function can be configured (using REPLAYS_PER_TASK). The data supplied as parameters to your callbacks are only valid during the current micro step, meaning that after your callback returns, the data will be removed from the user ring and you should no longer try to access them. If you need the data from the callback outside the callback, you have two options:
 1. Simply copy the data somewhere else. This is the easiest and safest way, but requires additional memory.
-2. If you can not afford to copy the data, you can enter the *user task pause state*. In the user task pause state, the user task won't advance to the next micro step after your callback returns. You will need to leave the pause state explicitly by calling a function. Keep in mind, that as long as you are in the pause state, no further callbacks will be invoked (exceptions are TODO). Note that even while you are currently in the pause state, you still must ensure that the system and user task functions are called (since as noted above, the user tasks needs to do other things then taking micro steps, too)!
+2. If you can not afford to copy the data, you can enter the *user task pause state*. In the user task pause state, the user task won't advance to the next micro step after your callback returns. You will need to leave the pause state explicitly by calling a function. Keep in mind, that as long as you are in the pause state, no further callbacks will be invoked (exceptions are listed below). Note that even while you are currently in the pause state, you still must ensure that the system and user task functions are called (since as noted above, the user tasks needs to do other things then taking micro steps, too)!
+#### Exceptions to the user task pause state
+The pause state actually only affects messages that are stored in the user ring. Some callbacks that are triggered by the user task are not subject to data from the user ring: The user ring is used to transport data of variable length from the system task to the user task. To transport data of known length, like a single numerical value or even a bitflag, it is more appropriate to use strongly typed struct fields.
+The following callbacks are not affected by the user task pause state:
++ `command_callback` from `register_publisher`, `unregister_publisher`, `register_server`, `unregister_server`
++ `on_subscription_change` callbacks of a `sfsc_publisher` struct
++ `on_ack` callbacks from `answer_request` and `answer_channel_request`, 
++ `on_answer` callbacks from `request` and `channel_request`, both ONLY in the timeout case, the data case is subject to the user ring
++ `on_service` callbacks `query_services`
+
+Think of the following scenario to see that this behavior (of some things continue running) is actually beneficial (this scenario seems a little out-of-the-sky for now, but as you start getting familiar with the framework, something similar will most likely come to your mind):
+1. You provide a non-fire-and-forget (meaning that your answers must be acknowledged by the requestor) server service
+2. You receive a request and the servers `on_request` callback is triggered
+3. You make an answer call using `answer_request`, which requires the `reply_topic` parameter from the `on_request` callback
+4. According to the documentation, the `reply_topic` must be valid until the `on_ack` callback is triggered BUT the parameters of the `on_request` callback (i.e. `reply_topic`) are subject to the user ring and thus only valid during the current `on_request` call UNLESS you decide to pause the user task, what you then do by setting `*b_auto_addvance=0` and thus using option 2 (see above)
+5. Since `on_ack` callbacks are still triggered in the user task pause state, `on_ack` will eventually be triggered and you can leave the pause state from there
+
 ### Blocking the User Task
 An other important question is: Am I allowed to perform a blocking or long taking operation in a callback?
 As stated above, system and user task are designed to be non-blocking. Consider the following code snippet:

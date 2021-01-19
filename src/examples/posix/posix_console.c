@@ -27,6 +27,10 @@ void console_println_uint32(sfsc_uint32 value) {
     console_print_uint32(value);
     console_println();
 }
+void console_println_uint64(sfsc_uint64 value) {
+    console_print_uint64(value);
+    console_println();
+}
 void console_println_int8(sfsc_int8 value) {
     console_print_int8(value);
     console_println();
@@ -39,7 +43,10 @@ void console_println_int32(sfsc_int32 value) {
     console_print_int32(value);
     console_println();
 }
-
+void console_println_int64(sfsc_int64 value) {
+    console_print_int64(value);
+    console_println();
+}
 void console_println() {
 #ifdef __cplusplus
     std::cout << "\r\n";
@@ -75,6 +82,13 @@ void console_print_uint32(sfsc_uint32 value) {
     printf("%u", value);
 #endif
 }
+void console_print_uint64(sfsc_uint64 value) {
+#ifdef __cplusplus
+    std::cout << value;
+#else
+    printf("%lu", value);
+#endif
+}
 void console_print_int8(sfsc_int8 value) {
 #ifdef __cplusplus
     std::cout << (sfsc_int16)value;
@@ -94,6 +108,13 @@ void console_print_int32(sfsc_int32 value) {
     std::cout << value;
 #else
     printf("%i", value);
+#endif
+}
+void console_print_int64(sfsc_int64 value) {
+#ifdef __cplusplus
+    std::cout << value;
+#else
+    printf("%li", value);
 #endif
 }
 void console_write(const sfsc_uint8* value, sfsc_size len) {

@@ -104,7 +104,7 @@ sfsc_bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_channel</b></
 <p>The expected_reply_id and reply_topic are pull-throught parameters, meaning that you don't need to interact with them, but pass them to the answer_request or answer_channel_request once you want to answer the request. The reply_topic is like the payload also only valid during the current user task micro step.</p>
 <p>If you attempt to answer an request right in the callback consider the following: For fire-and-forget servers, this is valid, since the reply_topic you receive by the on_request callback will be passed to the answer_request function, which will return before the on_request callback returns. For non-fire-and-forget servers, this is not valid, since the reply_topic must be valid till the corresonding on_ack call, and not till the answer_request function returns. To work arround this, you can either copy the content of the reply_topic somewhere global (recommended) or pause the user task, until the corresonding on_ack is invoked. Even if the user task is in pause state, the on_ack callback of an answer_request will be invoked, so there will be no deadlock. </p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
-<li>sfsc/sfsc_adapter/<a class="el" href="sfsc__adapter_8h_source.html">sfsc_adapter.h</a></li>
+<li>src/sfsc/sfsc_adapter/<a class="el" href="sfsc__adapter_8h_source.html">sfsc_adapter.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

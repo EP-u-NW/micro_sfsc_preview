@@ -89,7 +89,7 @@ void(*&#160;</td><td class="memItemRight" valign="bottom"><b>on_data</b> )(<a cl
 <p>Usually, you will recieve the topic of the publisher service you want to subscribe to from the query_services function. The topics region must be immutable while the subscriber is registered (for more information what immutable means, see the sfsc_buffer documentation).</p>
 <p>The on_data field is allowed to change. It is invoked, when the corresponding publisher publishes a message. The payload buffer is only valid during the current user task micro step (see the user_task documentation). b_auto_advance is an out-parameter (meaning that you should set it), that lets you pause the user task on the current mirco step: if you set it to 0, you will enter the pause state and the payload pointer will be valid, even after the callback returns. On the other hand, the user task will not advance to the next micro step until you leave the pause state manually (see advance_user_ring). Usually, you want to set b_auto_advance to 1. </p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
-<li>sfsc/sfsc_adapter/<a class="el" href="sfsc__adapter_8h_source.html">sfsc_adapter.h</a></li>
+<li>src/sfsc/sfsc_adapter/<a class="el" href="sfsc__adapter_8h_source.html">sfsc_adapter.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

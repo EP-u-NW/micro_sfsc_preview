@@ -117,7 +117,7 @@ union {</td></tr>
 <p>The service_type field is either SERVICE_TYPE_SERVER or SERVICE_TYPE_PUBLISHER and indicates, how the service_tags union should be treated.</p>
 <p>Why is this relative approach used? The binary size of a serivce in sfsc is not limited, so we can not know the size of the respective service fields in advance. On the other hand, this framework does not use dynamic memory allocation (malloc). A possible solution is to statically allocate memory for each field and add an length field, to indicate, how much memory is actually used. The difference between the allocated and actually used size is called waste. Instead of allocation a memory area for each field, we use one bigger memory area for all fields. The idea is that, because of the indivudual waste, this single field size can be smaller then sum of all indivudual field sizes, while still containing enough space to store all necessary information. </p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
-<li>sfsc/sfsc_adapter/<a class="el" href="sfsc__adapter_8h_source.html">sfsc_adapter.h</a></li>
+<li>src/sfsc/sfsc_adapter/<a class="el" href="sfsc__adapter_8h_source.html">sfsc_adapter.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

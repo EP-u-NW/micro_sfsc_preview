@@ -103,7 +103,7 @@ sfsc_bool&#160;</td><td class="memItemRight" valign="bottom"><b>unregistered</b>
 <p>If the subscription count of a publisher changes, the on_subscription_change callback is invoked. The parameters of the callback indicate the old and new subscription count. They are either 0 or at maximum 1, even if there might be more subscribers, since sfsc can only tell if there is at least 1 subscriber. During execution of the callback function, the last_subscribers and current_subscribers fields (not callback parameters!) are unfedined. After the callback function returns, they will match the values of the parameters. In any case, they are read-only!</p>
 <p>The unregistered field is set by the framework and depends on wether you registered a publisher with the register_publisher or the register_publisher_unregistered function. It indicates if the publisher is registered in the cores service registry. You must not change it! </p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
-<li>sfsc/sfsc_adapter/<a class="el" href="sfsc__adapter_8h_source.html">sfsc_adapter.h</a></li>
+<li>src/sfsc/sfsc_adapter/<a class="el" href="sfsc__adapter_8h_source.html">sfsc_adapter.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
