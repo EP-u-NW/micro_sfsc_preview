@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.11.5)  19 JAN 2021 18:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.11.5)  20 JAN 2021 16:42
 entering extended mode
 **./refman.tex
 (refman.tex
@@ -1850,14 +1850,34 @@ Underfull \hbox (badness 10000) in paragraph at lines 121--121
 \T1/phv/m/n/10 You can dis-able
  []
 
-[5] [6] [7] [8] [9]
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--121
+\T1/phv/m/n/10 you ported the
+ []
+
+
+Underfull \hbox (badness 1253) in paragraph at lines 121--121
+\T1/phv/m/n/10 frame-work to, you
+ []
+
+
+Underfull \hbox (badness 1303) in paragraph at lines 121--121
+\T1/phv/m/n/10 the func-tions from
+ []
+
+
+Overfull \hbox (42.50555pt too wide) in paragraph at lines 121--121
+\T1/phv/b/n/10 examples/shared/console.[]
+ []
+
+[5] [6] [7] [8] [9] [10]
 Underfull \hbox (badness 1184) in paragraph at lines 125--125
 []\T1/phv/m/n/10 Most func-tions, in-clud-ing the \T1/pcr/m/n/10 system[]_[]tas
 k \T1/phv/m/n/10 and \T1/pcr/m/n/10 user[]_[]task \T1/phv/m/n/10 func-tions re-
 turn er-ror codes. An er-ror
  []
 
-[10]) [11] [12
+) [11] [12
 
 ]
 Chapter 2.
@@ -2066,7 +2086,7 @@ Package rerunfilecheck Info: File `refman.out' has not changed.
 Here is how much of TeX's memory you used:
  17338 strings out of 479765
  265666 string characters out of 2876400
- 632233 words of memory out of 3000000
+ 633233 words of memory out of 3000000
  33652 multiletter control sequences out of 15000+200000
  594627 words of font info for 100 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -2082,7 +2102,7 @@ iles/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiKTeX 2.
 9/fonts/type1/urw/helvetic/uhvb8ac.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
 /urw/helvetic/uhvr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/
 uhvro8a.pfb>
-Output written on refman.pdf (56 pages, 404400 bytes).
+Output written on refman.pdf (56 pages, 404563 bytes).
 PDF statistics:
  1314 PDF objects out of 1440 (max. 8388607)
  346 named destinations out of 1000 (max. 500000)

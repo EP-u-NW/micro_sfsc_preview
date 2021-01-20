@@ -22,7 +22,7 @@
 #endif
 
 #define CONTROL_PUB_PORT 11251
-const char host[] = "192.168.178.92";
+const char host[] = "81.169.207.220";
 
 // Declare an adapter
 static sfsc_adapter adapter = sfsc_adapter_DEFAULT_INIT;
@@ -83,7 +83,7 @@ static void on_publisher_created(sfsc_adapter *a,
         // service registry, but we are using a shortcut here: We already know
         // the topic of our publisher, since we used SERVICE_TOPIC_AUTOGEN, the
         // publishers topic is equal to it's service id (as docummented in
-        //sfsc_adapter.h).
+        // sfsc_adapter.h).
         subscriber.topic.length = UUID_LEN;
         subscriber.topic.content = (const sfsc_uint8 *)publisher.service_id.id;
         // Next, we link our callback.
@@ -112,17 +112,17 @@ static sfsc_int8 register_publisher_service() {
     // Before registering the publisher, we should fill it.
     // We want the topic to be automatically generated, so normally we would use
     // the SERVICE_TOPIC_AUTOGEN macro. But the macro can only be used during
-    // struct declaration, so we need to set the already existing topic struct of
-    // our publisher manually to the values from the macro.
+    // struct declaration, so we need to set the already existing topic struct
+    // of our publisher manually to the values from the macro.
     publisher.topic.content = NULL;
     publisher.topic.length = 0;
     // We want to get notified if there is a new subscriber.
     publisher.on_subscription_change = on_subscription_change;
     // After filling the publisher, we register it.
     // We use the normal (not the unregistered) version of the
-    // register_publisher function, since we want the publisher to show up in the
-    // service registry. We also give the publisher a name, but ignore the other
-    // fields for now. Lastly, we use a callback to get notified once our
+    // register_publisher function, since we want the publisher to show up in
+    // the service registry. We also give the publisher a name, but ignore the
+    // other fields for now. Lastly, we use a callback to get notified once our
     // publisher was written into the service registry.
     const char publisher_name[] = "Hello_World_Publisher";
     sfsc_buffer name = {(const sfsc_uint8 *)publisher_name,

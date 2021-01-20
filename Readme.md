@@ -136,7 +136,7 @@ USER_RING_SIZE | `sfsc_adapter_config.h` | 5120 | x1 RAM | The size of the user 
 NO_CURVE | `zmtp_config.h` | defined | 5 KB(!) RAM and ROM if NOT set| Curve encryption is wip. It is recommended that you disable the functions related to CRUVE to speed up compilation and reduce the RAM and ROM footprint of the framework.
 ZMTP_IN_BUFFER_SIZE | `zmtp_config.h` | 512 | x4 RAM | The size of the ZMTP receive buffer; determines, how big a single ZMTP message can be. If you know, that the services you use need to receive bigger payloads (e.g. because you want to subscribe a publisher whose messages are 1KB in size), you need to adjust this value.
 ZMTP_METADATA_BUFFER_SIZE | `zmtp_config.h` | 32 | x8 RAM | ZMTP needs a place to store its meta data. You usually don't need to adjust this buffers size, unless you tweak the ZMTP implementation itself.
-ENABLE_PRINTS | Your build system | defined | ~1KB of ROM | The examples use platform depended mechanics to print something (to the closes thing to a console their is for the platform), to give you some more insights in what is happening. You can disable this for production. Where you set this directive is up to the used build system.
+ENABLE_PRINTS | Your build system | defined | ~1KB of ROM | The examples use platform depended mechanics to print something (to the closes thing to a console their is for the platform), to give you some more insights in what is happening. You can disable this for production. Where you set this directive is up to the used build system. NOTE: If you want to use this to see logs on a platform you ported the framework to, you need to implement the functions from **examples/shared/console.h** for your platform, too.
 
 
 ## Using the API
