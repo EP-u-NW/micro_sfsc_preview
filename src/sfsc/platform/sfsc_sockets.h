@@ -83,8 +83,8 @@ sfsc_int8 socket_write(sfsc_int16 socket, const sfsc_uint8 *buf,
  * @param socket The socket to read from
  * @param buf The buffer to read into
  * @param size The maximum bytes to read
- * @return sfsc_socket_size The amount of data actually read (0 if none), or a negative
- * number to indicate an error
+ * @return sfsc_socket_size The amount of data actually read (0 if none), or a
+ * negative number to indicate an error
  */
 sfsc_socket_size socket_read(sfsc_int16 socket, sfsc_uint8 *buf,
                              sfsc_socket_size size);
@@ -96,15 +96,37 @@ sfsc_socket_size socket_read(sfsc_int16 socket, sfsc_uint8 *buf,
  * function should force write the buffered data.
  *
  * If this call is succesfull, it should return SOCKET_OK. If you return a value
- * that is smaller then SOCKET_OK (so, negative) this call will be treated as
- * failed, and the returned value will be seen as an error code, which
- * is then delivered upwards the stack to the function that called this
- * function. It is recommended to use error codes in the range of -100 to -126.
+ * other that SOCKET_OK this call will be treated as failed, and the returned
+ * value will be seen as an error code, which is then delivered upwards the
+ * stack to the function that called this function. It is recommended to use
+ * error codes in the range of -100 to -126.
  *
  * @param socket The socket to flush
  * @return sfsc_int8 SOCKET_OK on success or an error code
  */
 sfsc_int8 socket_flush(sfsc_int16 socket);
+
+/**
+ * @brief Releases a socket.
+ *
+ * This function is called if the socket is not longer used by an adapter and
+ * not longer needed. You should perform cleanup here to avoide resource
+ * leak. For some platforms (e.g. where your programm is ever-running, or when
+ * you know that you will never call release_session on an adapter), it may be
+ * reasonable to provide a no-op implementation.
+ *
+ * If this call is succesfull, it should return SOCKET_OK. If you return a value
+ * other that SOCKET_OK this call will be treated as failed, and the returned
+ * value will be seen as an error code, which is then delivered upwards the
+ * stack to the function that called this function. It is recommended to use
+ * error codes in the range of -100 to -126.
+ *
+ * There are no restrictions on the blocking behavior of this function.
+ *
+ * @param socket The socket to release
+ * @return sfsc_int8 SOCKET_OK on success or an error code
+ */
+sfsc_int8 socket_release(sfsc_int16 socket);
 
 #ifdef __cplusplus
 } /* extern "C" */

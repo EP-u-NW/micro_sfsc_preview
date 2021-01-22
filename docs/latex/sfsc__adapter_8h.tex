@@ -66,8 +66,7 @@ struct \mbox{\hyperlink{struct__sfsc__channel__answer}{\+\_\+sfsc\+\_\+channel\+
 \item 
 \#define {\bfseries sfsc\+\_\+server\+\_\+\+DEFAULT\+\_\+\+INIT}
 \item 
-\mbox{\Hypertarget{sfsc__adapter_8h_a80575cdc4a52860d99c683d641dfc8c9}\label{sfsc__adapter_8h_a80575cdc4a52860d99c683d641dfc8c9}} 
-\#define {\bfseries sfsc\+\_\+publisher\+\_\+or\+\_\+server\+\_\+\+INIT\+\_\+\+DEFAULT}~    \{ 0, \{NULL\} \}
+\#define {\bfseries sfsc\+\_\+publisher\+\_\+or\+\_\+server\+\_\+\+INIT\+\_\+\+DEFAULT}
 \item 
 \mbox{\Hypertarget{sfsc__adapter_8h_a572a72066ca9d9eb42efce292f76d762}\label{sfsc__adapter_8h_a572a72066ca9d9eb42efce292f76d762}} 
 \#define {\bfseries relative\+\_\+publisher\+\_\+tags\+\_\+\+DEFAULT\+\_\+\+INIT}~    \{ 0, 0, 0, 0, 0 \}
@@ -124,6 +123,8 @@ sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_ab6bd4332c56b21f6b9ce25c80eadbd
 \begin{DoxyCompactList}\small\item\em Starts a sfsc adapter session with bootstraping. \end{DoxyCompactList}\item 
 sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_a478abd5351cea939fd22e21ba976f97a}{start\+\_\+session}} (\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, const char $\ast$address, int original\+\_\+control\+\_\+pub\+\_\+port, int original\+\_\+control\+\_\+sub\+\_\+port, int original\+\_\+data\+\_\+pub\+\_\+port, int original\+\_\+data\+\_\+sub\+\_\+port)
 \begin{DoxyCompactList}\small\item\em Stats a sfsc adapter session without bootstraping. \end{DoxyCompactList}\item 
+sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_ac826d18cb2e8ffff9d1651cfe4a95df3}{release\+\_\+session}} (\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter)
+\begin{DoxyCompactList}\small\item\em Releases the sockets associated with an adapter. \end{DoxyCompactList}\item 
 sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_a907e055e091da55aee6ea185f042bd30}{register\+\_\+subscriber}} (\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, \mbox{\hyperlink{struct__sfsc__subscriber}{sfsc\+\_\+subscriber}} $\ast$subscriber)
 \begin{DoxyCompactList}\small\item\em Subscribes to a sfsc publisher through the given adapter. \end{DoxyCompactList}\item 
 sfsc\+\_\+int8 \mbox{\hyperlink{sfsc__adapter_8h_addaf3873c9e805b7a3b5ab72c5f59976}{unregister\+\_\+subscriber}} (\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$adapter, \mbox{\hyperlink{struct__sfsc__subscriber}{sfsc\+\_\+subscriber}} $\ast$subscriber)
@@ -202,10 +203,24 @@ Public header that contains all SFSC functions.
 
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{    \{                                                                     \(\backslash\)}
-\DoxyCodeLine{        sfsc\_SfscId\_init\_default, sfsc\_SfscId\_init\_default,               \(\backslash\)}
-\DoxyCodeLine{            sfsc\_SfscId\_init\_default, 0, 0, 0, 0, SERVICE\_TYPE\_PUBLISHER, \(\backslash\)}
-\DoxyCodeLine{            \{relative\_publisher\_tags\_DEFAULT\_INIT\}                         \(\backslash\)}
+\DoxyCodeLine{    \{                                                                       \(\backslash\)}
+\DoxyCodeLine{        sfsc\_SfscId\_init\_default, sfsc\_SfscId\_init\_default,                 \(\backslash\)}
+\DoxyCodeLine{            sfsc\_SfscId\_init\_default, 0, 0, 0, 0, SERVICE\_TYPE\_PUBLISHER, \{ \(\backslash\)}
+\DoxyCodeLine{            relative\_publisher\_tags\_DEFAULT\_INIT                            \(\backslash\)}
+\DoxyCodeLine{        \}                                                                   \(\backslash\)}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sfsc__adapter_8h_a80575cdc4a52860d99c683d641dfc8c9}\label{sfsc__adapter_8h_a80575cdc4a52860d99c683d641dfc8c9}} 
+\index{sfsc\_adapter.h@{sfsc\_adapter.h}!sfsc\_publisher\_or\_server\_INIT\_DEFAULT@{sfsc\_publisher\_or\_server\_INIT\_DEFAULT}}
+\index{sfsc\_publisher\_or\_server\_INIT\_DEFAULT@{sfsc\_publisher\_or\_server\_INIT\_DEFAULT}!sfsc\_adapter.h@{sfsc\_adapter.h}}
+\doxysubsubsection{\texorpdfstring{sfsc\_publisher\_or\_server\_INIT\_DEFAULT}{sfsc\_publisher\_or\_server\_INIT\_DEFAULT}}
+{\footnotesize\ttfamily \#define sfsc\+\_\+publisher\+\_\+or\+\_\+server\+\_\+\+INIT\+\_\+\+DEFAULT}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \{                                         \(\backslash\)}
+\DoxyCodeLine{        0, \{ NULL \}                           \(\backslash\)}
 \DoxyCodeLine{    \}}
 
 \end{DoxyCode}
@@ -797,6 +812,28 @@ sfsc\+\_\+int8 SFSC\+\_\+\+OK on success or one of the error codes below
 {\em Various} & Network Errors There are serveral other, network-\/related errors that can occure \\
 \hline
 \end{DoxyRetVals}
+\mbox{\Hypertarget{sfsc__adapter_8h_ac826d18cb2e8ffff9d1651cfe4a95df3}\label{sfsc__adapter_8h_ac826d18cb2e8ffff9d1651cfe4a95df3}} 
+\index{sfsc\_adapter.h@{sfsc\_adapter.h}!release\_session@{release\_session}}
+\index{release\_session@{release\_session}!sfsc\_adapter.h@{sfsc\_adapter.h}}
+\doxysubsubsection{\texorpdfstring{release\_session()}{release\_session()}}
+{\footnotesize\ttfamily sfsc\+\_\+int8 release\+\_\+session (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{sfsc__adapter_8h_ac6d9c7d2592acf83d5140e80d6c2d7b9}{sfsc\+\_\+adapter}} $\ast$}]{adapter }\end{DoxyParamCaption})}
+
+
+
+Releases the sockets associated with an adapter. 
+
+This function releases the sockets associated with an adapter, by calling the socket\+\_\+release function with every used socket. This is not equivalent to gracefully stopping a sfsc sesseion (since there is no such thing as gracefully stopping a sfscs session, see \textquotesingle{}Stop using the API\textquotesingle{} in the readme).
+
+If you want to reuse the adapter struct after releasing the adapter, make sure to reset it to sfsc\+\_\+adapter\+\_\+\+DEFAULT\+\_\+\+INIT.
+
+
+\begin{DoxyParams}{Parameters}
+{\em adapter} & The adapter to release \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+SFSC\+\_\+\+OK on success or an error code (determined by sfsc\+\_\+sockets.\+h) 
+\end{DoxyReturn}
 \mbox{\Hypertarget{sfsc__adapter_8h_ac1ed1601a750a283cabb2993cb61c29d}\label{sfsc__adapter_8h_ac1ed1601a750a283cabb2993cb61c29d}} 
 \index{sfsc\_adapter.h@{sfsc\_adapter.h}!request@{request}}
 \index{request@{request}!sfsc\_adapter.h@{sfsc\_adapter.h}}

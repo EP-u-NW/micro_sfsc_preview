@@ -303,7 +303,9 @@ struct _sfsc_server {
 };
 
 #define sfsc_publisher_or_server_INIT_DEFAULT \
-    { 0, {NULL} }
+    {                                         \
+        0, { NULL }                           \
+    }
 /**
  * @brief Container to point either to a sfsc_server or sfsc_publisher.
  *
@@ -361,11 +363,12 @@ typedef struct _relative_server_tags {
 } relative_server_tags;
 extern const relative_server_tags relative_server_tags_default;
 
-#define relative_sfsc_service_descriptor_DEFAULT_INIT                     \
-    {                                                                     \
-        sfsc_SfscId_init_default, sfsc_SfscId_init_default,               \
-            sfsc_SfscId_init_default, 0, 0, 0, 0, SERVICE_TYPE_PUBLISHER, \
-            {relative_publisher_tags_DEFAULT_INIT}                         \
+#define relative_sfsc_service_descriptor_DEFAULT_INIT                       \
+    {                                                                       \
+        sfsc_SfscId_init_default, sfsc_SfscId_init_default,                 \
+            sfsc_SfscId_init_default, 0, 0, 0, 0, SERVICE_TYPE_PUBLISHER, { \
+            relative_publisher_tags_DEFAULT_INIT                            \
+        }                                                                   \
     }
 
 /**
@@ -530,6 +533,23 @@ sfsc_int8 start_session(sfsc_adapter* adapter, const char* address,
                         int original_data_pub_port, int original_data_sub_port);
 
 /**
+ * @brief Releases the sockets associated with an adapter.
+ *
+ * This function releases the sockets associated with an adapter,
+ * by calling the socket_release function with every used socket.
+ * This is not equivalent to gracefully stopping a sfsc sesseion (since
+ * there is no such thing as gracefully stopping a sfscs session,
+ * see 'Stop using the API' in the readme).
+ *
+ * If you want to reuse the adapter struct after releasing the adapter,
+ * make sure to reset it to sfsc_adapter_DEFAULT_INIT.
+ *
+ * @param adapter The adapter to release
+ * @return SFSC_OK on success or an error code (determined by sfsc_sockets.h)
+ */
+sfsc_int8 release_session(sfsc_adapter* adapter);
+
+/**
  * @brief Subscribes to a sfsc publisher through the given adapter.
  *
  * The publishers topic which should be subscribed to and
@@ -601,7 +621,8 @@ sfsc_int8 unregister_subscriber(sfsc_adapter* adapter,
  * network-related errors that can occure
  *
  */
-sfsc_int8 query_services(sfsc_adapter* adapter, sfsc_query_callback* on_service);
+sfsc_int8 query_services(sfsc_adapter* adapter,
+                         sfsc_query_callback* on_service);
 
 /**
  * @brief Tells the framework to continue or to end a currently ongoing query
@@ -734,8 +755,8 @@ sfsc_int8 register_publisher_unregistered(sfsc_adapter* adapter,
  *
  * @param adapter An operational adapter
  * @param publisher The publisher to shut down
- * @param command_callback For registered publishers only; Invoked after the publisher
- * was removed from the service registry
+ * @param command_callback For registered publishers only; Invoked after the
+ * publisher was removed from the service registry
  * @return sfsc_int8 SFSC_OK or one of the error codes below
  * @retval SFSC_OK This indicates that unregistering the publisher from the
  * adapter was successfull, and if this publisher is registered in the service

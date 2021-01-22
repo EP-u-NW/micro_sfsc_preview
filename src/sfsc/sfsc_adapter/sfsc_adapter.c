@@ -21,6 +21,28 @@ sfsc_adapter_stats* adapter_stats(sfsc_adapter* adapter) {
     return &adapter->stats;
 }
 
+sfsc_int8 release_session(sfsc_adapter* adapter){
+    sfsc_int8 op_result;
+    op_result=zmtp_release(&(adapter->data.control_pub));
+    if(op_result!=ZMTP_OK){
+        return op_result;
+    }
+    op_result=zmtp_release(&(adapter->data.control_sub));
+        if(op_result!=ZMTP_OK){
+        return op_result;
+    }
+    op_result=zmtp_release(&(adapter->data.data_pub));
+        if(op_result!=ZMTP_OK){
+        return op_result;
+    }
+    op_result=zmtp_release(&(adapter->data.data_sub));
+        if(op_result!=ZMTP_OK){
+        return op_result;
+    }
+    adapter->stats.state=SFSC_STATE_NONE;
+    return ZMTP_OK;
+}
+
 static sfsc_int8 system_task_read_data_sub(sfsc_adapter* adapter) {
     sfsc_uint8* message = get_message(&(adapter->data.data_sub));
     if (message != NULL) {

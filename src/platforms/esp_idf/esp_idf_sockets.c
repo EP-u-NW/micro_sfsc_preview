@@ -87,4 +87,12 @@ sfsc_int8 socket_flush(sfsc_int16 socket) {
     vTaskDelay(100 / portTICK_PERIOD_MS);
     return SOCKET_OK;
 }
+
+sfsc_int8 socket_release(sfsc_int16 socket) {
+    if (close(socket) == 0) {
+        return SOCKET_OK;
+    } else {
+        return -105;
+    }
+}
 #endif

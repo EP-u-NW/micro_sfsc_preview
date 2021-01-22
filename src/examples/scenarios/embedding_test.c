@@ -82,6 +82,15 @@ int embedding_test() {
                 "used, it report false positives (due to warmup effects).");
             return -1;
         }
+        console_println_char("Releasing socket...");
+        sfsc_int8 op_result = socket_release(handle);
+        if (op_result == SOCKET_OK) {
+            console_println_char("Done");
+        } else {
+            console_print_char("Error releasing socket: ");
+            console_println_int16(op_result);
+            return -1;
+        }
     } else {
         console_print_char("Socket error: ");
         console_println_int16(handle);

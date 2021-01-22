@@ -147,3 +147,7 @@ Most functions, including the `system_task` and `user_task` functions return err
 
 ### Struct initalization
 There are some struct types you'll encounter while using the framework. If you want to initialize a struct to its default values (just 0 in almost all cases), you can use the corresponding `<struct_name>_DEFAULT_INIT` macro. For some structs there is a constant default instance you can use to copy the default values over, and if there is, its name is `<struct_name>_default`.
+
+### Stop using the API
+In SFSC, there is no way to gracefully stop an adapter. If you simply stop calling the `system_task` function on it, the adapter will stop sending heartbeats, and therefor the core will detect that an adapter timed out. Leftover services (services that where registered using that adapter but not unregistered manually) will then be removed from the cores service registry. Note that if the core is configured with a long incoming heartbeat deadline duration, it will take some time for the timeout detection to happen, and in consequence, some time for the leftover services to be removed automatically. Thus, depending on your usecase, you might want to unregister your services manually.
+And other important function in this context is `release_session`, which will take the socket handles an adapter used and call your `sfsc_socket.h` implementation to release the corresponding sockets.

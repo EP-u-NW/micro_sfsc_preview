@@ -151,8 +151,7 @@ Macros</h2></td></tr>
 <tr class="separator:a54bfcf55337681b46b7bf5dda499a97e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a743d1b07a52012e2f58d3762fd751288"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><b>sfsc_server_DEFAULT_INIT</b></td></tr>
 <tr class="separator:a743d1b07a52012e2f58d3762fd751288"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80575cdc4a52860d99c683d641dfc8c9"><td class="memItemLeft" align="right" valign="top"><a id="a80575cdc4a52860d99c683d641dfc8c9"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>sfsc_publisher_or_server_INIT_DEFAULT</b>&#160;&#160;&#160;    { 0, {NULL} }</td></tr>
+<tr class="memitem:a80575cdc4a52860d99c683d641dfc8c9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><b>sfsc_publisher_or_server_INIT_DEFAULT</b></td></tr>
 <tr class="separator:a80575cdc4a52860d99c683d641dfc8c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a572a72066ca9d9eb42efce292f76d762"><td class="memItemLeft" align="right" valign="top"><a id="a572a72066ca9d9eb42efce292f76d762"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>relative_publisher_tags_DEFAULT_INIT</b>&#160;&#160;&#160;    { 0, 0, 0, 0, 0 }</td></tr>
@@ -225,6 +224,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a478abd5351cea939fd22e21ba976f97a"><td class="memItemLeft" align="right" valign="top">sfsc_int8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sfsc__adapter_8h.html#a478abd5351cea939fd22e21ba976f97a">start_session</a> (<a class="el" href="sfsc__adapter_8h.html#ac6d9c7d2592acf83d5140e80d6c2d7b9">sfsc_adapter</a> *adapter, const char *address, int original_control_pub_port, int original_control_sub_port, int original_data_pub_port, int original_data_sub_port)</td></tr>
 <tr class="memdesc:a478abd5351cea939fd22e21ba976f97a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stats a sfsc adapter session without bootstraping.  <a href="sfsc__adapter_8h.html#a478abd5351cea939fd22e21ba976f97a">More...</a><br /></td></tr>
 <tr class="separator:a478abd5351cea939fd22e21ba976f97a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac826d18cb2e8ffff9d1651cfe4a95df3"><td class="memItemLeft" align="right" valign="top">sfsc_int8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sfsc__adapter_8h.html#ac826d18cb2e8ffff9d1651cfe4a95df3">release_session</a> (<a class="el" href="sfsc__adapter_8h.html#ac6d9c7d2592acf83d5140e80d6c2d7b9">sfsc_adapter</a> *adapter)</td></tr>
+<tr class="memdesc:ac826d18cb2e8ffff9d1651cfe4a95df3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases the sockets associated with an adapter.  <a href="sfsc__adapter_8h.html#ac826d18cb2e8ffff9d1651cfe4a95df3">More...</a><br /></td></tr>
+<tr class="separator:ac826d18cb2e8ffff9d1651cfe4a95df3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a907e055e091da55aee6ea185f042bd30"><td class="memItemLeft" align="right" valign="top">sfsc_int8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sfsc__adapter_8h.html#a907e055e091da55aee6ea185f042bd30">register_subscriber</a> (<a class="el" href="sfsc__adapter_8h.html#ac6d9c7d2592acf83d5140e80d6c2d7b9">sfsc_adapter</a> *adapter, <a class="el" href="struct__sfsc__subscriber.html">sfsc_subscriber</a> *subscriber)</td></tr>
 <tr class="memdesc:a907e055e091da55aee6ea185f042bd30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribes to a sfsc publisher through the given adapter.  <a href="sfsc__adapter_8h.html#a907e055e091da55aee6ea185f042bd30">More...</a><br /></td></tr>
 <tr class="separator:a907e055e091da55aee6ea185f042bd30"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -324,10 +326,28 @@ const <a class="el" href="sfsc__adapter_8h.html#a6867fb92cb6c9853b21b0110a208cf6
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">    {                                                                     \</div>
-<div class="line">        sfsc_SfscId_init_default, sfsc_SfscId_init_default,               \</div>
-<div class="line">            sfsc_SfscId_init_default, 0, 0, 0, 0, SERVICE_TYPE_PUBLISHER, \</div>
-<div class="line">            {relative_publisher_tags_DEFAULT_INIT}                         \</div>
+<b>Value:</b><div class="fragment"><div class="line">    {                                                                       \</div>
+<div class="line">        sfsc_SfscId_init_default, sfsc_SfscId_init_default,                 \</div>
+<div class="line">            sfsc_SfscId_init_default, 0, 0, 0, 0, SERVICE_TYPE_PUBLISHER, { \</div>
+<div class="line">            relative_publisher_tags_DEFAULT_INIT                            \</div>
+<div class="line">        }                                                                   \</div>
+<div class="line">    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a80575cdc4a52860d99c683d641dfc8c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80575cdc4a52860d99c683d641dfc8c9">&#9670;&nbsp;</a></span>sfsc_publisher_or_server_INIT_DEFAULT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define sfsc_publisher_or_server_INIT_DEFAULT</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">    {                                         \</div>
+<div class="line">        0, { NULL }                           \</div>
 <div class="line">    }</div>
 </div><!-- fragment -->
 </div>
@@ -1297,6 +1317,35 @@ const <a class="el" href="sfsc__adapter_8h.html#a6867fb92cb6c9853b21b0110a208cf6
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ac826d18cb2e8ffff9d1651cfe4a95df3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac826d18cb2e8ffff9d1651cfe4a95df3">&#9670;&nbsp;</a></span>release_session()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">sfsc_int8 release_session </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="sfsc__adapter_8h.html#ac6d9c7d2592acf83d5140e80d6c2d7b9">sfsc_adapter</a> *&#160;</td>
+          <td class="paramname"><em>adapter</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Releases the sockets associated with an adapter. </p>
+<p>This function releases the sockets associated with an adapter, by calling the socket_release function with every used socket. This is not equivalent to gracefully stopping a sfsc sesseion (since there is no such thing as gracefully stopping a sfscs session, see 'Stop using the API' in the readme).</p>
+<p>If you want to reuse the adapter struct after releasing the adapter, make sure to reset it to sfsc_adapter_DEFAULT_INIT.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">adapter</td><td>The adapter to release </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SFSC_OK on success or an error code (determined by sfsc_sockets.h) </dd></dl>
 
 </div>
 </div>

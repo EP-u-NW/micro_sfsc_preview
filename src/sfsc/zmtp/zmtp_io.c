@@ -37,6 +37,10 @@ const sfsc_uint8 long_message = _LONG_MESSAGE, short_message = _SHORT_MESSAGE,
                  short_last_message = _SHORT_LAST_MESSAGE,
                  long_command = _LONG_COMMAND, short_command = _SHORT_COMMAND;
 
+sfsc_int8 zmtp_release(zmtp_socket* socket) {
+    return socket_release(socket->socket_handle);
+}
+
 static sfsc_int8 read_to_index(zmtp_socket* socket, sfsc_size index) {
     sfsc_size in_buffer_size;
     if ((socket)->mechanism == MECHANISM_CURVE) {
@@ -83,7 +87,7 @@ static sfsc_int8 read_size(zmtp_socket* socket) {
             if (socket->buffer_index == 1) {
                 socket->last_message = 0;
                 socket->is_message = 0;
-                //We want fallthroughs in this switch
+                // We want fallthroughs in this switch
                 switch (buffer[0]) {
                     case _SHORT_LAST_MESSAGE:
                         socket->last_message =

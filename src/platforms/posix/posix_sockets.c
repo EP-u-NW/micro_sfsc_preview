@@ -1,13 +1,13 @@
 #ifdef POSIX
-#include <unistd.h>
 #include <fcntl.h>
+#include <unistd.h>
 #ifdef _WIN32
 #include <winsock2.h>
 #else
 #include <arpa/inet.h>
-#include <sys/socket.h>
+#include <netinet/tcp.h>  //For no-delay on posix
 #include <sys/select.h>
-#include <netinet/tcp.h> //For no-delay on posix
+#include <sys/socket.h>
 #endif
 
 #include "../../sfsc/platform/sfsc_sockets.h"
@@ -18,16 +18,13 @@
 static fd_set select_set;
 static struct timeval instant = {0};
 static bool inited = 0;
-sfsc_int16 socket_connect(const char *host, sfsc_uint16 port)
-{
-    if (!inited)
-    {
+sfsc_int16 socket_connect(const char *host, sfsc_uint16 port) {
+    if (!inited) {
         inited = 1;
         FD_ZERO(&select_set);
 #ifdef _WIN32
         WSADATA wsaData;
-        if (WSAStartup(0x202, &wsaData) != 0)
-        {
+        if (WSAStartup(0x202, &wsaData) != 0) {
 #ifdef ENABLE_PRINTS
             console_println_char("WSAStartup failure!");
 #endif
@@ -36,8 +33,7 @@ sfsc_int16 socket_connect(const char *host, sfsc_uint16 port)
 #endif
     }
     int sock = socket(AF_INET, SOCK_STREAM, 0);
-    if (sock < 0)
-    {
+    if (sock < 0) {
 #ifdef ENABLE_PRINTS
         console_println_char("Socket creation error: ");
         console_print_int32((sfsc_int32)sock);
@@ -69,18 +65,15 @@ sfsc_int16 socket_connect(const char *host, sfsc_uint16 port)
     int lookup_result = 0;
 #ifdef _WIN32
     sfsc_uint32 address = (sfsc_uint32)inet_addr(host);
-    if (address != INADDR_NONE)
-    {
+    if (address != INADDR_NONE) {
         memcpy(&addr.sin_addr, (sfsc_uint8 *)&address, 4);
         lookup_result = 1;
     }
 #else
     lookup_result = inet_pton(AF_INET, host, &addr.sin_addr);
 #endif
-    if (lookup_result == 1)
-    {
-        if (connect(sock, (struct sockaddr *)&addr, sizeof(addr)) < 0)
-        {
+    if (lookup_result == 1) {
+        if (connect(sock, (struct sockaddr *)&addr, sizeof(addr)) < 0) {
 #ifdef ENABLE_PRINTS
             console_print_char("Connection to ");
             console_print_char(host);
@@ -89,9 +82,7 @@ sfsc_int16 socket_connect(const char *host, sfsc_uint16 port)
             console_println_char(" failed");
 #endif
             return -102;
-        }
-        else
-        {
+        } else {
 #ifdef ENABLE_PRINTS
             console_print_char("Gave out socket id ");
             console_print_int32(sock);
@@ -100,9 +91,7 @@ sfsc_int16 socket_connect(const char *host, sfsc_uint16 port)
 #endif
         }
         return (sfsc_int16)sock;
-    }
-    else
-    {
+    } else {
 #ifdef ENABLE_PRINTS
         console_println_char("Error getting ip from host");
 #endif
@@ -111,8 +100,7 @@ sfsc_int16 socket_connect(const char *host, sfsc_uint16 port)
 }
 
 sfsc_int8 socket_write(sfsc_int16 socket, const sfsc_uint8 *buf,
-                       sfsc_size size)
-{
+                       sfsc_size size) {
 #ifdef _WIN32
     send(socket, (const char *)buf, size, 0);
 #else
@@ -122,29 +110,32 @@ sfsc_int8 socket_write(sfsc_int16 socket, const sfsc_uint8 *buf,
 }
 
 sfsc_socket_size socket_read(sfsc_int16 socket, sfsc_uint8 *buf,
-                             sfsc_socket_size size)
-{
+                             sfsc_socket_size size) {
     FD_SET(socket, &select_set);
     select(socket + 1, &select_set, NULL, NULL, &instant);
-    if (FD_ISSET(socket, &select_set))
-    {
+    if (FD_ISSET(socket, &select_set)) {
 #ifdef _WIN32
-        sfsc_socket_size result = (sfsc_socket_size)recv(socket, (char *)buf, size, 0);
+        sfsc_socket_size result =
+            (sfsc_socket_size)recv(socket, (char *)buf, size, 0);
 #else
         sfsc_socket_size result = (sfsc_socket_size)recv(socket, buf, size, 0);
 #endif
         return result;
-    }
-    else
-    {
+    } else {
         return 0;
     }
 }
 
-sfsc_int8 socket_flush(sfsc_int16 socket)
-{
+sfsc_int8 socket_flush(sfsc_int16 socket) {
     // No-op
     return SOCKET_OK;
 }
 
+sfsc_int8 socket_release(sfsc_int16 socket) {
+    if (close(socket) == 0) {
+        return SOCKET_OK;
+    } else {
+        return -105;
+    }
+}
 #endif

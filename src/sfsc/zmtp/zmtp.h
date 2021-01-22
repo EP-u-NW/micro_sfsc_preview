@@ -82,6 +82,7 @@ typedef struct _zmtp_socket {
 sfsc_int8 zmtp_connect(zmtp_socket* socket,sfsc_int16 socket_handle, sfsc_uint8 mechanism,
 		sfsc_uint8* mechanism_extra, sfsc_bool as_server,
 		sfsc_uint8 socket_type);
+sfsc_int8 zmtp_release(zmtp_socket* socket);
 sfsc_int8 zmtp_task(zmtp_socket* socket);
 void zmtp_error_msg(zmtp_socket* socket, const sfsc_uint8** error_msg,sfsc_uint8* error_msg_len);
 sfsc_int8 zmtp_flush(zmtp_socket* socket);
